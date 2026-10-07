@@ -1392,8 +1392,43 @@
     }
 
     // Helper to draw procedural talisman or relic art inside the cameo medallion
-    function drawProceduralRelicArt(ctx, cx, cy, r, relicData) {
+    // Helper to draw procedural talisman or relic art inside the cameo medallion
+    function drawProceduralRelicArt(ctx, cx, cy, r, relicData, onUpdate) {
         const theme = (relicData && relicData.theme) || "CUCKS";
+
+        // Check if there is an image element or URL available via StrayCucks or relicData
+        let imgElem = relicData && relicData.imageElement;
+        if (!imgElem && typeof StrayCucks !== 'undefined' && relicData && (relicData.id || relicData.dataUrl || relicData.image)) {
+            const cached = StrayCucks.preloadStrayImage(relicData, (loaded) => {
+                if (loaded && onUpdate) onUpdate();
+            });
+            if (cached && cached.complete && cached.naturalWidth > 0) {
+                imgElem = cached;
+            }
+        }
+
+        if (imgElem && imgElem.complete && imgElem.naturalWidth > 0) {
+            ctx.fillStyle = "#161114";
+            ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
+            ctx.save();
+            ctx.imageSmoothingEnabled = false;
+            // Draw pixel art crisply inside medallion
+            ctx.drawImage(imgElem, cx - r, cy - r, r * 2, r * 2);
+            ctx.restore();
+
+            // Label banner
+            ctx.fillStyle = "rgba(0, 0, 0, 0.78)";
+            ctx.fillRect(cx - 85, cy + r - 34, 170, 24);
+            ctx.strokeStyle = "#ffd700";
+            ctx.lineWidth = 1.5;
+            ctx.strokeRect(cx - 85, cy + r - 34, 170, 24);
+
+            ctx.fillStyle = "#fff4d0";
+            ctx.font = "bold 11px monospace";
+            ctx.textAlign = "center";
+            ctx.fillText((relicData && relicData.name) || "STRAY CUCK", cx, cy + r - 18);
+            return;
+        }
 
         if (theme === "CUCKS") {
             // Stray Cuck Crowned Orange Tabby Pixel Relic
@@ -1528,7 +1563,7 @@
     }
 
     // Generate Ornate Antique Brass Reliquary Cameo Plaque with Enshrined NFT Art
-    function generateReliquaryCameoTexture(relicData) {
+    function generateReliquaryCameoTexture(relicData, onTextureUpdated) {
         const size = 512;
         const diffCanvas = document.createElement('canvas');
         diffCanvas.width = size;
@@ -1540,85 +1575,95 @@
         bumpCanvas.height = size;
         const bumpCtx = bumpCanvas.getContext('2d');
 
-        // Background: Deep Royal Obsidian Velvet
-        diffCtx.fillStyle = "#120c10";
-        diffCtx.fillRect(0, 0, size, size);
-        bumpCtx.fillStyle = "#101010";
-        bumpCtx.fillRect(0, 0, size, size);
-
-        const cx = size / 2;
-        const cy = size / 2;
-        const frameR = size * 0.44;
-
-        // Embossed Frame Outer Ring
-        diffCtx.lineWidth = 18;
-        diffCtx.strokeStyle = "#d4af37";
-        diffCtx.beginPath();
-        diffCtx.arc(cx, cy, frameR, 0, Math.PI * 2);
-        diffCtx.stroke();
-
-        bumpCtx.lineWidth = 18;
-        bumpCtx.strokeStyle = "#d0d0d0";
-        bumpCtx.beginPath();
-        bumpCtx.arc(cx, cy, frameR, 0, Math.PI * 2);
-        bumpCtx.stroke();
-
-        // Inner Beaded Filigree Trim
-        diffCtx.lineWidth = 4;
-        diffCtx.strokeStyle = "#fff2a8";
-        diffCtx.beginPath();
-        diffCtx.arc(cx, cy, frameR - 12, 0, Math.PI * 2);
-        diffCtx.stroke();
-
-        bumpCtx.lineWidth = 4;
-        bumpCtx.strokeStyle = "#ffffff";
-        bumpCtx.beginPath();
-        bumpCtx.arc(cx, cy, frameR - 12, 0, Math.PI * 2);
-        bumpCtx.stroke();
-
-        // 16 Filigree Scallops
-        for (let i = 0; i < 16; i++) {
-            const a = (i / 16) * Math.PI * 2;
-            const sx = cx + Math.cos(a) * (frameR + 10);
-            const sy = cy + Math.sin(a) * (frameR + 10);
-
-            diffCtx.fillStyle = "#e6c35c";
-            diffCtx.beginPath();
-            diffCtx.arc(sx, sy, 7, 0, Math.PI * 2);
-            diffCtx.fill();
-
-            bumpCtx.fillStyle = "#f0f0f0";
-            bumpCtx.beginPath();
-            bumpCtx.arc(sx, sy, 7, 0, Math.PI * 2);
-            bumpCtx.fill();
-        }
-
-        // Medallion Center: Draw Enshrined Artwork
-        const medR = frameR - 18;
-        diffCtx.save();
-        diffCtx.beginPath();
-        diffCtx.arc(cx, cy, medR, 0, Math.PI * 2);
-        diffCtx.clip();
-
-        drawProceduralRelicArt(diffCtx, cx, cy, medR, relicData);
-        diffCtx.restore();
-
-        // Inner shadow vignette for medallion depth
-        diffCtx.save();
-        const medVignette = diffCtx.createRadialGradient(cx, cy, medR * 0.65, cx, cy, medR);
-        medVignette.addColorStop(0, "rgba(0,0,0,0)");
-        medVignette.addColorStop(1, "rgba(0,0,0,0.65)");
-        diffCtx.fillStyle = medVignette;
-        diffCtx.beginPath();
-        diffCtx.arc(cx, cy, medR, 0, Math.PI * 2);
-        diffCtx.fill();
-        diffCtx.restore();
-
         const diffTex = new THREE.CanvasTexture(diffCanvas);
         diffTex.generateMipmaps = true;
 
         const bumpTex = new THREE.CanvasTexture(bumpCanvas);
         bumpTex.generateMipmaps = true;
+
+        function renderPass() {
+            // Background: Deep Royal Obsidian Velvet
+            diffCtx.fillStyle = "#120c10";
+            diffCtx.fillRect(0, 0, size, size);
+            bumpCtx.fillStyle = "#101010";
+            bumpCtx.fillRect(0, 0, size, size);
+
+            const cx = size / 2;
+            const cy = size / 2;
+            const frameR = size * 0.44;
+
+            // Embossed Frame Outer Ring
+            diffCtx.lineWidth = 18;
+            diffCtx.strokeStyle = "#d4af37";
+            diffCtx.beginPath();
+            diffCtx.arc(cx, cy, frameR, 0, Math.PI * 2);
+            diffCtx.stroke();
+
+            bumpCtx.lineWidth = 18;
+            bumpCtx.strokeStyle = "#d0d0d0";
+            bumpCtx.beginPath();
+            bumpCtx.arc(cx, cy, frameR, 0, Math.PI * 2);
+            bumpCtx.stroke();
+
+            // Inner Beaded Filigree Trim
+            diffCtx.lineWidth = 4;
+            diffCtx.strokeStyle = "#fff2a8";
+            diffCtx.beginPath();
+            diffCtx.arc(cx, cy, frameR - 12, 0, Math.PI * 2);
+            diffCtx.stroke();
+
+            bumpCtx.lineWidth = 4;
+            bumpCtx.strokeStyle = "#ffffff";
+            bumpCtx.beginPath();
+            bumpCtx.arc(cx, cy, frameR - 12, 0, Math.PI * 2);
+            bumpCtx.stroke();
+
+            // 16 Filigree Scallops
+            for (let i = 0; i < 16; i++) {
+                const a = (i / 16) * Math.PI * 2;
+                const sx = cx + Math.cos(a) * (frameR + 10);
+                const sy = cy + Math.sin(a) * (frameR + 10);
+
+                diffCtx.fillStyle = "#e6c35c";
+                diffCtx.beginPath();
+                diffCtx.arc(sx, sy, 7, 0, Math.PI * 2);
+                diffCtx.fill();
+
+                bumpCtx.fillStyle = "#f0f0f0";
+                bumpCtx.beginPath();
+                bumpCtx.arc(sx, sy, 7, 0, Math.PI * 2);
+                bumpCtx.fill();
+            }
+
+            // Medallion Center: Draw Enshrined Artwork
+            const medR = frameR - 18;
+            diffCtx.save();
+            diffCtx.beginPath();
+            diffCtx.arc(cx, cy, medR, 0, Math.PI * 2);
+            diffCtx.clip();
+
+            drawProceduralRelicArt(diffCtx, cx, cy, medR, relicData, () => {
+                renderPass();
+                if (onTextureUpdated) onTextureUpdated();
+            });
+            diffCtx.restore();
+
+            // Inner shadow vignette for medallion depth
+            diffCtx.save();
+            const medVignette = diffCtx.createRadialGradient(cx, cy, medR * 0.65, cx, cy, medR);
+            medVignette.addColorStop(0, "rgba(0,0,0,0)");
+            medVignette.addColorStop(1, "rgba(0,0,0,0.65)");
+            diffCtx.fillStyle = medVignette;
+            diffCtx.beginPath();
+            diffCtx.arc(cx, cy, medR, 0, Math.PI * 2);
+            diffCtx.fill();
+            diffCtx.restore();
+
+            diffTex.needsUpdate = true;
+            bumpTex.needsUpdate = true;
+        }
+
+        renderPass();
 
         return {
             diffuse: diffTex,

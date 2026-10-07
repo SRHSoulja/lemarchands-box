@@ -1614,9 +1614,15 @@
                 this.relicPlaques.forEach((rp, idx) => {
                     const relic = this.enshrinedRelics[idx] || {
                         theme: (idx === 0 ? "CUCKS" : "OCCULT"),
-                        name: (idx === 0 ? "STRAY CUCK #527" : `LEVIATHAN SEAL #${idx + 1}`)
+                        name: (idx === 0 ? "STRAY CUCK #527" : `LEVIATHAN SEAL #${idx + 1}`),
+                        id: (idx === 0 ? 527 : null)
                     };
-                    const texData = LemarchandTextures.generateReliquaryCameoTexture(relic);
+                    const onUpdate = () => {
+                        if (rp.material && rp.material.map) {
+                            rp.material.map.needsUpdate = true;
+                        }
+                    };
+                    const texData = LemarchandTextures.generateReliquaryCameoTexture(relic, onUpdate);
                     if (rp.material) {
                         rp.material.map = texData.diffuse;
                         rp.material.bumpMap = texData.bump;

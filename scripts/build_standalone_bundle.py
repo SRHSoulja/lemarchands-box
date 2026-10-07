@@ -35,6 +35,9 @@ def bundle():
     with open(os.path.join(SRC_DIR, "js", "audio.js"), "r", encoding="utf-8") as f:
         audio_js = f.read()
 
+    with open(os.path.join(SRC_DIR, "js", "strays.js"), "r", encoding="utf-8") as f:
+        strays_js = f.read()
+
     with open(os.path.join(SRC_DIR, "js", "textures.js"), "r", encoding="utf-8") as f:
         textures_js = f.read()
 
@@ -59,6 +62,7 @@ def bundle():
         three_js,
         traits_js,
         audio_js,
+        strays_js,
         textures_js,
         engine_js,
         puzzle_js,

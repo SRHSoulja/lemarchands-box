@@ -52,6 +52,10 @@
                 vaultYieldBal: document.getElementById('vaultYieldBal'),
                 enshrinedThumbnails: document.getElementById('enshrinedThumbnails'),
                 btnAddSampleRelic: document.getElementById('btnAddSampleRelic'),
+                btnEnshrineStray: document.getElementById('btnEnshrineStray'),
+                strayTokenInput: document.getElementById('strayTokenInput'),
+                btnClearRelics: document.getElementById('btnClearRelics'),
+                straysContractCode: document.getElementById('straysContractCode'),
 
                 // Dock Buttons
                 btnStep: document.getElementById('btnStep'),
@@ -438,30 +442,96 @@
                 });
             }
 
-            if (this.dom.btnAddSampleRelic) {
-                this.dom.btnAddSampleRelic.addEventListener('click', () => {
+            // Stray Cucks Enshrinement Handler
+            const handleEnshrineStray = async (tokenId) => {
+                let id = parseInt(tokenId);
+                if (isNaN(id) || id < 1 || id > 2000) {
+                    if (this.dom.strayTokenInput) id = parseInt(this.dom.strayTokenInput.value) || 527;
+                    else id = 527;
+                }
+                if (id < 1) id = 1;
+                if (id > 2000) id = 2000;
+                if (this.dom.strayTokenInput) this.dom.strayTokenInput.value = id;
+
+                let relicObj = null;
+                if (typeof StrayCucks !== 'undefined') {
+                    try {
+                        relicObj = await StrayCucks.fetchStray(id);
+                    } catch (e) {}
+                }
+                if (!relicObj) {
+                    relicObj = {
+                        id: id,
+                        name: `STRAY CUCK #${id}`,
+                        theme: "CUCKS",
+                        image: `https://straycucks.com/gif/${id}.gif`
+                    };
+                }
+                relicObj.theme = "CUCKS";
+
+                const state = this.getReliquaryState(this.currentTokenId);
+                // Box has 4 key drawer alcoves (0, 3, 9, 10). If >= 4, rotate oldest
+                if (state.relics.length >= 4) {
+                    state.relics.shift();
+                }
+                state.relics.push(relicObj);
+                this.saveReliquaryState(this.currentTokenId, state);
+                this.renderReliquaryHUD(this.currentTokenId);
+
+                if (this.audio && this.audio.playSolveChime) {
+                    this.audio.playSolveChime();
+                }
+                if (this.dom.puzzleHint) {
+                    this.dom.puzzleHint.textContent = `✨ [${relicObj.name}] enshrined into 6551 vault and mounted in 3D drawer!`;
+                }
+
+                // If currently at stage < 5, advance to Stage 5 (Drawers) so user immediately sees the relic in 3D!
+                if (this.puzzle.currentStage < 5) {
+                    this.puzzle.setStage(5);
+                }
+            };
+
+            if (this.dom.btnEnshrineStray) {
+                this.dom.btnEnshrineStray.addEventListener('click', () => {
+                    const id = parseInt(this.dom.strayTokenInput ? this.dom.strayTokenInput.value : 527);
+                    handleEnshrineStray(id);
+                });
+            }
+
+            document.querySelectorAll('.stray-pill').forEach(pill => {
+                pill.addEventListener('click', () => {
+                    const id = parseInt(pill.getAttribute('data-id'));
+                    if (!isNaN(id)) handleEnshrineStray(id);
+                });
+            });
+
+            if (this.dom.btnClearRelics) {
+                this.dom.btnClearRelics.addEventListener('click', () => {
                     const state = this.getReliquaryState(this.currentTokenId);
-                    const sampleRelics = [
-                        { theme: "CUCKS", name: "STRAY CUCK #527" },
-                        { theme: "OCCULT", name: "LEVIATHAN SEAL #42" },
-                        { theme: "CUCKS", name: "CROWNED ORANGE TABBY" },
-                        { theme: "OCCULT", name: "OBSIDIAN LABYRINTH" }
-                    ];
-                    const nextRelic = sampleRelics[state.relics.length % sampleRelics.length];
-                    if (state.relics.length >= 4) {
-                        state.relics = [nextRelic];
-                    } else {
-                        state.relics.push(nextRelic);
-                    }
+                    state.relics = [];
                     this.saveReliquaryState(this.currentTokenId, state);
                     this.renderReliquaryHUD(this.currentTokenId);
-
-                    if (this.audio && this.audio.playSolveChime) {
-                        this.audio.playSolveChime();
-                    }
+                    if (this.audio && this.audio.playTumblerClick) this.audio.playTumblerClick(0);
                     if (this.dom.puzzleHint) {
-                        this.dom.puzzleHint.textContent = `✨ Relic [${nextRelic.name}] enshrined into 6551 vault and assembled into cube interior!`;
+                        this.dom.puzzleHint.textContent = "Withdraw complete: All enshrined relics returned to owner wallet.";
                     }
+                });
+            }
+
+            if (this.dom.straysContractCode) {
+                this.dom.straysContractCode.addEventListener('click', () => {
+                    if (typeof StrayCucks !== 'undefined' && navigator.clipboard) {
+                        navigator.clipboard.writeText(StrayCucks.CONTRACT_ADDRESS);
+                        const orig = this.dom.straysContractCode.textContent;
+                        this.dom.straysContractCode.textContent = "✓ Copied!";
+                        setTimeout(() => { if (this.dom.straysContractCode) this.dom.straysContractCode.textContent = orig; }, 1500);
+                    }
+                });
+            }
+
+            if (this.dom.btnAddSampleRelic) {
+                this.dom.btnAddSampleRelic.addEventListener('click', () => {
+                    handleEnshrineStray(527);
                 });
             }
         }
@@ -553,8 +623,8 @@
                 vaultETH: 0.10,
                 vaultUSDC: 500,
                 relics: [
-                    { theme: "CUCKS", name: "STRAY CUCK #527" },
-                    { theme: "OCCULT", name: `LEVIATHAN SEAL #${tokenId}` }
+                    { id: 527, theme: "CUCKS", name: "STRAY CUCK #527" },
+                    { id: 414, theme: "CUCKS", name: "STRAY CUCK #414" }
                 ]
             };
         }
@@ -611,10 +681,16 @@
             relics.forEach((r, idx) => {
                 const item = document.createElement('div');
                 item.className = 'enshrined-thumb-item';
-                item.title = `Enshrined Relic #${idx + 1}: ${r.name}`;
+                item.title = `Enshrined Relic #${idx + 1}: ${r.name} (Click to inspect in 3D)`;
 
                 if (typeof LemarchandTextures !== 'undefined' && LemarchandTextures.generateReliquaryCameoTexture) {
-                    const tex = LemarchandTextures.generateReliquaryCameoTexture(r);
+                    const tex = LemarchandTextures.generateReliquaryCameoTexture(r, () => {
+                        // Re-render thumbnail if texture updated
+                        if (tex && tex.canvas && !item.contains(tex.canvas)) {
+                            item.innerHTML = '';
+                            item.appendChild(tex.canvas);
+                        }
+                    });
                     if (tex && tex.canvas) {
                         item.appendChild(tex.canvas);
                     } else {
@@ -630,6 +706,9 @@
                     }
                     if (this.audio && this.audio.playFaceHover) {
                         this.audio.playFaceHover(idx % 6, 700);
+                    }
+                    if (this.puzzle.currentStage < 5) {
+                        this.puzzle.setStage(5);
                     }
                 });
 

@@ -104,11 +104,40 @@
                     </div>
                 </div>
 
+                <!-- Stray Cucks Collection Enshrinement Integration -->
+                <div class="strays-enshrine-panel">
+                    <div class="strays-badge-header">
+                        <span class="strays-badge-title">🐱 Stray Cucks Integration</span>
+                        <span class="strays-chain-pill">Robinhood Chain (ID: 4663)</span>
+                    </div>
+                    <div class="strays-contract-row" title="Contract: 0xc6132bd1b7ee344ba6a53fa203116d168cdc5307">
+                        <span class="strays-contract-label">Contract:</span>
+                        <code class="strays-contract-code" id="straysContractCode">0xc6132bd1...5307</code>
+                        <span class="strays-supply-tag">2,000 STRAY</span>
+                    </div>
+                    <div class="strays-action-row">
+                        <div class="strays-input-group">
+                            <span class="strays-hash-prefix">#</span>
+                            <input type="number" id="strayTokenInput" min="1" max="2000" value="527" class="stray-token-input" placeholder="ID (1-2000)" />
+                        </div>
+                        <button class="add-relic-btn primary-enshrine" id="btnEnshrineStray" title="Enshrine this Stray into the 3D cube interior">+ Enshrine Stray</button>
+                    </div>
+                    <div class="strays-preset-pills">
+                        <span class="preset-label">Quick:</span>
+                        <button class="stray-pill" data-id="527" title="Stray Cuck #527: Crowned Orange Tabby">#527 👑</button>
+                        <button class="stray-pill" data-id="414" title="Stray Cuck #414: Crowned Mouse">#414 🐭</button>
+                        <button class="stray-pill" data-id="1711" title="Stray Cuck #1711: Fluffy White Kitten">#1711 👻</button>
+                        <button class="stray-pill" data-id="1284" title="Stray Cuck #1284: Black Cat">#1284 🐈‍⬛</button>
+                        <button class="stray-pill" data-id="4" title="Stray Cuck #4: Tuxedo">#4 🤵</button>
+                        <button class="stray-pill" data-id="23" title="Stray Cuck #23: Raccoon Bandana">#23 🦝</button>
+                    </div>
+                </div>
+
                 <!-- Enshrined NFT Thumbnails / Interactive Relic Slotting -->
                 <div class="enshrined-tray-section">
                     <div class="tray-label-row">
                         <span>Interior Enshrined Relics:</span>
-                        <button class="add-relic-btn" id="btnAddSampleRelic" title="Add / Enshrine a new NFT into this cube">+ Enshrine</button>
+                        <button class="add-relic-btn" id="btnClearRelics" title="Withdraw / Clear all relics">Withdraw All</button>
                     </div>
                     <div class="enshrined-thumbnails" id="enshrinedThumbnails"></div>
                 </div>
@@ -209,6 +238,7 @@
     <script src="src/js/lib/three.min.js"></script>
     <script src="src/js/traits.js"></script>
     <script src="src/js/audio.js"></script>
+    <script src="src/js/strays.js"></script>
     <script src="src/js/textures.js"></script>
     <script src="src/js/engine.js"></script>
     <script src="src/js/puzzle.js"></script>

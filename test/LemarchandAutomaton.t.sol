@@ -289,4 +289,86 @@ contract LemarchandAutomatonTest is Test {
         assertEq(boxAccounts[0].balance, 0.06 ether, "Vault ETH balance should reduce");
         assertEq(alice.balance, initialAliceBalance + 0.04 ether, "Alice ETH should increase");
     }
+
+    function test_StrayCuckEnshrinementAndWithdrawal() public {
+        // Deploy Mock Stray Cucks collection
+        MockNFTDrop strays = new MockNFTDrop();
+
+        // Alice mints Stray Cuck #527
+        vm.deal(alice, 1 ether);
+        vm.prank(alice);
+        strays.mintTo{value: 0.01 ether}(alice);
+        assertEq(strays.ownerOf(1), alice);
+
+        // Alice enshrines Stray Cuck into her Box 1 6551 vault
+        vm.prank(alice);
+        strays.safeTransferFrom(alice, boxAccounts[0], 1);
+        assertEq(strays.ownerOf(1), boxAccounts[0], "Box 1 vault should now own the Stray Cuck NFT");
+        assertEq(strays.balanceOf(boxAccounts[0]), 1, "Box 1 vault NFT balance should be 1");
+
+        // Alice (owner) withdraws Stray Cuck back to her wallet
+        bytes memory withdrawCalldata = abi.encodeWithSelector(
+            bytes4(keccak256("safeTransferFrom(address,address,uint256)")),
+            boxAccounts[0],
+            alice,
+            1
+        );
+
+        vm.prank(alice);
+        Lemarchand6551Account(payable(boxAccounts[0])).execute(
+            address(strays),
+            0,
+            withdrawCalldata,
+            0
+        );
+
+        assertEq(strays.ownerOf(1), alice, "Alice should have her Stray Cuck back in her wallet");
+        assertEq(strays.balanceOf(boxAccounts[0]), 0, "Box 1 vault should have 0 NFTs");
+    }
+
+    function test_StrayCuckOperatorTheftPrevention() public {
+        MockNFTDrop strays = new MockNFTDrop();
+
+        // Enshrine Stray Cuck into Box 1 vault
+        vm.prank(alice);
+        strays.mintTo{value: 0.01 ether}(boxAccounts[0]);
+        assertEq(strays.ownerOf(1), boxAccounts[0]);
+
+        // Bot operator attempts to steal Stray Cuck using safeTransferFrom
+        bytes memory stealCalldata = abi.encodeWithSelector(
+            bytes4(keccak256("safeTransferFrom(address,address,uint256)")),
+            boxAccounts[0],
+            botOperator,
+            1
+        );
+
+        vm.prank(botOperator);
+        vm.expectRevert(Lemarchand6551Account.NotAuthorized.selector);
+        Lemarchand6551Account(payable(boxAccounts[0])).execute(
+            address(strays),
+            0,
+            stealCalldata,
+            0
+        );
+
+        // Bot operator also attempts transferFrom
+        bytes memory stealCalldata2 = abi.encodeWithSelector(
+            IERC721.transferFrom.selector,
+            boxAccounts[0],
+            botOperator,
+            1
+        );
+
+        vm.prank(botOperator);
+        vm.expectRevert(Lemarchand6551Account.NotAuthorized.selector);
+        Lemarchand6551Account(payable(boxAccounts[0])).execute(
+            address(strays),
+            0,
+            stealCalldata2,
+            0
+        );
+
+        // Stray Cuck remains 100% safe inside the vault
+        assertEq(strays.ownerOf(1), boxAccounts[0]);
+    }
 }

@@ -552,7 +552,133 @@ body, html {
     font-size: 0.74rem;
     font-family: monospace;
     font-weight: 700;
-    color: #fff4d0;
+.strays-enshrine-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: rgba(18, 12, 16, 0.75);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    padding: 8px 10px;
+    border-radius: 4px;
+    margin-top: 2px;
+}
+
+.strays-badge-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.strays-badge-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--brass-gold);
+    letter-spacing: 0.4px;
+}
+
+.strays-chain-pill {
+    font-size: 0.60rem;
+    font-weight: 600;
+    color: #9fe7ff;
+    background: rgba(0, 140, 255, 0.20);
+    border: 1px solid rgba(0, 140, 255, 0.4);
+    padding: 1px 6px;
+    border-radius: 10px;
+}
+
+.strays-contract-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+}
+
+.strays-contract-code {
+    font-family: monospace;
+    font-size: 0.65rem;
+    color: #ffd880;
+    background: rgba(0, 0, 0, 0.45);
+    padding: 2px 4px;
+    border-radius: 3px;
+    letter-spacing: 0.3px;
+}
+
+.strays-supply-tag {
+    font-size: 0.60rem;
+    color: #a0d8a0;
+    margin-left: auto;
+}
+
+.strays-action-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.strays-input-group {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 3px;
+    padding: 2px 6px;
+    flex: 1;
+}
+
+.strays-hash-prefix {
+    font-size: 0.70rem;
+    color: var(--brass-gold);
+    font-weight: bold;
+    margin-right: 4px;
+}
+
+.stray-token-input {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: monospace;
+    font-size: 0.72rem;
+    width: 100%;
+    outline: none;
+}
+
+.primary-enshrine {
+    background: rgba(212, 175, 55, 0.28);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.strays-preset-pills {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    overflow-x: auto;
+    padding-top: 2px;
+}
+
+.preset-label {
+    font-size: 0.62rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+.stray-pill {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #e0d0b0;
+    font-size: 0.60rem;
+    padding: 1px 5px;
+    border-radius: 3px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+}
+
+.stray-pill:hover {
+    background: var(--brass-gold);
+    color: #120c10;
+    border-color: var(--brass-gold);
 }
 
 .enshrined-tray-section {

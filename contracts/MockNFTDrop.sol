@@ -2,6 +2,7 @@
 pragma solidity ^0.8.20;
 
 import "./LemarchandsBox.sol";
+import "./ERC6551Account.sol";
 
 /**
  * @title MockNFTDrop (HotRelicDrop)
@@ -80,10 +81,31 @@ contract MockNFTDrop is IERC721, IERC721Metadata {
         return interfaceId == type(IERC721).interfaceId || interfaceId == type(IERC721Metadata).interfaceId;
     }
 
-    // Dummy stubs for transfer
-    function safeTransferFrom(address, address, uint256, bytes calldata) external override {}
-    function safeTransferFrom(address, address, uint256) external override {}
-    function transferFrom(address, address, uint256) external override {}
+    function _transfer(address from, address to, uint256 tokenId) internal {
+        require(_owners[tokenId] == from, "Not token owner");
+        require(to != address(0), "Transfer to 0");
+        _balances[from]--;
+        _balances[to]++;
+        _owners[tokenId] = to;
+        emit Transfer(from, to, tokenId);
+    }
+
+    function transferFrom(address from, address to, uint256 tokenId) public override {
+        _transfer(from, to, tokenId);
+    }
+
+    function safeTransferFrom(address from, address to, uint256 tokenId) public override {
+        safeTransferFrom(from, to, tokenId, "");
+    }
+
+    function safeTransferFrom(address from, address to, uint256 tokenId, bytes memory data) public override {
+        _transfer(from, to, tokenId);
+        if (to.code.length > 0) {
+            bytes4 retval = IERC721Receiver(to).onERC721Received(msg.sender, from, tokenId, data);
+            require(retval == IERC721Receiver.onERC721Received.selector, "Non-receiver");
+        }
+    }
+
     function approve(address, uint256) external override {}
     function setApprovalForAll(address, bool) external override {}
     function getApproved(uint256) external pure override returns (address) { return address(0); }
