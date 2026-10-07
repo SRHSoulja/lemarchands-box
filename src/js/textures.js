@@ -1396,23 +1396,32 @@
     function drawProceduralRelicArt(ctx, cx, cy, r, relicData, onUpdate) {
         const theme = (relicData && relicData.theme) || "CUCKS";
 
-        // Check if there is an image element or URL available via RelicMediaResolver, StrayCucks, or relicData
-        let imgElem = relicData && relicData.imageElement;
-        const rawSrc = relicData && (relicData.imageUrl || relicData.image || relicData.dataUrl || (relicData.id ? `https://straycucks.com/gif/${relicData.id}.gif` : null));
-
-        if (!imgElem && typeof RelicMediaResolver !== 'undefined' && rawSrc) {
-            const loaded = RelicMediaResolver.loadNFTImage(rawSrc, (loadedImg) => {
-                if (loadedImg && onUpdate) onUpdate();
-            });
-            if (loaded && loaded.complete && loaded.naturalWidth > 0) {
-                imgElem = loaded;
+        // Prioritize instant offline embedded base64 if available in StrayCucks samples
+        if (typeof StrayCucks !== 'undefined' && relicData && relicData.id) {
+            const sample = StrayCucks.getSample(relicData.id);
+            if (sample && sample.dataUrl) {
+                relicData.dataUrl = sample.dataUrl;
+                if (!relicData.name) relicData.name = sample.name;
+                if (!relicData.attributes && sample.attributes) relicData.attributes = sample.attributes;
             }
-        } else if (!imgElem && typeof StrayCucks !== 'undefined' && relicData && (relicData.id || relicData.dataUrl || relicData.image)) {
+        }
+
+        let imgElem = relicData && relicData.imageElement;
+        const rawSrc = relicData && (relicData.dataUrl || relicData.imageUrl || relicData.image || (relicData.id ? `https://straycucks.com/gif/${relicData.id}.gif` : null));
+
+        if (!imgElem && typeof StrayCucks !== 'undefined' && relicData && (relicData.id || relicData.dataUrl || relicData.image)) {
             const cached = StrayCucks.preloadStrayImage(relicData, (loaded) => {
                 if (loaded && onUpdate) onUpdate();
             });
             if (cached && cached.complete && cached.naturalWidth > 0) {
                 imgElem = cached;
+            }
+        } else if (!imgElem && typeof RelicMediaResolver !== 'undefined' && rawSrc) {
+            const loaded = RelicMediaResolver.loadNFTImage(rawSrc, (loadedImg) => {
+                if (loadedImg && onUpdate) onUpdate();
+            });
+            if (loaded && loaded.complete && loaded.naturalWidth > 0) {
+                imgElem = loaded;
             }
         }
 
@@ -1426,16 +1435,16 @@
             ctx.restore();
 
             // Label banner
-            ctx.fillStyle = "rgba(0, 0, 0, 0.78)";
-            ctx.fillRect(cx - 85, cy + r - 34, 170, 24);
+            ctx.fillStyle = "rgba(0, 0, 0, 0.82)";
+            ctx.fillRect(cx - 90, cy + r - 32, 180, 24);
             ctx.strokeStyle = "#ffd700";
             ctx.lineWidth = 1.5;
-            ctx.strokeRect(cx - 85, cy + r - 34, 170, 24);
+            ctx.strokeRect(cx - 90, cy + r - 32, 180, 24);
 
             ctx.fillStyle = "#fff4d0";
             ctx.font = "bold 11px monospace";
             ctx.textAlign = "center";
-            ctx.fillText((relicData && relicData.name) || "ENSHRINED RELIC", cx, cy + r - 18);
+            ctx.fillText((relicData && relicData.name) || "ENSHRINED RELIC", cx, cy + r - 16);
             return;
         }
 

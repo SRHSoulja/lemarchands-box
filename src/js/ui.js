@@ -59,6 +59,20 @@
                 customMediaInput: document.getElementById('customMediaInput'),
                 btnEnshrineCustom: document.getElementById('btnEnshrineCustom'),
 
+                // Reliquary Inspection Showcase & Live Stray Preview
+                relicShowcaseCard: document.getElementById('relicShowcaseCard'),
+                btnShowcaseClose: document.getElementById('btnShowcaseClose'),
+                showcaseImg: document.getElementById('showcaseImg'),
+                showcaseTitle: document.getElementById('showcaseTitle'),
+                showcaseVaultLoc: document.getElementById('showcaseVaultLoc'),
+                showcaseContract: document.getElementById('showcaseContract'),
+                showcaseTraitsTray: document.getElementById('showcaseTraitsTray'),
+                btnShowcaseFocus3D: document.getElementById('btnShowcaseFocus3D'),
+                strayLivePreview: document.getElementById('strayLivePreview'),
+                strayPreviewImg: document.getElementById('strayPreviewImg'),
+                strayPreviewName: document.getElementById('strayPreviewName'),
+                strayPreviewSub: document.getElementById('strayPreviewSub'),
+
                 // Dock Buttons
                 btnStep: document.getElementById('btnStep'),
                 btnSolve: document.getElementById('btnSolve'),
@@ -487,11 +501,56 @@
                     this.dom.puzzleHint.textContent = `✨ [${relicObj.name}] enshrined into 6551 vault and mounted in 3D drawer!`;
                 }
 
-                // If currently at stage < 5, advance to Stage 5 (Drawers) so user immediately sees the relic in 3D!
+                // Advance to Stage 5 (Drawers) so the drawer physically glides open
                 if (this.puzzle.currentStage < 5) {
                     this.puzzle.setStage(5);
                 }
+
+                // Immediately focus 3D camera to frame the newly enshrined drawer!
+                const relicIdx = state.relics.length - 1;
+                if (this.engine && this.engine.focusRelic) {
+                    this.engine.focusRelic(relicIdx);
+                }
+
+                // Open the 2D Reliquary Showcase Card for crystal-clear visual inspection
+                this.showRelicShowcase(relicObj, relicIdx);
+                this.updateStrayLivePreview(id);
             };
+
+            if (this.dom.strayTokenInput) {
+                this.dom.strayTokenInput.addEventListener('input', (e) => {
+                    this.updateStrayLivePreview(e.target.value);
+                });
+                this.dom.strayTokenInput.addEventListener('change', (e) => {
+                    this.updateStrayLivePreview(e.target.value);
+                });
+            }
+
+            if (this.dom.strayLivePreview) {
+                this.dom.strayLivePreview.addEventListener('click', () => {
+                    const id = parseInt(this.dom.strayTokenInput ? this.dom.strayTokenInput.value : 527);
+                    handleEnshrineStray(id);
+                });
+            }
+
+            if (this.dom.btnShowcaseClose) {
+                this.dom.btnShowcaseClose.addEventListener('click', () => {
+                    if (this.dom.relicShowcaseCard) {
+                        this.dom.relicShowcaseCard.style.display = 'none';
+                    }
+                });
+            }
+
+            if (this.dom.btnShowcaseFocus3D) {
+                this.dom.btnShowcaseFocus3D.addEventListener('click', () => {
+                    if (this.puzzle.currentStage < 5) {
+                        this.puzzle.setStage(5);
+                    }
+                    if (this.engine && this.engine.focusRelic) {
+                        this.engine.focusRelic(this.currentInspectedRelicIndex || 0);
+                    }
+                });
+            }
 
             if (this.dom.btnEnshrineStray) {
                 this.dom.btnEnshrineStray.addEventListener('click', () => {
@@ -503,7 +562,10 @@
             document.querySelectorAll('.stray-pill').forEach(pill => {
                 pill.addEventListener('click', () => {
                     const id = parseInt(pill.getAttribute('data-id'));
-                    if (!isNaN(id)) handleEnshrineStray(id);
+                    if (!isNaN(id)) {
+                        this.updateStrayLivePreview(id);
+                        handleEnshrineStray(id);
+                    }
                 });
             });
 
@@ -513,6 +575,9 @@
                     state.relics = [];
                     this.saveReliquaryState(this.currentTokenId, state);
                     this.renderReliquaryHUD(this.currentTokenId);
+                    if (this.dom.relicShowcaseCard) {
+                        this.dom.relicShowcaseCard.style.display = 'none';
+                    }
                     if (this.audio && this.audio.playTumblerClick) this.audio.playTumblerClick(0);
                     if (this.dom.puzzleHint) {
                         this.dom.puzzleHint.textContent = "Withdraw complete: All enshrined relics returned to owner wallet.";
@@ -579,6 +644,12 @@
                 if (this.puzzle.currentStage < 5) {
                     this.puzzle.setStage(5);
                 }
+
+                const relicIdx = state.relics.length - 1;
+                if (this.engine && this.engine.focusRelic) {
+                    this.engine.focusRelic(relicIdx);
+                }
+                this.showRelicShowcase(relicObj, relicIdx);
             };
 
             if (this.dom.btnEnshrineCustom) {
@@ -684,8 +755,22 @@
             const key = `lemarchand_6551_${tokenId}`;
             try {
                 const saved = localStorage.getItem(key);
-                if (saved) return JSON.parse(saved);
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (parsed.relics && Array.isArray(parsed.relics) && typeof StrayCucks !== 'undefined' && StrayCucks.getSample) {
+                        parsed.relics = parsed.relics.map(r => {
+                            if (r && r.id && StrayCucks.getSample(r.id)) {
+                                return Object.assign({}, StrayCucks.getSample(r.id), r);
+                            }
+                            return r;
+                        });
+                    }
+                    return parsed;
+                }
             } catch (e) {}
+
+            const s527 = (typeof StrayCucks !== 'undefined' && StrayCucks.getSample) ? StrayCucks.getSample(527) : null;
+            const s414 = (typeof StrayCucks !== 'undefined' && StrayCucks.getSample) ? StrayCucks.getSample(414) : null;
 
             return {
                 copilotEnabled: true,
@@ -694,8 +779,8 @@
                 vaultETH: 0.10,
                 vaultUSDC: 500,
                 relics: [
-                    { id: 527, theme: "CUCKS", name: "STRAY CUCK #527" },
-                    { id: 414, theme: "CUCKS", name: "STRAY CUCK #414" }
+                    s527 || { id: 527, theme: "CUCKS", name: "STRAY CUCK #527" },
+                    s414 || { id: 414, theme: "CUCKS", name: "STRAY CUCK #414" }
                 ]
             };
         }
@@ -705,6 +790,98 @@
             try {
                 localStorage.setItem(key, JSON.stringify(state));
             } catch (e) {}
+        }
+
+        updateStrayLivePreview(tokenId) {
+            let id = parseInt(tokenId);
+            if (isNaN(id) || id < 1 || id > 2000) id = 527;
+            let sample = null;
+            if (typeof StrayCucks !== 'undefined' && StrayCucks.getSample) {
+                sample = StrayCucks.getSample(id);
+            }
+            const name = sample ? sample.name : `Stray Cuck #${id}`;
+            const src = (sample && sample.dataUrl) ? sample.dataUrl : `https://straycucks.com/gif/${id}.gif`;
+
+            if (this.dom.strayPreviewName) {
+                this.dom.strayPreviewName.textContent = name;
+            }
+            if (this.dom.strayPreviewImg) {
+                this.dom.strayPreviewImg.src = src;
+            }
+            if (this.dom.strayPreviewSub) {
+                if (sample && sample.attributes && sample.attributes.length > 0) {
+                    const subStr = sample.attributes.slice(0, 3).map(a => a.value).join(' • ');
+                    this.dom.strayPreviewSub.textContent = subStr;
+                } else {
+                    this.dom.strayPreviewSub.textContent = "Robinhood Chain • 2,000 Supply";
+                }
+            }
+        }
+
+        showRelicShowcase(relic, index) {
+            if (!this.dom.relicShowcaseCard) return;
+            const rIdx = index || 0;
+            this.currentInspectedRelicIndex = rIdx;
+
+            const name = (relic && relic.name) || `Enshrined Relic #${rIdx + 1}`;
+            const src = relic && (relic.dataUrl || relic.image || relic.imageUrl || (relic.id ? `https://straycucks.com/gif/${relic.id}.gif` : null));
+
+            if (this.dom.showcaseTitle) {
+                this.dom.showcaseTitle.textContent = name;
+            }
+            if (this.dom.showcaseImg) {
+                if (src) {
+                    this.dom.showcaseImg.src = src;
+                    this.dom.showcaseImg.style.display = 'block';
+                } else {
+                    this.dom.showcaseImg.style.display = 'none';
+                }
+            }
+            if (this.dom.showcaseVaultLoc) {
+                const drawerNames = [
+                    "Drawer Alcove #1 • Upper Front-Right",
+                    "Drawer Alcove #2 • Upper Back-Left",
+                    "Drawer Alcove #3 • Lower Back-Right",
+                    "Drawer Alcove #4 • Lower Front-Left"
+                ];
+                this.dom.showcaseVaultLoc.textContent = `📦 ${drawerNames[rIdx % 4]}`;
+            }
+            if (this.dom.showcaseContract) {
+                if (relic && (relic.theme === 'CUCKS' || relic.id)) {
+                    this.dom.showcaseContract.textContent = "Contract: 0xc6132bd1...5307 (Robinhood Chain)";
+                } else if (relic && relic.sourceType) {
+                    this.dom.showcaseContract.textContent = `Protocol: ${relic.sourceType.toUpperCase()}`;
+                } else {
+                    this.dom.showcaseContract.textContent = "6551 Token Bound Reliquary Vault";
+                }
+            }
+            if (this.dom.showcaseTraitsTray) {
+                this.dom.showcaseTraitsTray.innerHTML = '';
+                const attrs = (relic && relic.attributes) || [];
+                if (attrs.length > 0) {
+                    attrs.forEach(a => {
+                        const chip = document.createElement('span');
+                        chip.className = 'showcase-trait-chip';
+                        chip.textContent = `${a.trait_type || 'Trait'}: ${a.value}`;
+                        this.dom.showcaseTraitsTray.appendChild(chip);
+                    });
+                } else {
+                    const chip = document.createElement('span');
+                    chip.className = 'showcase-trait-chip';
+                    chip.textContent = `Theme: ${(relic && relic.theme) || 'Occult'}`;
+                    this.dom.showcaseTraitsTray.appendChild(chip);
+                }
+            }
+
+            this.dom.relicShowcaseCard.style.display = 'flex';
+
+            // Highlight corresponding thumbnail in tray
+            if (this.dom.enshrinedThumbnails) {
+                const items = this.dom.enshrinedThumbnails.querySelectorAll('.enshrined-thumb-item');
+                items.forEach((it, i) => {
+                    it.classList.toggle('active', i === rIdx);
+                });
+            }
         }
 
         renderReliquaryHUD(tokenId) {
@@ -738,6 +915,7 @@
                 this.dom.vaultYieldBal.textContent = `${state.vaultUSDC} USDC`;
             }
 
+            this.updateStrayLivePreview(this.dom.strayTokenInput ? this.dom.strayTokenInput.value : 527);
             this.renderRelicThumbnails(state.relics);
 
             if (this.engine && this.engine.setEnshrinedRelics) {
@@ -752,11 +930,20 @@
             relics.forEach((r, idx) => {
                 const item = document.createElement('div');
                 item.className = 'enshrined-thumb-item';
+                if (this.currentInspectedRelicIndex === idx) {
+                    item.classList.add('active');
+                }
                 item.title = `Enshrined Relic #${idx + 1}: ${r.name} (Click to inspect in 3D)`;
 
-                if (typeof LemarchandTextures !== 'undefined' && LemarchandTextures.generateReliquaryCameoTexture) {
+                // Direct image thumbnail if available (pixel-crisp rendering)
+                const imgSrc = r.dataUrl || r.image || r.imageUrl || (r.id ? `https://straycucks.com/gif/${r.id}.gif` : null);
+                if (imgSrc) {
+                    const img = document.createElement('img');
+                    img.src = imgSrc;
+                    img.alt = r.name;
+                    item.appendChild(img);
+                } else if (typeof LemarchandTextures !== 'undefined' && LemarchandTextures.generateReliquaryCameoTexture) {
                     const tex = LemarchandTextures.generateReliquaryCameoTexture(r, () => {
-                        // Re-render thumbnail if texture updated
                         if (tex && tex.canvas && !item.contains(tex.canvas)) {
                             item.innerHTML = '';
                             item.appendChild(tex.canvas);
@@ -771,9 +958,15 @@
                     item.textContent = "NFT";
                 }
 
+                // Token number badge on thumbnail
+                const badge = document.createElement('span');
+                badge.className = 'enshrined-thumb-badge';
+                badge.textContent = r.id ? `#${r.id}` : `#${idx + 1}`;
+                item.appendChild(badge);
+
                 item.addEventListener('click', () => {
                     if (this.dom.puzzleHint) {
-                        this.dom.puzzleHint.textContent = `👁️ Enshrined Relic: [${r.name}] held safely in 6551 vault. Assembled into cube drawer #${idx + 1}.`;
+                        this.dom.puzzleHint.textContent = `👁️ Enshrined Relic: [${r.name}] held safely in 6551 vault. Mounted in cube drawer #${idx + 1}.`;
                     }
                     if (this.audio && this.audio.playFaceHover) {
                         this.audio.playFaceHover(idx % 6, 700);
@@ -781,6 +974,10 @@
                     if (this.puzzle.currentStage < 5) {
                         this.puzzle.setStage(5);
                     }
+                    if (this.engine && this.engine.focusRelic) {
+                        this.engine.focusRelic(idx);
+                    }
+                    this.showRelicShowcase(r, idx);
                 });
 
                 this.dom.enshrinedThumbnails.appendChild(item);

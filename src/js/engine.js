@@ -1220,43 +1220,119 @@
                 upperRotor: upperRotorGroup
             };
 
-            // 4.5 Mount Enshrined Reliquary Cameo Plaques Inside Key Drawer Alcoves
+            // 4.5 Mount Enshrined Reliquary Cameo Assemblies on Key Drawers
             this.relicPlaques = [];
             const drawerIndices = [0, 3, 9, 10]; // 4 Alternating Key Drawers
             drawerIndices.forEach((bIdx, rIdx) => {
                 const b = this.puzzleBlocks[bIdx];
                 if (!b) return;
 
-                const plaqueGeom = new THREE.PlaneGeometry(1.65, 1.65);
-                const relicData = (this.enshrinedRelics && this.enshrinedRelics[rIdx]) || {
-                    theme: (rIdx === 0 ? "CUCKS" : "OCCULT"),
-                    name: (rIdx === 0 ? "STRAY CUCK #527" : `LEVIATHAN SEAL #${bIdx + 1}`)
+                const reliquaryGroup = new THREE.Group();
+                reliquaryGroup.name = `ReliquaryDrawer_${rIdx}`;
+
+                // A. Antique Ornate Brass Bezel / Mounting Stand
+                const frameGeom = new THREE.BoxGeometry(1.68, 1.68, 0.10);
+                const frameMesh = new THREE.Mesh(frameGeom, chassisDovetailMat);
+                reliquaryGroup.add(frameMesh);
+
+                // Ornate Brass Corner Gem Studs
+                const studGeom = new THREE.ConeGeometry(0.10, 0.12, 4);
+                const studMat = new THREE.MeshStandardMaterial({
+                    color: 0xd4af37,
+                    metalness: 0.95,
+                    roughness: 0.15
+                });
+                const studOffset = 0.74;
+                [
+                    [-studOffset, studOffset],
+                    [studOffset, studOffset],
+                    [-studOffset, -studOffset],
+                    [studOffset, -studOffset]
+                ].forEach(([sx, sy]) => {
+                    const stud = new THREE.Mesh(studGeom, studMat);
+                    stud.position.set(sx, sy, 0.055);
+                    stud.rotation.x = Math.PI / 2;
+                    frameMesh.add(stud);
+                });
+
+                // B. Cameo NFT Artwork Disc / Plaque
+                const plaqueGeom = new THREE.PlaneGeometry(1.52, 1.52);
+                let relicData = (this.enshrinedRelics && this.enshrinedRelics[rIdx]);
+                if (!relicData) {
+                    if (typeof StrayCucks !== 'undefined' && rIdx === 0) {
+                        relicData = StrayCucks.getSample(527);
+                    } else if (typeof StrayCucks !== 'undefined' && rIdx === 1) {
+                        relicData = StrayCucks.getSample(414);
+                    }
+                }
+                if (!relicData) {
+                    relicData = {
+                        theme: (rIdx === 0 ? "CUCKS" : "OCCULT"),
+                        name: (rIdx === 0 ? "STRAY CUCK #527" : `LEVIATHAN SEAL #${bIdx + 1}`),
+                        id: (rIdx === 0 ? 527 : 414)
+                    };
+                }
+
+                const onUpdate = () => {
+                    if (plaqueMat) {
+                        if (plaqueMat.map) plaqueMat.map.needsUpdate = true;
+                        if (plaqueMat.bumpMap) plaqueMat.bumpMap.needsUpdate = true;
+                        plaqueMat.needsUpdate = true;
+                    }
                 };
-                const plaqueTex = LemarchandTextures.generateReliquaryCameoTexture(relicData);
+
+                const plaqueTex = LemarchandTextures.generateReliquaryCameoTexture(relicData, onUpdate);
                 const plaqueMat = new THREE.MeshStandardMaterial({
                     map: plaqueTex.diffuse,
                     bumpMap: plaqueTex.bump,
                     bumpScale: 0.05,
                     metalness: 0.88,
-                    roughness: 0.25
+                    roughness: 0.22,
+                    side: THREE.DoubleSide
                 });
 
                 const plaqueMesh = new THREE.Mesh(plaqueGeom, plaqueMat);
-                // Position on internal face pointing inward toward center
-                const inDir = b.initialPos.clone().multiplyScalar(-1);
-                inDir.y = 0;
-                inDir.normalize();
+                plaqueMesh.position.z = 0.055;
+                frameMesh.add(plaqueMesh);
 
-                plaqueMesh.position.copy(inDir.clone().multiplyScalar(0.70));
-                plaqueMesh.lookAt(plaqueMesh.position.clone().add(inDir));
+                // C. Articulated Telescoping Arm
+                const armGeom = new THREE.CylinderGeometry(0.07, 0.09, 1.2, 8);
+                const armMesh = new THREE.Mesh(armGeom, chassisDovetailMat);
+                armMesh.position.y = -0.95;
+                reliquaryGroup.add(armMesh);
+
+                // D. Warm Reliquary Candlelight / Spotlight
+                const relicLight = new THREE.PointLight(0xffdf90, 0.0, 5.5);
+                relicLight.position.set(0, 0.6, 1.2);
+                reliquaryGroup.add(relicLight);
+
+                // Face outwards along b.moveDir, tilted slightly upward toward the viewer
+                const faceAngle = Math.atan2(b.moveDir.x, b.moveDir.z);
+                reliquaryGroup.rotation.y = faceAngle;
+                reliquaryGroup.rotation.x = (b.tier === 'UPPER') ? 0.35 : -0.20;
+
+                // Tucked in Stage 0; deployed in Stage 5+
+                const baseY = (b.tier === 'UPPER') ? 1.76 : -1.76;
+                reliquaryGroup.position.set(0, baseY, 0);
+                reliquaryGroup.scale.set(0.001, 0.001, 0.001);
+                reliquaryGroup.visible = false;
+
+                // Disable direct raycasting to preserve interactiveTargets = 22
+                frameMesh.raycast = () => {};
                 plaqueMesh.raycast = () => {};
+                armMesh.raycast = () => {};
 
-                b.mesh.add(plaqueMesh);
+                b.mesh.add(reliquaryGroup);
                 this.relicPlaques.push({
-                    mesh: plaqueMesh,
+                    group: reliquaryGroup,
+                    frameMesh: frameMesh,
+                    plaqueMesh: plaqueMesh,
                     material: plaqueMat,
+                    light: relicLight,
                     blockIndex: bIdx,
-                    relicIndex: rIdx
+                    relicIndex: rIdx,
+                    tier: b.tier,
+                    moveDir: b.moveDir.clone()
                 });
             });
 
@@ -1612,14 +1688,23 @@
             this.enshrinedRelics = relics || [];
             if (this.relicPlaques && this.relicPlaques.length > 0) {
                 this.relicPlaques.forEach((rp, idx) => {
-                    const relic = this.enshrinedRelics[idx] || {
-                        theme: (idx === 0 ? "CUCKS" : "OCCULT"),
-                        name: (idx === 0 ? "STRAY CUCK #527" : `LEVIATHAN SEAL #${idx + 1}`),
-                        id: (idx === 0 ? 527 : null)
-                    };
+                    let relic = this.enshrinedRelics[idx];
+                    if (!relic && typeof StrayCucks !== 'undefined') {
+                        if (idx === 0) relic = StrayCucks.getSample(527);
+                        else if (idx === 1) relic = StrayCucks.getSample(414);
+                    }
+                    if (!relic) {
+                        relic = {
+                            theme: (idx === 0 ? "CUCKS" : "OCCULT"),
+                            name: (idx === 0 ? "STRAY CUCK #527" : `LEVIATHAN SEAL #${idx + 1}`),
+                            id: (idx === 0 ? 527 : 414)
+                        };
+                    }
                     const onUpdate = () => {
-                        if (rp.material && rp.material.map) {
-                            rp.material.map.needsUpdate = true;
+                        if (rp.material) {
+                            if (rp.material.map) rp.material.map.needsUpdate = true;
+                            if (rp.material.bumpMap) rp.material.bumpMap.needsUpdate = true;
+                            rp.material.needsUpdate = true;
                         }
                     };
                     const texData = LemarchandTextures.generateReliquaryCameoTexture(relic, onUpdate);
@@ -1683,6 +1768,38 @@
             const deltaY = ((targetY - currentY) % twoPi + twoPi + Math.PI) % twoPi - Math.PI;
             this.targetRotation.y = currentY + deltaY;
             this.targetRotation.x = targetX;
+        }
+
+        focusRelic(relicIndex) {
+            this.idleTimer = 35.0; // Ample time to inspect relic without auto-rotate interruption
+            this.autoRotateBlend = 0.0;
+            this.angularVelocity.x = 0;
+            this.angularVelocity.y = 0;
+
+            const rIdx = Math.max(0, parseInt(relicIndex) || 0);
+            const drawerIndices = [0, 3, 9, 10];
+            const bIdx = drawerIndices[rIdx % drawerIndices.length];
+            const b = this.puzzleBlocks[bIdx];
+            if (!b) return;
+
+            // Angle around Y axis pointing directly at this drawer:
+            // bIdx 0 (+X, +Z): angle around Y is PI/4 (45 deg)
+            // bIdx 3 (-X, -Z): angle around Y is -3*PI/4 (-135 deg)
+            // bIdx 9 (-X, +Z): angle around Y is 3*PI/4 (135 deg)
+            // bIdx 10 (+X, -Z): angle around Y is -PI/4 (-45 deg)
+            const angleY = Math.atan2(b.initialPos.x, b.initialPos.z);
+            const targetY = -angleY;
+            const targetX = (b.tier === 'UPPER') ? 0.36 : -0.22;
+
+            const twoPi = Math.PI * 2;
+            const currentY = this.targetRotation.y;
+            const deltaY = ((targetY - currentY) % twoPi + twoPi + Math.PI) % twoPi - Math.PI;
+            this.targetRotation.y = currentY + deltaY;
+            this.targetRotation.x = targetX;
+
+            // Close-up framing so the enshrined artwork fills the screen
+            this.userZoomOffset = -4.8;
+            this.targetCameraDistance = 9.2;
         }
 
         // 10-Stage Mechanical & Supernatural Kinematic Engine (Stages 0 to 9)
@@ -1950,6 +2067,28 @@
             }
             if (this.bottomHub) {
                 this.bottomHub.position.y = -hubLift;
+            }
+
+            // Enshrined Reliquary Cameo Assemblies: deployed and elevated during Stage 5+
+            if (this.relicPlaques && this.relicPlaques.length > 0) {
+                const deployProg = (starSubProg > 0 || rhombSubProg > 0) ? 1.0 : drawerFactor;
+                const isDeployed = deployProg > 0.001;
+                for (let i = 0; i < this.relicPlaques.length; i++) {
+                    const rp = this.relicPlaques[i];
+                    if (!rp.group) continue;
+                    rp.group.visible = isDeployed;
+                    if (isDeployed) {
+                        const s = Math.min(1.0, deployProg * 2.0);
+                        rp.group.scale.set(s, s, s);
+                        const isUpper = (rp.tier === 'UPPER');
+                        const baseY = isUpper ? 1.76 : -1.76;
+                        const lift = isUpper ? (deployProg * 0.88) : (-deployProg * 0.88);
+                        rp.group.position.y = baseY + lift;
+                        if (rp.light) {
+                            rp.light.intensity = deployProg * 2.2;
+                        }
+                    }
+                }
             }
 
             // Retract / conceal turntable bearing during supernatural gateway opening so the central void is clear

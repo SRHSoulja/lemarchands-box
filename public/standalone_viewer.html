@@ -767,29 +767,287 @@ body, html {
     padding-bottom: 2px;
 }
 
-.enshrined-thumb-item {
-    position: relative;
+/* Live Stray NFT Visual Preview Card */
+.stray-live-preview-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: 4px;
+    padding: 6px 8px;
+    margin-top: 4px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.stray-live-preview-card:hover {
+    border-color: var(--brass-gold);
+    background: rgba(212, 175, 55, 0.08);
+}
+
+.stray-preview-img {
     width: 44px;
     height: 44px;
+    border-radius: 3px;
+    border: 1px solid var(--border-brass);
+    background: #110d14;
+    object-fit: cover;
+    image-rendering: pixelated;
+    flex-shrink: 0;
+}
+
+.stray-preview-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    overflow: hidden;
+}
+
+.stray-preview-name {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--brass-gold);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.stray-preview-sub {
+    font-size: 0.63rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Enhanced Enshrined Relic Thumbnails */
+.enshrined-thumb-item {
+    position: relative;
+    width: 52px;
+    height: 52px;
     border-radius: 4px;
     border: 1px solid var(--border-brass);
     background: #141016;
     overflow: hidden;
     cursor: pointer;
     flex-shrink: 0;
-    transition: transform 0.15s ease, border-color 0.15s ease;
+    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.enshrined-thumb-item.active {
+    border-color: #20e2d7;
+    box-shadow: 0 0 12px rgba(32, 226, 215, 0.55), inset 0 0 8px rgba(32, 226, 215, 0.2);
 }
 
 .enshrined-thumb-item:hover {
     transform: scale(1.08);
     border-color: var(--brass-gold);
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
 }
 
 .enshrined-thumb-item img, .enshrined-thumb-item canvas {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    image-rendering: pixelated;
+}
+
+.enshrined-thumb-badge {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    background: rgba(0, 0, 0, 0.85);
+    border: 1px solid var(--border-brass);
+    border-radius: 2px;
+    font-size: 0.56rem;
+    font-family: monospace;
+    color: #ffd700;
+    padding: 1px 3px;
+    line-height: 1;
+    pointer-events: none;
+}
+
+/* Floating Reliquary Cameo Inspection Showcase Panel */
+.relic-showcase-panel {
+    position: absolute;
+    top: 86px;
+    left: 20px;
+    width: 320px;
+    background: linear-gradient(150deg, rgba(24, 18, 30, 0.96), rgba(12, 9, 16, 0.98));
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    border-radius: 6px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.85), 0 0 20px rgba(212, 175, 55, 0.15);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+    animation: relicShowcaseSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes relicShowcaseSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-12px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.showcase-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+    padding-bottom: 8px;
+}
+
+.showcase-header-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--brass-gold);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.showcase-close-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 2px 6px;
+    border-radius: 3px;
+    transition: color 0.15s ease, background 0.15s ease;
+}
+
+.showcase-close-btn:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.showcase-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.showcase-cameo-frame {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    background: #0e0910;
+    border: 2px solid var(--brass-gold);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.9), 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.showcase-nft-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.showcase-corner-bracket {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #fff2a8;
+    pointer-events: none;
+}
+.showcase-corner-bracket.tl { top: 3px; left: 3px; border-right: none; border-bottom: none; }
+.showcase-corner-bracket.tr { top: 3px; right: 3px; border-left: none; border-bottom: none; }
+.showcase-corner-bracket.bl { bottom: 3px; left: 3px; border-right: none; border-top: none; }
+.showcase-corner-bracket.br { bottom: 3px; right: 3px; border-left: none; border-top: none; }
+
+.showcase-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.showcase-nft-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff4d0;
+    letter-spacing: 0.5px;
+}
+
+.showcase-vault-loc {
+    font-size: 0.72rem;
+    color: #20e2d7;
+    font-weight: 600;
+}
+
+.showcase-contract-badge {
+    font-size: 0.65rem;
+    font-family: monospace;
+    color: var(--text-muted);
+}
+
+.showcase-traits-tray {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 4px;
+    max-height: 68px;
+    overflow-y: auto;
+}
+
+.showcase-trait-chip {
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 3px;
+    font-size: 0.62rem;
+    color: #eeddb0;
+    padding: 2px 6px;
+    white-space: nowrap;
+}
+
+.showcase-actions {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.showcase-action-btn {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #e0d6c5;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: center;
+}
+
+.showcase-action-btn:hover {
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+}
+
+.showcase-action-btn.primary {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(158, 42, 43, 0.35));
+    border-color: var(--brass-gold);
+    color: #fff0be;
+}
+
+.showcase-action-btn.primary:hover {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.45), rgba(158, 42, 43, 0.55));
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.35);
 }
 
 .puzzle-hud {
@@ -1098,6 +1356,16 @@ body, html {
         display: none;
     }
 
+    .relic-showcase-panel {
+        position: fixed;
+        top: 65px;
+        left: 12px;
+        right: 12px;
+        width: auto;
+        max-width: none;
+        z-index: 200;
+    }
+
     .trait-sidebar {
         position: relative;
         top: auto;
@@ -1157,6 +1425,32 @@ body, html {
         </div>
         <div class="face-hover-pill" id="faceHoverPill">
             <!-- Active hovered face announcement -->
+        </div>
+
+        <!-- Reliquary Cameo Inspection Showcase Modal / Floating Card -->
+        <div class="relic-showcase-panel" id="relicShowcaseCard" style="display: none;">
+            <div class="showcase-header">
+                <span class="showcase-header-title">✨ Reliquary Cameo Inspection</span>
+                <button class="showcase-close-btn" id="btnShowcaseClose" title="Close Inspection Card">✕</button>
+            </div>
+            <div class="showcase-body">
+                <div class="showcase-cameo-frame">
+                    <img id="showcaseImg" class="showcase-nft-img" src="" alt="Enshrined NFT Art" />
+                    <div class="showcase-corner-bracket tl"></div>
+                    <div class="showcase-corner-bracket tr"></div>
+                    <div class="showcase-corner-bracket bl"></div>
+                    <div class="showcase-corner-bracket br"></div>
+                </div>
+                <div class="showcase-details">
+                    <div class="showcase-nft-title" id="showcaseTitle">Stray Cuck #527 👑</div>
+                    <div class="showcase-vault-loc" id="showcaseVaultLoc">📦 Drawer Alcove #1 • Upper Front-Right</div>
+                    <div class="showcase-contract-badge" id="showcaseContract">0xc6132bd1...5307 (Robinhood Chain)</div>
+                    <div class="showcase-traits-tray" id="showcaseTraitsTray"></div>
+                    <div class="showcase-actions">
+                        <button class="showcase-action-btn primary" id="btnShowcaseFocus3D">🔍 Zoom Drawer in 3D</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Right Trait & Lore Sidebar -->
@@ -1235,6 +1529,14 @@ body, html {
                             <input type="number" id="strayTokenInput" min="1" max="2000" value="527" class="stray-token-input" placeholder="ID (1-2000)" />
                         </div>
                         <button class="add-relic-btn primary-enshrine" id="btnEnshrineStray" title="Enshrine this Stray into the 3D cube interior">+ Enshrine Stray</button>
+                    </div>
+                    <!-- Live Stray NFT Visual Preview Card -->
+                    <div class="stray-live-preview-card" id="strayLivePreview">
+                        <img class="stray-preview-img" id="strayPreviewImg" src="" alt="Stray Preview" />
+                        <div class="stray-preview-info">
+                            <div class="stray-preview-name" id="strayPreviewName">Stray Cuck #527 👑</div>
+                            <div class="stray-preview-sub" id="strayPreviewSub">Crown • Orange Tabby • Throne</div>
+                        </div>
                     </div>
                     <div class="strays-preset-pills">
                         <span class="preset-label">Quick:</span>
@@ -4426,23 +4728,32 @@ body, html {
     function drawProceduralRelicArt(ctx, cx, cy, r, relicData, onUpdate) {
         const theme = (relicData && relicData.theme) || "CUCKS";
 
-        // Check if there is an image element or URL available via RelicMediaResolver, StrayCucks, or relicData
-        let imgElem = relicData && relicData.imageElement;
-        const rawSrc = relicData && (relicData.imageUrl || relicData.image || relicData.dataUrl || (relicData.id ? `https://straycucks.com/gif/${relicData.id}.gif` : null));
-
-        if (!imgElem && typeof RelicMediaResolver !== 'undefined' && rawSrc) {
-            const loaded = RelicMediaResolver.loadNFTImage(rawSrc, (loadedImg) => {
-                if (loadedImg && onUpdate) onUpdate();
-            });
-            if (loaded && loaded.complete && loaded.naturalWidth > 0) {
-                imgElem = loaded;
+        // Prioritize instant offline embedded base64 if available in StrayCucks samples
+        if (typeof StrayCucks !== 'undefined' && relicData && relicData.id) {
+            const sample = StrayCucks.getSample(relicData.id);
+            if (sample && sample.dataUrl) {
+                relicData.dataUrl = sample.dataUrl;
+                if (!relicData.name) relicData.name = sample.name;
+                if (!relicData.attributes && sample.attributes) relicData.attributes = sample.attributes;
             }
-        } else if (!imgElem && typeof StrayCucks !== 'undefined' && relicData && (relicData.id || relicData.dataUrl || relicData.image)) {
+        }
+
+        let imgElem = relicData && relicData.imageElement;
+        const rawSrc = relicData && (relicData.dataUrl || relicData.imageUrl || relicData.image || (relicData.id ? `https://straycucks.com/gif/${relicData.id}.gif` : null));
+
+        if (!imgElem && typeof StrayCucks !== 'undefined' && relicData && (relicData.id || relicData.dataUrl || relicData.image)) {
             const cached = StrayCucks.preloadStrayImage(relicData, (loaded) => {
                 if (loaded && onUpdate) onUpdate();
             });
             if (cached && cached.complete && cached.naturalWidth > 0) {
                 imgElem = cached;
+            }
+        } else if (!imgElem && typeof RelicMediaResolver !== 'undefined' && rawSrc) {
+            const loaded = RelicMediaResolver.loadNFTImage(rawSrc, (loadedImg) => {
+                if (loadedImg && onUpdate) onUpdate();
+            });
+            if (loaded && loaded.complete && loaded.naturalWidth > 0) {
+                imgElem = loaded;
             }
         }
 
@@ -4456,16 +4767,16 @@ body, html {
             ctx.restore();
 
             // Label banner
-            ctx.fillStyle = "rgba(0, 0, 0, 0.78)";
-            ctx.fillRect(cx - 85, cy + r - 34, 170, 24);
+            ctx.fillStyle = "rgba(0, 0, 0, 0.82)";
+            ctx.fillRect(cx - 90, cy + r - 32, 180, 24);
             ctx.strokeStyle = "#ffd700";
             ctx.lineWidth = 1.5;
-            ctx.strokeRect(cx - 85, cy + r - 34, 170, 24);
+            ctx.strokeRect(cx - 90, cy + r - 32, 180, 24);
 
             ctx.fillStyle = "#fff4d0";
             ctx.font = "bold 11px monospace";
             ctx.textAlign = "center";
-            ctx.fillText((relicData && relicData.name) || "ENSHRINED RELIC", cx, cy + r - 18);
+            ctx.fillText((relicData && relicData.name) || "ENSHRINED RELIC", cx, cy + r - 16);
             return;
         }
 
@@ -5952,43 +6263,119 @@ body, html {
                 upperRotor: upperRotorGroup
             };
 
-            // 4.5 Mount Enshrined Reliquary Cameo Plaques Inside Key Drawer Alcoves
+            // 4.5 Mount Enshrined Reliquary Cameo Assemblies on Key Drawers
             this.relicPlaques = [];
             const drawerIndices = [0, 3, 9, 10]; // 4 Alternating Key Drawers
             drawerIndices.forEach((bIdx, rIdx) => {
                 const b = this.puzzleBlocks[bIdx];
                 if (!b) return;
 
-                const plaqueGeom = new THREE.PlaneGeometry(1.65, 1.65);
-                const relicData = (this.enshrinedRelics && this.enshrinedRelics[rIdx]) || {
-                    theme: (rIdx === 0 ? "CUCKS" : "OCCULT"),
-                    name: (rIdx === 0 ? "STRAY CUCK #527" : `LEVIATHAN SEAL #${bIdx + 1}`)
+                const reliquaryGroup = new THREE.Group();
+                reliquaryGroup.name = `ReliquaryDrawer_${rIdx}`;
+
+                // A. Antique Ornate Brass Bezel / Mounting Stand
+                const frameGeom = new THREE.BoxGeometry(1.68, 1.68, 0.10);
+                const frameMesh = new THREE.Mesh(frameGeom, chassisDovetailMat);
+                reliquaryGroup.add(frameMesh);
+
+                // Ornate Brass Corner Gem Studs
+                const studGeom = new THREE.ConeGeometry(0.10, 0.12, 4);
+                const studMat = new THREE.MeshStandardMaterial({
+                    color: 0xd4af37,
+                    metalness: 0.95,
+                    roughness: 0.15
+                });
+                const studOffset = 0.74;
+                [
+                    [-studOffset, studOffset],
+                    [studOffset, studOffset],
+                    [-studOffset, -studOffset],
+                    [studOffset, -studOffset]
+                ].forEach(([sx, sy]) => {
+                    const stud = new THREE.Mesh(studGeom, studMat);
+                    stud.position.set(sx, sy, 0.055);
+                    stud.rotation.x = Math.PI / 2;
+                    frameMesh.add(stud);
+                });
+
+                // B. Cameo NFT Artwork Disc / Plaque
+                const plaqueGeom = new THREE.PlaneGeometry(1.52, 1.52);
+                let relicData = (this.enshrinedRelics && this.enshrinedRelics[rIdx]);
+                if (!relicData) {
+                    if (typeof StrayCucks !== 'undefined' && rIdx === 0) {
+                        relicData = StrayCucks.getSample(527);
+                    } else if (typeof StrayCucks !== 'undefined' && rIdx === 1) {
+                        relicData = StrayCucks.getSample(414);
+                    }
+                }
+                if (!relicData) {
+                    relicData = {
+                        theme: (rIdx === 0 ? "CUCKS" : "OCCULT"),
+                        name: (rIdx === 0 ? "STRAY CUCK #527" : `LEVIATHAN SEAL #${bIdx + 1}`),
+                        id: (rIdx === 0 ? 527 : 414)
+                    };
+                }
+
+                const onUpdate = () => {
+                    if (plaqueMat) {
+                        if (plaqueMat.map) plaqueMat.map.needsUpdate = true;
+                        if (plaqueMat.bumpMap) plaqueMat.bumpMap.needsUpdate = true;
+                        plaqueMat.needsUpdate = true;
+                    }
                 };
-                const plaqueTex = LemarchandTextures.generateReliquaryCameoTexture(relicData);
+
+                const plaqueTex = LemarchandTextures.generateReliquaryCameoTexture(relicData, onUpdate);
                 const plaqueMat = new THREE.MeshStandardMaterial({
                     map: plaqueTex.diffuse,
                     bumpMap: plaqueTex.bump,
                     bumpScale: 0.05,
                     metalness: 0.88,
-                    roughness: 0.25
+                    roughness: 0.22,
+                    side: THREE.DoubleSide
                 });
 
                 const plaqueMesh = new THREE.Mesh(plaqueGeom, plaqueMat);
-                // Position on internal face pointing inward toward center
-                const inDir = b.initialPos.clone().multiplyScalar(-1);
-                inDir.y = 0;
-                inDir.normalize();
+                plaqueMesh.position.z = 0.055;
+                frameMesh.add(plaqueMesh);
 
-                plaqueMesh.position.copy(inDir.clone().multiplyScalar(0.70));
-                plaqueMesh.lookAt(plaqueMesh.position.clone().add(inDir));
+                // C. Articulated Telescoping Arm
+                const armGeom = new THREE.CylinderGeometry(0.07, 0.09, 1.2, 8);
+                const armMesh = new THREE.Mesh(armGeom, chassisDovetailMat);
+                armMesh.position.y = -0.95;
+                reliquaryGroup.add(armMesh);
+
+                // D. Warm Reliquary Candlelight / Spotlight
+                const relicLight = new THREE.PointLight(0xffdf90, 0.0, 5.5);
+                relicLight.position.set(0, 0.6, 1.2);
+                reliquaryGroup.add(relicLight);
+
+                // Face outwards along b.moveDir, tilted slightly upward toward the viewer
+                const faceAngle = Math.atan2(b.moveDir.x, b.moveDir.z);
+                reliquaryGroup.rotation.y = faceAngle;
+                reliquaryGroup.rotation.x = (b.tier === 'UPPER') ? 0.35 : -0.20;
+
+                // Tucked in Stage 0; deployed in Stage 5+
+                const baseY = (b.tier === 'UPPER') ? 1.76 : -1.76;
+                reliquaryGroup.position.set(0, baseY, 0);
+                reliquaryGroup.scale.set(0.001, 0.001, 0.001);
+                reliquaryGroup.visible = false;
+
+                // Disable direct raycasting to preserve interactiveTargets = 22
+                frameMesh.raycast = () => {};
                 plaqueMesh.raycast = () => {};
+                armMesh.raycast = () => {};
 
-                b.mesh.add(plaqueMesh);
+                b.mesh.add(reliquaryGroup);
                 this.relicPlaques.push({
-                    mesh: plaqueMesh,
+                    group: reliquaryGroup,
+                    frameMesh: frameMesh,
+                    plaqueMesh: plaqueMesh,
                     material: plaqueMat,
+                    light: relicLight,
                     blockIndex: bIdx,
-                    relicIndex: rIdx
+                    relicIndex: rIdx,
+                    tier: b.tier,
+                    moveDir: b.moveDir.clone()
                 });
             });
 
@@ -6344,14 +6731,23 @@ body, html {
             this.enshrinedRelics = relics || [];
             if (this.relicPlaques && this.relicPlaques.length > 0) {
                 this.relicPlaques.forEach((rp, idx) => {
-                    const relic = this.enshrinedRelics[idx] || {
-                        theme: (idx === 0 ? "CUCKS" : "OCCULT"),
-                        name: (idx === 0 ? "STRAY CUCK #527" : `LEVIATHAN SEAL #${idx + 1}`),
-                        id: (idx === 0 ? 527 : null)
-                    };
+                    let relic = this.enshrinedRelics[idx];
+                    if (!relic && typeof StrayCucks !== 'undefined') {
+                        if (idx === 0) relic = StrayCucks.getSample(527);
+                        else if (idx === 1) relic = StrayCucks.getSample(414);
+                    }
+                    if (!relic) {
+                        relic = {
+                            theme: (idx === 0 ? "CUCKS" : "OCCULT"),
+                            name: (idx === 0 ? "STRAY CUCK #527" : `LEVIATHAN SEAL #${idx + 1}`),
+                            id: (idx === 0 ? 527 : 414)
+                        };
+                    }
                     const onUpdate = () => {
-                        if (rp.material && rp.material.map) {
-                            rp.material.map.needsUpdate = true;
+                        if (rp.material) {
+                            if (rp.material.map) rp.material.map.needsUpdate = true;
+                            if (rp.material.bumpMap) rp.material.bumpMap.needsUpdate = true;
+                            rp.material.needsUpdate = true;
                         }
                     };
                     const texData = LemarchandTextures.generateReliquaryCameoTexture(relic, onUpdate);
@@ -6415,6 +6811,38 @@ body, html {
             const deltaY = ((targetY - currentY) % twoPi + twoPi + Math.PI) % twoPi - Math.PI;
             this.targetRotation.y = currentY + deltaY;
             this.targetRotation.x = targetX;
+        }
+
+        focusRelic(relicIndex) {
+            this.idleTimer = 35.0; // Ample time to inspect relic without auto-rotate interruption
+            this.autoRotateBlend = 0.0;
+            this.angularVelocity.x = 0;
+            this.angularVelocity.y = 0;
+
+            const rIdx = Math.max(0, parseInt(relicIndex) || 0);
+            const drawerIndices = [0, 3, 9, 10];
+            const bIdx = drawerIndices[rIdx % drawerIndices.length];
+            const b = this.puzzleBlocks[bIdx];
+            if (!b) return;
+
+            // Angle around Y axis pointing directly at this drawer:
+            // bIdx 0 (+X, +Z): angle around Y is PI/4 (45 deg)
+            // bIdx 3 (-X, -Z): angle around Y is -3*PI/4 (-135 deg)
+            // bIdx 9 (-X, +Z): angle around Y is 3*PI/4 (135 deg)
+            // bIdx 10 (+X, -Z): angle around Y is -PI/4 (-45 deg)
+            const angleY = Math.atan2(b.initialPos.x, b.initialPos.z);
+            const targetY = -angleY;
+            const targetX = (b.tier === 'UPPER') ? 0.36 : -0.22;
+
+            const twoPi = Math.PI * 2;
+            const currentY = this.targetRotation.y;
+            const deltaY = ((targetY - currentY) % twoPi + twoPi + Math.PI) % twoPi - Math.PI;
+            this.targetRotation.y = currentY + deltaY;
+            this.targetRotation.x = targetX;
+
+            // Close-up framing so the enshrined artwork fills the screen
+            this.userZoomOffset = -4.8;
+            this.targetCameraDistance = 9.2;
         }
 
         // 10-Stage Mechanical & Supernatural Kinematic Engine (Stages 0 to 9)
@@ -6682,6 +7110,28 @@ body, html {
             }
             if (this.bottomHub) {
                 this.bottomHub.position.y = -hubLift;
+            }
+
+            // Enshrined Reliquary Cameo Assemblies: deployed and elevated during Stage 5+
+            if (this.relicPlaques && this.relicPlaques.length > 0) {
+                const deployProg = (starSubProg > 0 || rhombSubProg > 0) ? 1.0 : drawerFactor;
+                const isDeployed = deployProg > 0.001;
+                for (let i = 0; i < this.relicPlaques.length; i++) {
+                    const rp = this.relicPlaques[i];
+                    if (!rp.group) continue;
+                    rp.group.visible = isDeployed;
+                    if (isDeployed) {
+                        const s = Math.min(1.0, deployProg * 2.0);
+                        rp.group.scale.set(s, s, s);
+                        const isUpper = (rp.tier === 'UPPER');
+                        const baseY = isUpper ? 1.76 : -1.76;
+                        const lift = isUpper ? (deployProg * 0.88) : (-deployProg * 0.88);
+                        rp.group.position.y = baseY + lift;
+                        if (rp.light) {
+                            rp.light.intensity = deployProg * 2.2;
+                        }
+                    }
+                }
             }
 
             // Retract / conceal turntable bearing during supernatural gateway opening so the central void is clear
@@ -7674,6 +8124,20 @@ body, html {
                 customMediaInput: document.getElementById('customMediaInput'),
                 btnEnshrineCustom: document.getElementById('btnEnshrineCustom'),
 
+                // Reliquary Inspection Showcase & Live Stray Preview
+                relicShowcaseCard: document.getElementById('relicShowcaseCard'),
+                btnShowcaseClose: document.getElementById('btnShowcaseClose'),
+                showcaseImg: document.getElementById('showcaseImg'),
+                showcaseTitle: document.getElementById('showcaseTitle'),
+                showcaseVaultLoc: document.getElementById('showcaseVaultLoc'),
+                showcaseContract: document.getElementById('showcaseContract'),
+                showcaseTraitsTray: document.getElementById('showcaseTraitsTray'),
+                btnShowcaseFocus3D: document.getElementById('btnShowcaseFocus3D'),
+                strayLivePreview: document.getElementById('strayLivePreview'),
+                strayPreviewImg: document.getElementById('strayPreviewImg'),
+                strayPreviewName: document.getElementById('strayPreviewName'),
+                strayPreviewSub: document.getElementById('strayPreviewSub'),
+
                 // Dock Buttons
                 btnStep: document.getElementById('btnStep'),
                 btnSolve: document.getElementById('btnSolve'),
@@ -8102,11 +8566,56 @@ body, html {
                     this.dom.puzzleHint.textContent = `✨ [${relicObj.name}] enshrined into 6551 vault and mounted in 3D drawer!`;
                 }
 
-                // If currently at stage < 5, advance to Stage 5 (Drawers) so user immediately sees the relic in 3D!
+                // Advance to Stage 5 (Drawers) so the drawer physically glides open
                 if (this.puzzle.currentStage < 5) {
                     this.puzzle.setStage(5);
                 }
+
+                // Immediately focus 3D camera to frame the newly enshrined drawer!
+                const relicIdx = state.relics.length - 1;
+                if (this.engine && this.engine.focusRelic) {
+                    this.engine.focusRelic(relicIdx);
+                }
+
+                // Open the 2D Reliquary Showcase Card for crystal-clear visual inspection
+                this.showRelicShowcase(relicObj, relicIdx);
+                this.updateStrayLivePreview(id);
             };
+
+            if (this.dom.strayTokenInput) {
+                this.dom.strayTokenInput.addEventListener('input', (e) => {
+                    this.updateStrayLivePreview(e.target.value);
+                });
+                this.dom.strayTokenInput.addEventListener('change', (e) => {
+                    this.updateStrayLivePreview(e.target.value);
+                });
+            }
+
+            if (this.dom.strayLivePreview) {
+                this.dom.strayLivePreview.addEventListener('click', () => {
+                    const id = parseInt(this.dom.strayTokenInput ? this.dom.strayTokenInput.value : 527);
+                    handleEnshrineStray(id);
+                });
+            }
+
+            if (this.dom.btnShowcaseClose) {
+                this.dom.btnShowcaseClose.addEventListener('click', () => {
+                    if (this.dom.relicShowcaseCard) {
+                        this.dom.relicShowcaseCard.style.display = 'none';
+                    }
+                });
+            }
+
+            if (this.dom.btnShowcaseFocus3D) {
+                this.dom.btnShowcaseFocus3D.addEventListener('click', () => {
+                    if (this.puzzle.currentStage < 5) {
+                        this.puzzle.setStage(5);
+                    }
+                    if (this.engine && this.engine.focusRelic) {
+                        this.engine.focusRelic(this.currentInspectedRelicIndex || 0);
+                    }
+                });
+            }
 
             if (this.dom.btnEnshrineStray) {
                 this.dom.btnEnshrineStray.addEventListener('click', () => {
@@ -8118,7 +8627,10 @@ body, html {
             document.querySelectorAll('.stray-pill').forEach(pill => {
                 pill.addEventListener('click', () => {
                     const id = parseInt(pill.getAttribute('data-id'));
-                    if (!isNaN(id)) handleEnshrineStray(id);
+                    if (!isNaN(id)) {
+                        this.updateStrayLivePreview(id);
+                        handleEnshrineStray(id);
+                    }
                 });
             });
 
@@ -8128,6 +8640,9 @@ body, html {
                     state.relics = [];
                     this.saveReliquaryState(this.currentTokenId, state);
                     this.renderReliquaryHUD(this.currentTokenId);
+                    if (this.dom.relicShowcaseCard) {
+                        this.dom.relicShowcaseCard.style.display = 'none';
+                    }
                     if (this.audio && this.audio.playTumblerClick) this.audio.playTumblerClick(0);
                     if (this.dom.puzzleHint) {
                         this.dom.puzzleHint.textContent = "Withdraw complete: All enshrined relics returned to owner wallet.";
@@ -8194,6 +8709,12 @@ body, html {
                 if (this.puzzle.currentStage < 5) {
                     this.puzzle.setStage(5);
                 }
+
+                const relicIdx = state.relics.length - 1;
+                if (this.engine && this.engine.focusRelic) {
+                    this.engine.focusRelic(relicIdx);
+                }
+                this.showRelicShowcase(relicObj, relicIdx);
             };
 
             if (this.dom.btnEnshrineCustom) {
@@ -8299,8 +8820,22 @@ body, html {
             const key = `lemarchand_6551_${tokenId}`;
             try {
                 const saved = localStorage.getItem(key);
-                if (saved) return JSON.parse(saved);
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (parsed.relics && Array.isArray(parsed.relics) && typeof StrayCucks !== 'undefined' && StrayCucks.getSample) {
+                        parsed.relics = parsed.relics.map(r => {
+                            if (r && r.id && StrayCucks.getSample(r.id)) {
+                                return Object.assign({}, StrayCucks.getSample(r.id), r);
+                            }
+                            return r;
+                        });
+                    }
+                    return parsed;
+                }
             } catch (e) {}
+
+            const s527 = (typeof StrayCucks !== 'undefined' && StrayCucks.getSample) ? StrayCucks.getSample(527) : null;
+            const s414 = (typeof StrayCucks !== 'undefined' && StrayCucks.getSample) ? StrayCucks.getSample(414) : null;
 
             return {
                 copilotEnabled: true,
@@ -8309,8 +8844,8 @@ body, html {
                 vaultETH: 0.10,
                 vaultUSDC: 500,
                 relics: [
-                    { id: 527, theme: "CUCKS", name: "STRAY CUCK #527" },
-                    { id: 414, theme: "CUCKS", name: "STRAY CUCK #414" }
+                    s527 || { id: 527, theme: "CUCKS", name: "STRAY CUCK #527" },
+                    s414 || { id: 414, theme: "CUCKS", name: "STRAY CUCK #414" }
                 ]
             };
         }
@@ -8320,6 +8855,98 @@ body, html {
             try {
                 localStorage.setItem(key, JSON.stringify(state));
             } catch (e) {}
+        }
+
+        updateStrayLivePreview(tokenId) {
+            let id = parseInt(tokenId);
+            if (isNaN(id) || id < 1 || id > 2000) id = 527;
+            let sample = null;
+            if (typeof StrayCucks !== 'undefined' && StrayCucks.getSample) {
+                sample = StrayCucks.getSample(id);
+            }
+            const name = sample ? sample.name : `Stray Cuck #${id}`;
+            const src = (sample && sample.dataUrl) ? sample.dataUrl : `https://straycucks.com/gif/${id}.gif`;
+
+            if (this.dom.strayPreviewName) {
+                this.dom.strayPreviewName.textContent = name;
+            }
+            if (this.dom.strayPreviewImg) {
+                this.dom.strayPreviewImg.src = src;
+            }
+            if (this.dom.strayPreviewSub) {
+                if (sample && sample.attributes && sample.attributes.length > 0) {
+                    const subStr = sample.attributes.slice(0, 3).map(a => a.value).join(' • ');
+                    this.dom.strayPreviewSub.textContent = subStr;
+                } else {
+                    this.dom.strayPreviewSub.textContent = "Robinhood Chain • 2,000 Supply";
+                }
+            }
+        }
+
+        showRelicShowcase(relic, index) {
+            if (!this.dom.relicShowcaseCard) return;
+            const rIdx = index || 0;
+            this.currentInspectedRelicIndex = rIdx;
+
+            const name = (relic && relic.name) || `Enshrined Relic #${rIdx + 1}`;
+            const src = relic && (relic.dataUrl || relic.image || relic.imageUrl || (relic.id ? `https://straycucks.com/gif/${relic.id}.gif` : null));
+
+            if (this.dom.showcaseTitle) {
+                this.dom.showcaseTitle.textContent = name;
+            }
+            if (this.dom.showcaseImg) {
+                if (src) {
+                    this.dom.showcaseImg.src = src;
+                    this.dom.showcaseImg.style.display = 'block';
+                } else {
+                    this.dom.showcaseImg.style.display = 'none';
+                }
+            }
+            if (this.dom.showcaseVaultLoc) {
+                const drawerNames = [
+                    "Drawer Alcove #1 • Upper Front-Right",
+                    "Drawer Alcove #2 • Upper Back-Left",
+                    "Drawer Alcove #3 • Lower Back-Right",
+                    "Drawer Alcove #4 • Lower Front-Left"
+                ];
+                this.dom.showcaseVaultLoc.textContent = `📦 ${drawerNames[rIdx % 4]}`;
+            }
+            if (this.dom.showcaseContract) {
+                if (relic && (relic.theme === 'CUCKS' || relic.id)) {
+                    this.dom.showcaseContract.textContent = "Contract: 0xc6132bd1...5307 (Robinhood Chain)";
+                } else if (relic && relic.sourceType) {
+                    this.dom.showcaseContract.textContent = `Protocol: ${relic.sourceType.toUpperCase()}`;
+                } else {
+                    this.dom.showcaseContract.textContent = "6551 Token Bound Reliquary Vault";
+                }
+            }
+            if (this.dom.showcaseTraitsTray) {
+                this.dom.showcaseTraitsTray.innerHTML = '';
+                const attrs = (relic && relic.attributes) || [];
+                if (attrs.length > 0) {
+                    attrs.forEach(a => {
+                        const chip = document.createElement('span');
+                        chip.className = 'showcase-trait-chip';
+                        chip.textContent = `${a.trait_type || 'Trait'}: ${a.value}`;
+                        this.dom.showcaseTraitsTray.appendChild(chip);
+                    });
+                } else {
+                    const chip = document.createElement('span');
+                    chip.className = 'showcase-trait-chip';
+                    chip.textContent = `Theme: ${(relic && relic.theme) || 'Occult'}`;
+                    this.dom.showcaseTraitsTray.appendChild(chip);
+                }
+            }
+
+            this.dom.relicShowcaseCard.style.display = 'flex';
+
+            // Highlight corresponding thumbnail in tray
+            if (this.dom.enshrinedThumbnails) {
+                const items = this.dom.enshrinedThumbnails.querySelectorAll('.enshrined-thumb-item');
+                items.forEach((it, i) => {
+                    it.classList.toggle('active', i === rIdx);
+                });
+            }
         }
 
         renderReliquaryHUD(tokenId) {
@@ -8353,6 +8980,7 @@ body, html {
                 this.dom.vaultYieldBal.textContent = `${state.vaultUSDC} USDC`;
             }
 
+            this.updateStrayLivePreview(this.dom.strayTokenInput ? this.dom.strayTokenInput.value : 527);
             this.renderRelicThumbnails(state.relics);
 
             if (this.engine && this.engine.setEnshrinedRelics) {
@@ -8367,11 +8995,20 @@ body, html {
             relics.forEach((r, idx) => {
                 const item = document.createElement('div');
                 item.className = 'enshrined-thumb-item';
+                if (this.currentInspectedRelicIndex === idx) {
+                    item.classList.add('active');
+                }
                 item.title = `Enshrined Relic #${idx + 1}: ${r.name} (Click to inspect in 3D)`;
 
-                if (typeof LemarchandTextures !== 'undefined' && LemarchandTextures.generateReliquaryCameoTexture) {
+                // Direct image thumbnail if available (pixel-crisp rendering)
+                const imgSrc = r.dataUrl || r.image || r.imageUrl || (r.id ? `https://straycucks.com/gif/${r.id}.gif` : null);
+                if (imgSrc) {
+                    const img = document.createElement('img');
+                    img.src = imgSrc;
+                    img.alt = r.name;
+                    item.appendChild(img);
+                } else if (typeof LemarchandTextures !== 'undefined' && LemarchandTextures.generateReliquaryCameoTexture) {
                     const tex = LemarchandTextures.generateReliquaryCameoTexture(r, () => {
-                        // Re-render thumbnail if texture updated
                         if (tex && tex.canvas && !item.contains(tex.canvas)) {
                             item.innerHTML = '';
                             item.appendChild(tex.canvas);
@@ -8386,9 +9023,15 @@ body, html {
                     item.textContent = "NFT";
                 }
 
+                // Token number badge on thumbnail
+                const badge = document.createElement('span');
+                badge.className = 'enshrined-thumb-badge';
+                badge.textContent = r.id ? `#${r.id}` : `#${idx + 1}`;
+                item.appendChild(badge);
+
                 item.addEventListener('click', () => {
                     if (this.dom.puzzleHint) {
-                        this.dom.puzzleHint.textContent = `👁️ Enshrined Relic: [${r.name}] held safely in 6551 vault. Assembled into cube drawer #${idx + 1}.`;
+                        this.dom.puzzleHint.textContent = `👁️ Enshrined Relic: [${r.name}] held safely in 6551 vault. Mounted in cube drawer #${idx + 1}.`;
                     }
                     if (this.audio && this.audio.playFaceHover) {
                         this.audio.playFaceHover(idx % 6, 700);
@@ -8396,6 +9039,10 @@ body, html {
                     if (this.puzzle.currentStage < 5) {
                         this.puzzle.setStage(5);
                     }
+                    if (this.engine && this.engine.focusRelic) {
+                        this.engine.focusRelic(idx);
+                    }
+                    this.showRelicShowcase(r, idx);
                 });
 
                 this.dom.enshrinedThumbnails.appendChild(item);

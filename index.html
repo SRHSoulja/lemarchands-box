@@ -45,6 +45,32 @@
             <!-- Active hovered face announcement -->
         </div>
 
+        <!-- Reliquary Cameo Inspection Showcase Modal / Floating Card -->
+        <div class="relic-showcase-panel" id="relicShowcaseCard" style="display: none;">
+            <div class="showcase-header">
+                <span class="showcase-header-title">✨ Reliquary Cameo Inspection</span>
+                <button class="showcase-close-btn" id="btnShowcaseClose" title="Close Inspection Card">✕</button>
+            </div>
+            <div class="showcase-body">
+                <div class="showcase-cameo-frame">
+                    <img id="showcaseImg" class="showcase-nft-img" src="" alt="Enshrined NFT Art" />
+                    <div class="showcase-corner-bracket tl"></div>
+                    <div class="showcase-corner-bracket tr"></div>
+                    <div class="showcase-corner-bracket bl"></div>
+                    <div class="showcase-corner-bracket br"></div>
+                </div>
+                <div class="showcase-details">
+                    <div class="showcase-nft-title" id="showcaseTitle">Stray Cuck #527 👑</div>
+                    <div class="showcase-vault-loc" id="showcaseVaultLoc">📦 Drawer Alcove #1 • Upper Front-Right</div>
+                    <div class="showcase-contract-badge" id="showcaseContract">0xc6132bd1...5307 (Robinhood Chain)</div>
+                    <div class="showcase-traits-tray" id="showcaseTraitsTray"></div>
+                    <div class="showcase-actions">
+                        <button class="showcase-action-btn primary" id="btnShowcaseFocus3D">🔍 Zoom Drawer in 3D</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Right Trait & Lore Sidebar -->
         <aside class="trait-sidebar interactive-panel">
             <div class="token-header">
@@ -121,6 +147,14 @@
                             <input type="number" id="strayTokenInput" min="1" max="2000" value="527" class="stray-token-input" placeholder="ID (1-2000)" />
                         </div>
                         <button class="add-relic-btn primary-enshrine" id="btnEnshrineStray" title="Enshrine this Stray into the 3D cube interior">+ Enshrine Stray</button>
+                    </div>
+                    <!-- Live Stray NFT Visual Preview Card -->
+                    <div class="stray-live-preview-card" id="strayLivePreview">
+                        <img class="stray-preview-img" id="strayPreviewImg" src="" alt="Stray Preview" />
+                        <div class="stray-preview-info">
+                            <div class="stray-preview-name" id="strayPreviewName">Stray Cuck #527 👑</div>
+                            <div class="stray-preview-sub" id="strayPreviewSub">Crown • Orange Tabby • Throne</div>
+                        </div>
                     </div>
                     <div class="strays-preset-pills">
                         <span class="preset-label">Quick:</span>
