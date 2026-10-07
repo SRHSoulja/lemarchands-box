@@ -1,0 +1,77 @@
+{
+  "name": "Lemarchand's Box #745",
+  "description": "Lemarchand's Box #745 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/745.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=745",
+  "external_url": "https://lemarchand.art/relic/745",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Lament Cube (Prime Orthodox)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Petrified Black Oak"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Verdigris Copper"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Blue Cenobite Flame"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "Cenobite Gateway Arch"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Chatterer"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Cathedral of Pain"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Sub-bass Hell Drone"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Cenobite (6-Step Tesseract Shift)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Mythic Masterpiece"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 6
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 147.16
+    }
+  ],
+  "properties": {
+    "token_id": 745,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "A toy for those whose appetites have outgrown the world. It requires no key save the surrender of your mortal reason.",
+    "solution_sequence": [
+      "Left Chevrons",
+      "Front Labyrinth",
+      "Front Labyrinth",
+      "Right Cross",
+      "Top Rosette",
+      "Left Chevrons"
+    ],
+    "rarity_score": 147.16,
+    "rarity_tier": "Mythic Masterpiece",
+    "configuration_code": "CUBE"
+  }
+}

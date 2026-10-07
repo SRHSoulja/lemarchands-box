@@ -1,0 +1,74 @@
+{
+  "name": "Lemarchand's Box #346",
+  "description": "Lemarchand's Box #346 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/346.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=346",
+  "external_url": "https://lemarchand.art/relic/346",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Lament Cube (Prime Orthodox)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "French Ancient Ebony"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Blood Bronze"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Event Horizon Void"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "The Seal of Philip 1784"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Chatterer"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Victorian Study 1784"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Requiem Bell Chimes"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Initiate (3-Step Dial Alignment)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Occult Adept"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 3
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 43.4
+    }
+  ],
+  "properties": {
+    "token_id": 346,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "Leviathan does not speak in words, but in the exact proportion of sliding rhombuses. Listen carefully to the chime before you twist the dial.",
+    "solution_sequence": [
+      "Bottom Astrolabe",
+      "Right Cross",
+      "Bottom Astrolabe"
+    ],
+    "rarity_score": 43.4,
+    "rarity_tier": "Occult Adept",
+    "configuration_code": "CUBE"
+  }
+}

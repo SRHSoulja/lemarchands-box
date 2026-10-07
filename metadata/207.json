@@ -1,0 +1,74 @@
+{
+  "name": "Lemarchand's Box #207",
+  "description": "Lemarchand's Box #207 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/207.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=207",
+  "external_url": "https://lemarchand.art/relic/207",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Flanged Aperture (Shifted Rails)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Blood Mahogany"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Sterling Occult Silver"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Molten Hellfire"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "Enochian Star Gates"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "Butterball"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Victorian Study 1784"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Clockwork Ratchet & Ticks"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Initiate (3-Step Dial Alignment)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Ancient Relic"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 3
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 82.13
+    }
+  ],
+  "properties": {
+    "token_id": 207,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "They call it a box, but it is an aperture. When the flanges part, you will see the geometries of the labyrinth stretching into eternity.",
+    "solution_sequence": [
+      "Left Chevrons",
+      "Front Labyrinth",
+      "Right Cross"
+    ],
+    "rarity_score": 82.13,
+    "rarity_tier": "Ancient Relic",
+    "configuration_code": "FLANGE"
+  }
+}

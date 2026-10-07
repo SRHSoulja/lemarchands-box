@@ -1,0 +1,78 @@
+{
+  "name": "Lemarchand's Box #898",
+  "description": "Lemarchand's Box #898 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/898.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=898",
+  "external_url": "https://lemarchand.art/relic/898",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Lament Cube (Prime Orthodox)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "French Ancient Ebony"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Tarnished Imperial Gold"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Molten Hellfire"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "The Seal of Philip 1784"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Hell Priest (Pinhead)"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Whispering Void"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Clockwork Ratchet & Ticks"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Master of the Box (7-Step Leviathan Key)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Cenobite Tier"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 7
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 77.24
+    }
+  ],
+  "properties": {
+    "token_id": 898,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "Paris, 1784. The gears within this specimen whisper when the clock strikes three. It is not mere brass and ebony; it is an incision into the flesh of space.",
+    "solution_sequence": [
+      "Top Rosette",
+      "Front Labyrinth",
+      "Left Chevrons",
+      "Front Labyrinth",
+      "Back Escapement",
+      "Top Rosette",
+      "Bottom Astrolabe"
+    ],
+    "rarity_score": 77.24,
+    "rarity_tier": "Cenobite Tier",
+    "configuration_code": "CUBE"
+  }
+}

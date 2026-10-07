@@ -1,0 +1,75 @@
+{
+  "name": "Lemarchand's Box #372",
+  "description": "Lemarchand's Box #372 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/372.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=372",
+  "external_url": "https://lemarchand.art/relic/372",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Flanged Aperture (Shifted Rails)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "French Ancient Ebony"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Corroded Iron"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Event Horizon Void"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "Enochian Star Gates"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Hell Priest (Pinhead)"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "The Labyrinth of Leviathan"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Clockwork Ratchet & Ticks"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Adept (4-Step Flange Sequence)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Cenobite Tier"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 4
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 59.9
+    }
+  ],
+  "properties": {
+    "token_id": 372,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "The Duc de L'Isle demanded an enigma no intellect could untangle without yielding to desire. I fitted the sixth panel with singing bronze.",
+    "solution_sequence": [
+      "Top Rosette",
+      "Bottom Astrolabe",
+      "Top Rosette",
+      "Top Rosette"
+    ],
+    "rarity_score": 59.9,
+    "rarity_tier": "Cenobite Tier",
+    "configuration_code": "FLANGE"
+  }
+}

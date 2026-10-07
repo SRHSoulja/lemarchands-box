@@ -1,0 +1,74 @@
+{
+  "name": "Lemarchand's Box #738",
+  "description": "Lemarchand's Box #738 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/738.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=738",
+  "external_url": "https://lemarchand.art/relic/738",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Lament Cube (Prime Orthodox)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Fossilized Bone Carving"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Parisian Antique Brass"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Molten Hellfire"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "Alchemical Gyroscope"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Engineer"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "The Labyrinth of Leviathan"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Requiem Bell Chimes"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Initiate (3-Step Dial Alignment)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Ancient Relic"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 3
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 94.68
+    }
+  ],
+  "properties": {
+    "token_id": 738,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "Leviathan does not speak in words, but in the exact proportion of sliding rhombuses. Listen carefully to the chime before you twist the dial.",
+    "solution_sequence": [
+      "Bottom Astrolabe",
+      "Front Labyrinth",
+      "Top Rosette"
+    ],
+    "rarity_score": 94.68,
+    "rarity_tier": "Ancient Relic",
+    "configuration_code": "CUBE"
+  }
+}

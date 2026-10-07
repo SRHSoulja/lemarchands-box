@@ -1,0 +1,74 @@
+{
+  "name": "Lemarchand's Box #224",
+  "description": "Lemarchand's Box #224 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/224.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=224",
+  "external_url": "https://lemarchand.art/relic/224",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Leviathan Diamond (Stretched Rhombus)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Fossilized Bone Carving"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Parisian Antique Brass"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Event Horizon Void"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "The Seal of Philip 1784"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "Butterball"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "The Labyrinth of Leviathan"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Clockwork Ratchet & Ticks"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Initiate (3-Step Dial Alignment)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Ancient Relic"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 3
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 101.31
+    }
+  ],
+  "properties": {
+    "token_id": 224,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "To open it is not to solve a puzzle, but to invite an audience with architects who know nothing of mercy and everything of exquisite sensation.",
+    "solution_sequence": [
+      "Back Escapement",
+      "Bottom Astrolabe",
+      "Back Escapement"
+    ],
+    "rarity_score": 101.31,
+    "rarity_tier": "Ancient Relic",
+    "configuration_code": "LEVIATHAN"
+  }
+}

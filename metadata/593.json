@@ -1,0 +1,77 @@
+{
+  "name": "Lemarchand's Box #593",
+  "description": "Lemarchand's Box #593 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/593.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=593",
+  "external_url": "https://lemarchand.art/relic/593",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Cenobite Monolith (Ascended Pillar)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Blood Mahogany"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Parisian Antique Brass"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Blue Cenobite Flame"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "The Seal of Philip 1784"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Chatterer"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "The Ash Chamber"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Requiem Bell Chimes"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Cenobite (6-Step Tesseract Shift)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Mythic Masterpiece"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 6
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 146.88
+    }
+  ],
+  "properties": {
+    "token_id": 593,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "The Duc de L'Isle demanded an enigma no intellect could untangle without yielding to desire. I fitted the sixth panel with singing bronze.",
+    "solution_sequence": [
+      "Right Cross",
+      "Back Escapement",
+      "Back Escapement",
+      "Back Escapement",
+      "Right Cross",
+      "Back Escapement"
+    ],
+    "rarity_score": 146.88,
+    "rarity_tier": "Mythic Masterpiece",
+    "configuration_code": "MONOLITH"
+  }
+}

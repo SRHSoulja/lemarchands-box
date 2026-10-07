@@ -1,0 +1,77 @@
+{
+  "name": "Lemarchand's Box #681",
+  "description": "Lemarchand's Box #681 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/681.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=681",
+  "external_url": "https://lemarchand.art/relic/681",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Cenobite Monolith (Ascended Pillar)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Petrified Black Oak"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Tarnished Imperial Gold"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Pure Stygian Light"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "Enochian Star Gates"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Hell Priest (Pinhead)"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Cathedral of Pain"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Requiem Bell Chimes"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Cenobite (6-Step Tesseract Shift)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Mythic Masterpiece"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 6
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 286.1
+    }
+  ],
+  "properties": {
+    "token_id": 681,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "To open it is not to solve a puzzle, but to invite an audience with architects who know nothing of mercy and everything of exquisite sensation.",
+    "solution_sequence": [
+      "Top Rosette",
+      "Left Chevrons",
+      "Front Labyrinth",
+      "Top Rosette",
+      "Back Escapement",
+      "Back Escapement"
+    ],
+    "rarity_score": 286.1,
+    "rarity_tier": "Mythic Masterpiece",
+    "configuration_code": "MONOLITH"
+  }
+}

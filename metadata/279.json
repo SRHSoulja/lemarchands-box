@@ -1,0 +1,78 @@
+{
+  "name": "Lemarchand's Box #279",
+  "description": "Lemarchand's Box #279 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/279.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=279",
+  "external_url": "https://lemarchand.art/relic/279",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Leviathan Diamond (Stretched Rhombus)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Cursed Rosewood"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Parisian Antique Brass"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Event Horizon Void"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "The Seal of Philip 1784"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Female Cenobite"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Cathedral of Pain"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Clockwork Ratchet & Ticks"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Master of the Box (7-Step Leviathan Key)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Ancient Relic"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 7
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 115.12
+    }
+  ],
+  "properties": {
+    "token_id": 279,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "To open it is not to solve a puzzle, but to invite an audience with architects who know nothing of mercy and everything of exquisite sensation.",
+    "solution_sequence": [
+      "Top Rosette",
+      "Right Cross",
+      "Back Escapement",
+      "Bottom Astrolabe",
+      "Left Chevrons",
+      "Right Cross",
+      "Bottom Astrolabe"
+    ],
+    "rarity_score": 115.12,
+    "rarity_tier": "Ancient Relic",
+    "configuration_code": "LEVIATHAN"
+  }
+}

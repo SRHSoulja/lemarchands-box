@@ -1,0 +1,75 @@
+{
+  "name": "Lemarchand's Box #814",
+  "description": "Lemarchand's Box #814 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/814.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=814",
+  "external_url": "https://lemarchand.art/relic/814",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Genesis Masterpiece 1784 (Apotheosis)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "French Ancient Ebony"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Blood Bronze"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Emerald Ectoplasm"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "The Seal of Philip 1784"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "Butterball"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "The Labyrinth of Leviathan"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Clockwork Ratchet & Ticks"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Adept (4-Step Flange Sequence)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Mythic Masterpiece"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 4
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 392.33
+    }
+  ],
+  "properties": {
+    "token_id": 814,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "They call it a box, but it is an aperture. When the flanges part, you will see the geometries of the labyrinth stretching into eternity.",
+    "solution_sequence": [
+      "Right Cross",
+      "Front Labyrinth",
+      "Front Labyrinth",
+      "Bottom Astrolabe"
+    ],
+    "rarity_score": 392.33,
+    "rarity_tier": "Mythic Masterpiece",
+    "configuration_code": "GENESIS"
+  }
+}

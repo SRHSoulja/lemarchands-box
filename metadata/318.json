@@ -1,0 +1,75 @@
+{
+  "name": "Lemarchand's Box #318",
+  "description": "Lemarchand's Box #318 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/318.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=318",
+  "external_url": "https://lemarchand.art/relic/318",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Lament Cube (Prime Orthodox)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Petrified Black Oak"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Corroded Iron"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Blue Cenobite Flame"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "The Seal of Philip 1784"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Female Cenobite"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Whispering Void"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Clockwork Ratchet & Ticks"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Adept (4-Step Flange Sequence)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Cenobite Tier"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 4
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 61.89
+    }
+  ],
+  "properties": {
+    "token_id": 318,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "Paris, 1784. The gears within this specimen whisper when the clock strikes three. It is not mere brass and ebony; it is an incision into the flesh of space.",
+    "solution_sequence": [
+      "Left Chevrons",
+      "Top Rosette",
+      "Top Rosette",
+      "Bottom Astrolabe"
+    ],
+    "rarity_score": 61.89,
+    "rarity_tier": "Cenobite Tier",
+    "configuration_code": "CUBE"
+  }
+}

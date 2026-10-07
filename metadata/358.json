@@ -1,0 +1,78 @@
+{
+  "name": "Lemarchand's Box #358",
+  "description": "Lemarchand's Box #358 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/358.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=358",
+  "external_url": "https://lemarchand.art/relic/358",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Lament Cube (Prime Orthodox)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "French Ancient Ebony"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Parisian Antique Brass"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Event Horizon Void"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "The Seal of Philip 1784"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Hell Priest (Pinhead)"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Crimson Eclipse"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Requiem Bell Chimes"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Master of the Box (7-Step Leviathan Key)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Cenobite Tier"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 7
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 73.71
+    }
+  ],
+  "properties": {
+    "token_id": 358,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "A toy for those whose appetites have outgrown the world. It requires no key save the surrender of your mortal reason.",
+    "solution_sequence": [
+      "Back Escapement",
+      "Front Labyrinth",
+      "Back Escapement",
+      "Front Labyrinth",
+      "Front Labyrinth",
+      "Front Labyrinth",
+      "Left Chevrons"
+    ],
+    "rarity_score": 73.71,
+    "rarity_tier": "Cenobite Tier",
+    "configuration_code": "CUBE"
+  }
+}

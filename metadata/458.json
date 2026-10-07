@@ -1,0 +1,75 @@
+{
+  "name": "Lemarchand's Box #458",
+  "description": "Lemarchand's Box #458 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/458.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=458",
+  "external_url": "https://lemarchand.art/relic/458",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Flanged Aperture (Shifted Rails)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "French Ancient Ebony"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Blood Bronze"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Prismatic Singularity"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "Hexagram of the Schism"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Female Cenobite"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Whispering Void"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Celestial Chain Rattles"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Adept (4-Step Flange Sequence)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Cenobite Tier"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 4
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 79.97
+    }
+  ],
+  "properties": {
+    "token_id": 458,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "A toy for those whose appetites have outgrown the world. It requires no key save the surrender of your mortal reason.",
+    "solution_sequence": [
+      "Top Rosette",
+      "Front Labyrinth",
+      "Top Rosette",
+      "Left Chevrons"
+    ],
+    "rarity_score": 79.97,
+    "rarity_tier": "Cenobite Tier",
+    "configuration_code": "FLANGE"
+  }
+}

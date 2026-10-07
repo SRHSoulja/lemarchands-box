@@ -1,0 +1,77 @@
+{
+  "name": "Lemarchand's Box #474",
+  "description": "Lemarchand's Box #474 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/474.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=474",
+  "external_url": "https://lemarchand.art/relic/474",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Flanged Aperture (Shifted Rails)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Cursed Rosewood"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Sterling Occult Silver"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Emerald Ectoplasm"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "Enochian Star Gates"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Hell Priest (Pinhead)"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Victorian Study 1784"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Echoes of the Damned"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Cenobite (6-Step Tesseract Shift)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Mythic Masterpiece"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 6
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 142.65
+    }
+  ],
+  "properties": {
+    "token_id": 474,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "To open it is not to solve a puzzle, but to invite an audience with architects who know nothing of mercy and everything of exquisite sensation.",
+    "solution_sequence": [
+      "Back Escapement",
+      "Front Labyrinth",
+      "Right Cross",
+      "Right Cross",
+      "Front Labyrinth",
+      "Back Escapement"
+    ],
+    "rarity_score": 142.65,
+    "rarity_tier": "Mythic Masterpiece",
+    "configuration_code": "FLANGE"
+  }
+}

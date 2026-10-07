@@ -1,0 +1,76 @@
+{
+  "name": "Lemarchand's Box #384",
+  "description": "Lemarchand's Box #384 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/384.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=384",
+  "external_url": "https://lemarchand.art/relic/384",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Lament Cube (Prime Orthodox)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Blood Mahogany"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Tarnished Imperial Gold"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Molten Hellfire"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "The Seal of Philip 1784"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Chatterer"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Cathedral of Pain"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Clockwork Ratchet & Ticks"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Architect (5-Step Labyrinth Order)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Occult Adept"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 5
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 46.73
+    }
+  ],
+  "properties": {
+    "token_id": 384,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "The Duc de L'Isle demanded an enigma no intellect could untangle without yielding to desire. I fitted the sixth panel with singing bronze.",
+    "solution_sequence": [
+      "Back Escapement",
+      "Back Escapement",
+      "Front Labyrinth",
+      "Back Escapement",
+      "Top Rosette"
+    ],
+    "rarity_score": 46.73,
+    "rarity_tier": "Occult Adept",
+    "configuration_code": "CUBE"
+  }
+}

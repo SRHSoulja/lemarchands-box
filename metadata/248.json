@@ -1,0 +1,74 @@
+{
+  "name": "Lemarchand's Box #248",
+  "description": "Lemarchand's Box #248 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/248.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=248",
+  "external_url": "https://lemarchand.art/relic/248",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Lemarchand Bloom (Unfolded Star)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Petrified Black Oak"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Celestial Electrum"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Prismatic Singularity"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "Cenobite Gateway Arch"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "Leviathan, Lord of the Labyrinth"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Victorian Study 1784"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Sub-bass Hell Drone"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Initiate (3-Step Dial Alignment)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Mythic Masterpiece"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 3
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 243.0
+    }
+  ],
+  "properties": {
+    "token_id": 248,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "To open it is not to solve a puzzle, but to invite an audience with architects who know nothing of mercy and everything of exquisite sensation.",
+    "solution_sequence": [
+      "Top Rosette",
+      "Bottom Astrolabe",
+      "Left Chevrons"
+    ],
+    "rarity_score": 243.0,
+    "rarity_tier": "Mythic Masterpiece",
+    "configuration_code": "BLOOM"
+  }
+}

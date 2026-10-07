@@ -1,0 +1,76 @@
+{
+  "name": "Lemarchand's Box #489",
+  "description": "Lemarchand's Box #489 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/489.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=489",
+  "external_url": "https://lemarchand.art/relic/489",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Leviathan Diamond (Stretched Rhombus)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Blood Mahogany"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Parisian Antique Brass"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Molten Hellfire"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "The Seal of Philip 1784"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Hell Priest (Pinhead)"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Victorian Study 1784"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Requiem Bell Chimes"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Architect (5-Step Labyrinth Order)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Cenobite Tier"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 5
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 66.18
+    }
+  ],
+  "properties": {
+    "token_id": 489,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "Paris, 1784. The gears within this specimen whisper when the clock strikes three. It is not mere brass and ebony; it is an incision into the flesh of space.",
+    "solution_sequence": [
+      "Left Chevrons",
+      "Top Rosette",
+      "Back Escapement",
+      "Back Escapement",
+      "Right Cross"
+    ],
+    "rarity_score": 66.18,
+    "rarity_tier": "Cenobite Tier",
+    "configuration_code": "LEVIATHAN"
+  }
+}

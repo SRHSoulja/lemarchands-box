@@ -1,0 +1,74 @@
+{
+  "name": "Lemarchand's Box #145",
+  "description": "Lemarchand's Box #145 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/145.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=145",
+  "external_url": "https://lemarchand.art/relic/145",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Lemarchand Bloom (Unfolded Star)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "French Ancient Ebony"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Corroded Iron"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Molten Hellfire"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "The Seal of Philip 1784"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Chatterer"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "The Labyrinth of Leviathan"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Music Box of Lemarchand"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Initiate (3-Step Dial Alignment)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Cenobite Tier"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 3
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 66.2
+    }
+  ],
+  "properties": {
+    "token_id": 145,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "A toy for those whose appetites have outgrown the world. It requires no key save the surrender of your mortal reason.",
+    "solution_sequence": [
+      "Right Cross",
+      "Right Cross",
+      "Left Chevrons"
+    ],
+    "rarity_score": 66.2,
+    "rarity_tier": "Cenobite Tier",
+    "configuration_code": "BLOOM"
+  }
+}

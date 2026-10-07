@@ -1,0 +1,74 @@
+{
+  "name": "Lemarchand's Box #514",
+  "description": "Lemarchand's Box #514 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/514.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=514",
+  "external_url": "https://lemarchand.art/relic/514",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Lemarchand Bloom (Unfolded Star)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Blood Mahogany"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Parisian Antique Brass"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Event Horizon Void"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "Cenobite Gateway Arch"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Chatterer"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "The Labyrinth of Leviathan"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Sub-bass Hell Drone"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Initiate (3-Step Dial Alignment)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Ancient Relic"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 3
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 97.88
+    }
+  ],
+  "properties": {
+    "token_id": 514,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "They call it a box, but it is an aperture. When the flanges part, you will see the geometries of the labyrinth stretching into eternity.",
+    "solution_sequence": [
+      "Top Rosette",
+      "Top Rosette",
+      "Left Chevrons"
+    ],
+    "rarity_score": 97.88,
+    "rarity_tier": "Ancient Relic",
+    "configuration_code": "BLOOM"
+  }
+}

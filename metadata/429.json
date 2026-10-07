@@ -1,0 +1,74 @@
+{
+  "name": "Lemarchand's Box #429",
+  "description": "Lemarchand's Box #429 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/429.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=429",
+  "external_url": "https://lemarchand.art/relic/429",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Flanged Aperture (Shifted Rails)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Obsidian Stone Inlay"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Parisian Antique Brass"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Event Horizon Void"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "Labyrinth of Leviathan"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Hell Priest (Pinhead)"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Cathedral of Pain"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Echoes of the Damned"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Initiate (3-Step Dial Alignment)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Cenobite Tier"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 3
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 55.05
+    }
+  ],
+  "properties": {
+    "token_id": 429,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "I spent forty nights carving the fourth quadrant. When the silver wire settled into the rosewood track, the candle flames bent without wind.",
+    "solution_sequence": [
+      "Bottom Astrolabe",
+      "Right Cross",
+      "Left Chevrons"
+    ],
+    "rarity_score": 55.05,
+    "rarity_tier": "Cenobite Tier",
+    "configuration_code": "FLANGE"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "name": "Lemarchand's Box #251",
+  "description": "Lemarchand's Box #251 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/251.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=251",
+  "external_url": "https://lemarchand.art/relic/251",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Lament Cube (Prime Orthodox)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Obsidian Stone Inlay"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Tarnished Imperial Gold"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Blue Cenobite Flame"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "Alchemical Gyroscope"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Female Cenobite"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "The Labyrinth of Leviathan"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Clockwork Ratchet & Ticks"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Architect (5-Step Labyrinth Order)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Cenobite Tier"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 5
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 63.64
+    }
+  ],
+  "properties": {
+    "token_id": 251,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "Leviathan does not speak in words, but in the exact proportion of sliding rhombuses. Listen carefully to the chime before you twist the dial.",
+    "solution_sequence": [
+      "Left Chevrons",
+      "Front Labyrinth",
+      "Back Escapement",
+      "Back Escapement",
+      "Right Cross"
+    ],
+    "rarity_score": 63.64,
+    "rarity_tier": "Cenobite Tier",
+    "configuration_code": "CUBE"
+  }
+}

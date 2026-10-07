@@ -1,0 +1,76 @@
+{
+  "name": "Lemarchand's Box #970",
+  "description": "Lemarchand's Box #970 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/970.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=970",
+  "external_url": "https://lemarchand.art/relic/970",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Flanged Aperture (Shifted Rails)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Obsidian Stone Inlay"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Blood Bronze"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Molten Hellfire"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "The Seal of Philip 1784"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Chatterer"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Chamber of Relic Souls"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Music Box of Lemarchand"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Architect (5-Step Labyrinth Order)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Cenobite Tier"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 5
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 64.37
+    }
+  ],
+  "properties": {
+    "token_id": 970,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "Paris, 1784. The gears within this specimen whisper when the clock strikes three. It is not mere brass and ebony; it is an incision into the flesh of space.",
+    "solution_sequence": [
+      "Bottom Astrolabe",
+      "Front Labyrinth",
+      "Right Cross",
+      "Left Chevrons",
+      "Bottom Astrolabe"
+    ],
+    "rarity_score": 64.37,
+    "rarity_tier": "Cenobite Tier",
+    "configuration_code": "FLANGE"
+  }
+}

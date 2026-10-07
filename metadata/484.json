@@ -1,0 +1,77 @@
+{
+  "name": "Lemarchand's Box #484",
+  "description": "Lemarchand's Box #484 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/484.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=484",
+  "external_url": "https://lemarchand.art/relic/484",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Lament Cube (Prime Orthodox)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "French Ancient Ebony"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Sterling Occult Silver"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Prismatic Singularity"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "Enochian Star Gates"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "Butterball"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Victorian Study 1784"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Sub-bass Hell Drone"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Cenobite (6-Step Tesseract Shift)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Ancient Relic"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 6
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 92.67
+    }
+  ],
+  "properties": {
+    "token_id": 484,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "A toy for those whose appetites have outgrown the world. It requires no key save the surrender of your mortal reason.",
+    "solution_sequence": [
+      "Front Labyrinth",
+      "Back Escapement",
+      "Top Rosette",
+      "Right Cross",
+      "Right Cross",
+      "Bottom Astrolabe"
+    ],
+    "rarity_score": 92.67,
+    "rarity_tier": "Ancient Relic",
+    "configuration_code": "CUBE"
+  }
+}

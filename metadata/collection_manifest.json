@@ -1,0 +1,23 @@
+{
+  "collection_name": "Lemarchand's Box",
+  "symbol": "LAMENT",
+  "total_supply": 1000,
+  "provenance_hash": "280a147d151038bf68da26bb45edab107f719901a6ee0baf11b5e7f12abce399",
+  "standard": "ERC-721",
+  "creator": "Philip Lemarchand (1784 Archive)",
+  "rarity_distribution": {
+    "Ancient Relic": 287,
+    "Cenobite Tier": 455,
+    "Occult Adept": 132,
+    "Mythic Masterpiece": 126
+  },
+  "configuration_distribution": {
+    "FLANGE": 192,
+    "CUBE": 456,
+    "BLOOM": 147,
+    "TESSERACT": 58,
+    "LEVIATHAN": 99,
+    "MONOLITH": 37,
+    "GENESIS": 11
+  }
+}

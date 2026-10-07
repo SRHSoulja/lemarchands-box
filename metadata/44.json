@@ -1,0 +1,74 @@
+{
+  "name": "Lemarchand's Box #44",
+  "description": "Lemarchand's Box #44 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/44.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=44",
+  "external_url": "https://lemarchand.art/relic/44",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Lemarchand Bloom (Unfolded Star)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "French Ancient Ebony"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Platinum of the Void"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Prismatic Singularity"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "Hexagram of the Schism"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Hell Priest (Pinhead)"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "The Labyrinth of Leviathan"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Clockwork Ratchet & Ticks"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Initiate (3-Step Dial Alignment)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Mythic Masterpiece"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 3
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 429.65
+    }
+  ],
+  "properties": {
+    "token_id": 44,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "The brass was quenched in cold well water drawn beneath the new moon. Each facet remembers the hands of the craftsman.",
+    "solution_sequence": [
+      "Back Escapement",
+      "Right Cross",
+      "Back Escapement"
+    ],
+    "rarity_score": 429.65,
+    "rarity_tier": "Mythic Masterpiece",
+    "configuration_code": "BLOOM"
+  }
+}

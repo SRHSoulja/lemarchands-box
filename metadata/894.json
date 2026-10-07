@@ -1,0 +1,76 @@
+{
+  "name": "Lemarchand's Box #894",
+  "description": "Lemarchand's Box #894 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/894.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=894",
+  "external_url": "https://lemarchand.art/relic/894",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Tesseract Rift (Segmented Void)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Blood Mahogany"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Tarnished Imperial Gold"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Molten Hellfire"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "Hexagram of the Schism"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Hell Priest (Pinhead)"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "The Ash Chamber"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Requiem Bell Chimes"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Architect (5-Step Labyrinth Order)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Ancient Relic"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 5
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 101.99
+    }
+  ],
+  "properties": {
+    "token_id": 894,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "They call it a box, but it is an aperture. When the flanges part, you will see the geometries of the labyrinth stretching into eternity.",
+    "solution_sequence": [
+      "Bottom Astrolabe",
+      "Left Chevrons",
+      "Back Escapement",
+      "Top Rosette",
+      "Front Labyrinth"
+    ],
+    "rarity_score": 101.99,
+    "rarity_tier": "Ancient Relic",
+    "configuration_code": "TESSERACT"
+  }
+}

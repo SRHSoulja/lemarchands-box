@@ -1,0 +1,78 @@
+{
+  "name": "Lemarchand's Box #972",
+  "description": "Lemarchand's Box #972 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/972.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=972",
+  "external_url": "https://lemarchand.art/relic/972",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Lemarchand Bloom (Unfolded Star)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Blood Mahogany"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Blood Bronze"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Emerald Ectoplasm"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "The Seal of Philip 1784"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Female Cenobite"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "The Labyrinth of Leviathan"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Requiem Bell Chimes"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Master of the Box (7-Step Leviathan Key)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Mythic Masterpiece"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 7
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 144.89
+    }
+  ],
+  "properties": {
+    "token_id": 972,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "Paris, 1784. The gears within this specimen whisper when the clock strikes three. It is not mere brass and ebony; it is an incision into the flesh of space.",
+    "solution_sequence": [
+      "Back Escapement",
+      "Right Cross",
+      "Left Chevrons",
+      "Right Cross",
+      "Back Escapement",
+      "Front Labyrinth",
+      "Bottom Astrolabe"
+    ],
+    "rarity_score": 144.89,
+    "rarity_tier": "Mythic Masterpiece",
+    "configuration_code": "BLOOM"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "name": "Lemarchand's Box #855",
+  "description": "Lemarchand's Box #855 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/855.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=855",
+  "external_url": "https://lemarchand.art/relic/855",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Lament Cube (Prime Orthodox)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Singing Relic Core"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Corroded Iron"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Prismatic Singularity"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "The Seal of Philip 1784"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Hell Priest (Pinhead)"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Whispering Void"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Music Box of Lemarchand"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Initiate (3-Step Dial Alignment)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Mythic Masterpiece"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 3
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 355.57
+    }
+  ],
+  "properties": {
+    "token_id": 855,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "The Duc de L'Isle demanded an enigma no intellect could untangle without yielding to desire. I fitted the sixth panel with singing bronze.",
+    "solution_sequence": [
+      "Front Labyrinth",
+      "Back Escapement",
+      "Front Labyrinth"
+    ],
+    "rarity_score": 355.57,
+    "rarity_tier": "Mythic Masterpiece",
+    "configuration_code": "CUBE"
+  }
+}

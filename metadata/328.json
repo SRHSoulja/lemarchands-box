@@ -1,0 +1,75 @@
+{
+  "name": "Lemarchand's Box #328",
+  "description": "Lemarchand's Box #328 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/328.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=328",
+  "external_url": "https://lemarchand.art/relic/328",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Lament Cube (Prime Orthodox)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Petrified Black Oak"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Parisian Antique Brass"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Blue Cenobite Flame"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "The Seal of Philip 1784"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Female Cenobite"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Crimson Eclipse"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Clockwork Ratchet & Ticks"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Adept (4-Step Flange Sequence)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Occult Adept"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 4
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 49.03
+    }
+  ],
+  "properties": {
+    "token_id": 328,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "They call it a box, but it is an aperture. When the flanges part, you will see the geometries of the labyrinth stretching into eternity.",
+    "solution_sequence": [
+      "Right Cross",
+      "Left Chevrons",
+      "Bottom Astrolabe",
+      "Back Escapement"
+    ],
+    "rarity_score": 49.03,
+    "rarity_tier": "Occult Adept",
+    "configuration_code": "CUBE"
+  }
+}

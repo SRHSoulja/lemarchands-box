@@ -1,0 +1,78 @@
+{
+  "name": "Lemarchand's Box #779",
+  "description": "Lemarchand's Box #779 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/779.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=779",
+  "external_url": "https://lemarchand.art/relic/779",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Tesseract Rift (Segmented Void)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Fossilized Bone Carving"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Parisian Antique Brass"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Prismatic Singularity"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "The Seal of Philip 1784"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Hell Priest (Pinhead)"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Cathedral of Pain"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Requiem Bell Chimes"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Master of the Box (7-Step Leviathan Key)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Mythic Masterpiece"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 7
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 160.55
+    }
+  ],
+  "properties": {
+    "token_id": 779,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "The Duc de L'Isle demanded an enigma no intellect could untangle without yielding to desire. I fitted the sixth panel with singing bronze.",
+    "solution_sequence": [
+      "Left Chevrons",
+      "Right Cross",
+      "Back Escapement",
+      "Back Escapement",
+      "Front Labyrinth",
+      "Back Escapement",
+      "Top Rosette"
+    ],
+    "rarity_score": 160.55,
+    "rarity_tier": "Mythic Masterpiece",
+    "configuration_code": "TESSERACT"
+  }
+}

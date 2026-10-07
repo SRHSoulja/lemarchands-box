@@ -1,0 +1,75 @@
+{
+  "name": "Lemarchand's Box #181",
+  "description": "Lemarchand's Box #181 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/181.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=181",
+  "external_url": "https://lemarchand.art/relic/181",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Lament Cube (Prime Orthodox)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Petrified Black Oak"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Platinum of the Void"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Blue Cenobite Flame"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "Enochian Star Gates"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Chatterer"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Whispering Void"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Celestial Chain Rattles"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Adept (4-Step Flange Sequence)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Mythic Masterpiece"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 4
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 402.4
+    }
+  ],
+  "properties": {
+    "token_id": 181,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "To open it is not to solve a puzzle, but to invite an audience with architects who know nothing of mercy and everything of exquisite sensation.",
+    "solution_sequence": [
+      "Left Chevrons",
+      "Bottom Astrolabe",
+      "Bottom Astrolabe",
+      "Top Rosette"
+    ],
+    "rarity_score": 402.4,
+    "rarity_tier": "Mythic Masterpiece",
+    "configuration_code": "CUBE"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "name": "Lemarchand's Box #720",
+  "description": "Lemarchand's Box #720 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/720.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=720",
+  "external_url": "https://lemarchand.art/relic/720",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Tesseract Rift (Segmented Void)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Obsidian Stone Inlay"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Parisian Antique Brass"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Molten Hellfire"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "Hexagram of the Schism"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Female Cenobite"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "The Ash Chamber"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Echoes of the Damned"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Initiate (3-Step Dial Alignment)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Ancient Relic"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 3
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 107.08
+    }
+  ],
+  "properties": {
+    "token_id": 720,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "I spent forty nights carving the fourth quadrant. When the silver wire settled into the rosewood track, the candle flames bent without wind.",
+    "solution_sequence": [
+      "Top Rosette",
+      "Back Escapement",
+      "Bottom Astrolabe"
+    ],
+    "rarity_score": 107.08,
+    "rarity_tier": "Ancient Relic",
+    "configuration_code": "TESSERACT"
+  }
+}

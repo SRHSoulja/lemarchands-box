@@ -1,0 +1,78 @@
+{
+  "name": "Lemarchand's Box #414",
+  "description": "Lemarchand's Box #414 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/414.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=414",
+  "external_url": "https://lemarchand.art/relic/414",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Flanged Aperture (Shifted Rails)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Petrified Black Oak"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Corroded Iron"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Blue Cenobite Flame"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "Labyrinth of Leviathan"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Chatterer"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Whispering Void"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Clockwork Ratchet & Ticks"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Master of the Box (7-Step Leviathan Key)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Ancient Relic"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 7
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 106.23
+    }
+  ],
+  "properties": {
+    "token_id": 414,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "I spent forty nights carving the fourth quadrant. When the silver wire settled into the rosewood track, the candle flames bent without wind.",
+    "solution_sequence": [
+      "Left Chevrons",
+      "Front Labyrinth",
+      "Back Escapement",
+      "Bottom Astrolabe",
+      "Front Labyrinth",
+      "Bottom Astrolabe",
+      "Front Labyrinth"
+    ],
+    "rarity_score": 106.23,
+    "rarity_tier": "Ancient Relic",
+    "configuration_code": "FLANGE"
+  }
+}

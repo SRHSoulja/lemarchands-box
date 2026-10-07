@@ -1,0 +1,75 @@
+{
+  "name": "Lemarchand's Box #191",
+  "description": "Lemarchand's Box #191 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/191.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=191",
+  "external_url": "https://lemarchand.art/relic/191",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Flanged Aperture (Shifted Rails)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Petrified Black Oak"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Blood Bronze"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Leviathan Eye"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "Labyrinth of Leviathan"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Chatterer"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "The Labyrinth of Leviathan"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Requiem Bell Chimes"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Adept (4-Step Flange Sequence)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Mythic Masterpiece"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 4
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 491.23
+    }
+  ],
+  "properties": {
+    "token_id": 191,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "A toy for those whose appetites have outgrown the world. It requires no key save the surrender of your mortal reason.",
+    "solution_sequence": [
+      "Top Rosette",
+      "Front Labyrinth",
+      "Bottom Astrolabe",
+      "Left Chevrons"
+    ],
+    "rarity_score": 491.23,
+    "rarity_tier": "Mythic Masterpiece",
+    "configuration_code": "FLANGE"
+  }
+}

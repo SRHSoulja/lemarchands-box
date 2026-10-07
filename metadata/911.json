@@ -1,0 +1,75 @@
+{
+  "name": "Lemarchand's Box #911",
+  "description": "Lemarchand's Box #911 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/911.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=911",
+  "external_url": "https://lemarchand.art/relic/911",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Leviathan Diamond (Stretched Rhombus)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "French Ancient Ebony"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Corroded Iron"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Event Horizon Void"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "Enochian Star Gates"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Hell Priest (Pinhead)"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Whispering Void"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Requiem Bell Chimes"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Adept (4-Step Flange Sequence)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Cenobite Tier"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 4
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 74.9
+    }
+  ],
+  "properties": {
+    "token_id": 911,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "I spent forty nights carving the fourth quadrant. When the silver wire settled into the rosewood track, the candle flames bent without wind.",
+    "solution_sequence": [
+      "Top Rosette",
+      "Back Escapement",
+      "Left Chevrons",
+      "Bottom Astrolabe"
+    ],
+    "rarity_score": 74.9,
+    "rarity_tier": "Cenobite Tier",
+    "configuration_code": "LEVIATHAN"
+  }
+}

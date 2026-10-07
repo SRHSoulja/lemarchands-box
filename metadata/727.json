@@ -1,0 +1,74 @@
+{
+  "name": "Lemarchand's Box #727",
+  "description": "Lemarchand's Box #727 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/727.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=727",
+  "external_url": "https://lemarchand.art/relic/727",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Leviathan Diamond (Stretched Rhombus)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Petrified Black Oak"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Corroded Iron"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Molten Hellfire"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "The Seal of Philip 1784"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "Butterball"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Victorian Study 1784"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Music Box of Lemarchand"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Initiate (3-Step Dial Alignment)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Ancient Relic"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 3
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 86.47
+    }
+  ],
+  "properties": {
+    "token_id": 727,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "The brass was quenched in cold well water drawn beneath the new moon. Each facet remembers the hands of the craftsman.",
+    "solution_sequence": [
+      "Top Rosette",
+      "Left Chevrons",
+      "Front Labyrinth"
+    ],
+    "rarity_score": 86.47,
+    "rarity_tier": "Ancient Relic",
+    "configuration_code": "LEVIATHAN"
+  }
+}

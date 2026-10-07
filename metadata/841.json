@@ -1,0 +1,74 @@
+{
+  "name": "Lemarchand's Box #841",
+  "description": "Lemarchand's Box #841 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/841.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=841",
+  "external_url": "https://lemarchand.art/relic/841",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Lemarchand Bloom (Unfolded Star)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "French Ancient Ebony"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Tarnished Imperial Gold"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Event Horizon Void"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "The Seal of Philip 1784"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "Leviathan, Lord of the Labyrinth"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Chamber of Relic Souls"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Celestial Chain Rattles"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Initiate (3-Step Dial Alignment)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Ancient Relic"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 3
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 100.87
+    }
+  ],
+  "properties": {
+    "token_id": 841,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "Leviathan does not speak in words, but in the exact proportion of sliding rhombuses. Listen carefully to the chime before you twist the dial.",
+    "solution_sequence": [
+      "Left Chevrons",
+      "Left Chevrons",
+      "Top Rosette"
+    ],
+    "rarity_score": 100.87,
+    "rarity_tier": "Ancient Relic",
+    "configuration_code": "BLOOM"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "name": "Lemarchand's Box #878",
+  "description": "Lemarchand's Box #878 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/878.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=878",
+  "external_url": "https://lemarchand.art/relic/878",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Leviathan Diamond (Stretched Rhombus)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Blood Mahogany"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Blood Bronze"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Blue Cenobite Flame"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "Enochian Star Gates"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Engineer"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Crimson Eclipse"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Requiem Bell Chimes"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Cenobite (6-Step Tesseract Shift)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Ancient Relic"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 6
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 99.19
+    }
+  ],
+  "properties": {
+    "token_id": 878,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "Paris, 1784. The gears within this specimen whisper when the clock strikes three. It is not mere brass and ebony; it is an incision into the flesh of space.",
+    "solution_sequence": [
+      "Bottom Astrolabe",
+      "Back Escapement",
+      "Left Chevrons",
+      "Back Escapement",
+      "Bottom Astrolabe",
+      "Back Escapement"
+    ],
+    "rarity_score": 99.19,
+    "rarity_tier": "Ancient Relic",
+    "configuration_code": "LEVIATHAN"
+  }
+}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lemarchand's Box • 1000 Interactive Configurations</title>
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+<body>
+
+    <!-- 3D Canvas Viewport -->
+    <div id="canvasContainer">
+        <canvas id="webglCanvas"></canvas>
+    </div>
+
+    <!-- Interactive HUD Overlay -->
+    <div id="uiLayer">
+
+        <!-- Top Navigation Bar -->
+        <header class="top-nav interactive-panel">
+            <div class="brand-section">
+                <div>
+                    <h1 class="brand-title">Lemarchand's Box</h1>
+                    <div class="brand-sub">1000-Piece Interactive Lament Configuration • Paris, 1784</div>
+                </div>
+            </div>
+
+            <div class="nav-controls">
+                <button class="nav-btn" id="prevTokenBtn" title="Previous Configuration">◀ Prev</button>
+                <div class="token-input-group">
+                    <span>#</span>
+                    <input type="number" id="tokenInput" min="1" max="1000" value="1">
+                    <span>/ 1000</span>
+                </div>
+                <button class="nav-btn" id="nextTokenBtn" title="Next Configuration">Next ▶</button>
+                <button class="nav-btn" id="randomTokenBtn" title="Random Relic">🎲 Random</button>
+            </div>
+        </header>
+
+        <!-- Center Interactive Instruction & Hover Feedback Pill -->
+        <div class="interactive-hint-pill" id="interactionPill">
+            🖐️ Drag to Orbit • Click Dials to Turn • Solve by Hand or Ritual
+        </div>
+        <div class="face-hover-pill" id="faceHoverPill">
+            <!-- Active hovered face announcement -->
+        </div>
+
+        <!-- Right Trait & Lore Sidebar -->
+        <aside class="trait-sidebar interactive-panel">
+            <div class="token-header">
+                <h2 class="token-name" id="tokenTitle">The Lament Configuration #1</h2>
+                <div class="rarity-container">
+                    <span class="rarity-badge tier-standard" id="rarityBadge">Standard</span>
+                    <span class="rarity-score-text" id="rarityScore">Rarity Score: 0.0</span>
+                </div>
+            </div>
+
+            <!-- Puzzle Clue / Riddle & Tumbler Safe Tray -->
+            <div class="puzzle-hud">
+                <div class="puzzle-header-row">
+                    <div class="puzzle-title">🗝️ Lemarchand's Cipher</div>
+                    <div style="display: flex; gap: 6px;">
+                        <button class="whisper-btn" id="btnKeyHelp" title="Keys: 1-6 Faces, W Whisper, R Center, Space Orbit">⌨️ Keys</button>
+                        <button class="whisper-btn" id="btnWhisper" title="Listen to the harmonic frequency clue">🎵 Whisper</button>
+                    </div>
+                </div>
+                <div class="puzzle-hint" id="puzzleHint">Loading sequence...</div>
+                <div class="puzzle-progress" id="puzzleProgress">Stage: 0 / 8 • ORDER PRESERVED</div>
+                <!-- Mechanical Tumbler Tray -->
+                <div class="tumbler-tray" id="tumblerTray"></div>
+            </div>
+
+            <!-- Quick Face Jump Bar for Effortless Inspection -->
+            <div class="face-jump-bar" id="faceJumpBar">
+                <span class="jump-label">Inspect:</span>
+                <button class="face-jump-btn" data-face="0" title="Inspect Top Face (Zenith Rosette)">TOP</button>
+                <button class="face-jump-btn" data-face="1" title="Inspect Bottom Face (Nadir Astrolabe)">BTM</button>
+                <button class="face-jump-btn" data-face="2" title="Inspect Front Face (Labyrinth)">FRT</button>
+                <button class="face-jump-btn" data-face="3" title="Inspect Back Face (Escapement)">BCK</button>
+                <button class="face-jump-btn" data-face="4" title="Inspect Right Face (Cross)">RGT</button>
+                <button class="face-jump-btn" data-face="5" title="Inspect Left Face (Chevrons)">LFT</button>
+            </div>
+
+            <!-- Iconic Movie Configurations -->
+            <div class="pattern-section">
+                <span class="jump-label">Movie Configurations:</span>
+                <div class="pattern-grid" id="patternGrid">
+                    <button class="pattern-btn" data-stage="1" title="1987 Attic Horizontal Flanged Shift (Simon Sayce)">Flanged</button>
+                    <button class="pattern-btn" data-stage="2" title="1987 Frank Cotton Stepped Ziggurat Staircase">Ziggurat</button>
+                    <button class="pattern-btn" data-stage="3" title="1988 Hellbound Tiffany Pinwheel Windmill Swirl">Pinwheel</button>
+                    <button class="pattern-btn" data-stage="4" title="1988 Hellbound 45° Octagram Star Prism">Star Prism</button>
+                    <button class="pattern-btn" data-stage="5" title="Secret Dovetail Key Drawers & Core Lift">Drawers</button>
+                    <button class="pattern-btn" data-stage="6" title="2022 Lauder Radial Star Bloom & Godrays">Star Bloom</button>
+                    <button class="pattern-btn" data-stage="7" title="2022 Liminal Monolith & Razor Blades">Monolith</button>
+                    <button class="pattern-btn" data-stage="8" title="1988 Lazarus Leviathan Rhombus Diamond">Leviathan</button>
+                    <button class="pattern-btn" data-stage="9" title="Cenobite Gateway Climax & Living Chains">Gateway</button>
+                </div>
+            </div>
+
+            <!-- Lost Journal Entry & Cenobite Proclamations -->
+            <div class="journal-box" id="journalEntry">
+                “To open it is not to solve a puzzle, but to invite an audience with architects who know nothing of mercy and everything of exquisite sensation.”
+            </div>
+
+            <!-- Trait Breakdown -->
+            <div class="trait-table" id="traitList">
+                <!-- Populated dynamically via ui.js -->
+            </div>
+        </aside>
+
+        <!-- Bottom Action Dock (Full Lifecycle) -->
+        <footer class="bottom-dock interactive-panel">
+            <!-- Mechanical Solving Lifecycle -->
+            <div class="action-group">
+                <select class="stage-select-dropdown" id="stageSelect" title="Select Specific Mechanical/Occult Configuration">
+                    <option value="0">0: Lament (Dormant Cube)</option>
+                    <option value="1">1: Flanged Shift (1987 Simon Sayce)</option>
+                    <option value="2">2: Stepped Ziggurat (1987 Attic Staircase)</option>
+                    <option value="3">3: Pinwheel Swirl (Hellbound 1988 Windmill)</option>
+                    <option value="4">4: Octagram Star (Hellbound 45° Twist)</option>
+                    <option value="5">5: Dovetail Drawers (Corner Key Stagger)</option>
+                    <option value="6">6: Lauder (Star Bloom & 8 Chasms)</option>
+                    <option value="7">7: Liminal (Tesseract Pillar & Blades)</option>
+                    <option value="8">8: Lazarus (Leviathan Diamond Rhombus)</option>
+                    <option value="9">9: Gateway (Cenobite Climax & Chains)</option>
+                </select>
+                <button class="action-btn" id="btnStep">⚙️ Next Stage</button>
+                <button class="action-btn btn-primary" id="btnSolve">✨ Solve Ritual</button>
+                <button class="action-btn" id="btnBanish">⚔️ Banish / Re-Lock</button>
+            </div>
+
+            <!-- Camera Controls & Center Relic -->
+            <div class="action-group">
+                <button class="action-btn" id="btnResetCam" title="Reset Camera to Hero Angle">🎯 Center View</button>
+                <button class="action-btn active" id="btnRotate">🔁 Auto-Orbit: ON</button>
+                <button class="action-btn active" id="btnMagic">✨ Magic FX: ON</button>
+                <button class="action-btn" id="btnCapture">📷 Capture HD</button>
+            </div>
+
+            <!-- Audio Controls -->
+            <div class="action-group">
+                <button class="action-btn active" id="btnAudio">🔊 Sound: Active</button>
+                <button class="action-btn" id="btnDrone" title="Hell Drone: Toggle Leviathan's Labyrinth ambient sub-harmonic pulse (55Hz/110Hz Cenobite realm drone)">🌀 Hell Drone: OFF</button>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="src/js/lib/three.min.js"></script>
+    <script src="src/js/traits.js"></script>
+    <script src="src/js/audio.js"></script>
+    <script src="src/js/textures.js"></script>
+    <script src="src/js/engine.js"></script>
+    <script src="src/js/puzzle.js"></script>
+    <script src="src/js/ui.js"></script>
+
+    <!-- App Bootstrapper -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('webglCanvas');
+            const engine = new LemarchandEngine(canvas);
+            const puzzle = new LemarchandPuzzle(engine, LemarchandAudio);
+            const ui = new LemarchandUI(engine, puzzle, LemarchandAudio, LemarchandTraits);
+
+            window.__LemarchandApp = { engine, puzzle, ui, audio: LemarchandAudio, traits: LemarchandTraits };
+        });
+    </script>
+</body>
+</html>

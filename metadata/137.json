@@ -1,0 +1,76 @@
+{
+  "name": "Lemarchand's Box #137",
+  "description": "Lemarchand's Box #137 is an interactive 3D Lament Configuration created in Paris, 1784 by toy maker and occult geometer Philip Lemarchand. Manipulating its mechanical facets reveals the geometry of the Schism.",
+  "image": "ipfs://QmLemarchandVault/images/137.png",
+  "animation_url": "ipfs://QmLemarchandVault/viewer.html?id=137",
+  "external_url": "https://lemarchand.art/relic/137",
+  "attributes": [
+    {
+      "trait_type": "Configuration",
+      "value": "Lament Cube (Prime Orthodox)"
+    },
+    {
+      "trait_type": "Base Wood",
+      "value": "Blood Mahogany"
+    },
+    {
+      "trait_type": "Filigree Metal",
+      "value": "Celestial Electrum"
+    },
+    {
+      "trait_type": "Inner Aperture Core",
+      "value": "Pure Stygian Light"
+    },
+    {
+      "trait_type": "Occult Magic Circle",
+      "value": "The Seal of Philip 1784"
+    },
+    {
+      "trait_type": "Summoned Patron",
+      "value": "The Hell Priest (Pinhead)"
+    },
+    {
+      "trait_type": "Atmosphere",
+      "value": "Crimson Eclipse"
+    },
+    {
+      "trait_type": "Acoustic Harmonics",
+      "value": "Clockwork Ratchet & Ticks"
+    },
+    {
+      "trait_type": "Solving Complexity",
+      "value": "Architect (5-Step Labyrinth Order)"
+    },
+    {
+      "trait_type": "Rarity Tier",
+      "value": "Mythic Masterpiece"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Riddle Steps",
+      "value": 5
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Rarity Score",
+      "value": 265.57
+    }
+  ],
+  "properties": {
+    "token_id": 137,
+    "artisan": "Philip Lemarchand",
+    "year": 1784,
+    "origin": "Paris, Kingdom of France",
+    "journal_entry": "A toy for those whose appetites have outgrown the world. It requires no key save the surrender of your mortal reason.",
+    "solution_sequence": [
+      "Top Rosette",
+      "Bottom Astrolabe",
+      "Front Labyrinth",
+      "Bottom Astrolabe",
+      "Top Rosette"
+    ],
+    "rarity_score": 265.57,
+    "rarity_tier": "Mythic Masterpiece",
+    "configuration_code": "CUBE"
+  }
+}
