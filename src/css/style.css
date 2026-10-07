@@ -356,6 +356,267 @@ body, html {
     text-overflow: ellipsis;
 }
 
+/* 6551 Token Bound Reliquary & Automaton Copilot HUD */
+.reliquary-hud {
+    background: linear-gradient(145deg, rgba(22, 18, 28, 0.95), rgba(10, 8, 14, 0.95));
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: 5px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(212, 175, 55, 0.08);
+}
+
+.reliquary-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reliquary-title {
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--brass-gold);
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+.vault-badge {
+    background: rgba(32, 226, 215, 0.15);
+    border: 1px solid #20e2d7;
+    color: #8efffa;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 3px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.vault-address-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 5px 8px;
+    border-radius: 3px;
+}
+
+.vault-address-label {
+    font-size: 0.70rem;
+    color: var(--text-muted);
+}
+
+.vault-address-text {
+    font-size: 0.72rem;
+    font-family: monospace;
+    color: #e0d6c5;
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.vault-copy-btn {
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid var(--border-brass);
+    color: var(--brass-gold);
+    font-size: 0.68rem;
+    padding: 3px 7px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.vault-copy-btn:hover {
+    background: var(--brass-gold);
+    color: #120e0a;
+}
+
+.automaton-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.25);
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.automaton-toggle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.automaton-toggle-label {
+    font-size: 0.74rem;
+    color: #d1c8b8;
+    font-weight: 600;
+}
+
+.copilot-toggle-btn {
+    background: rgba(40, 36, 46, 0.8);
+    border: 1px solid #555;
+    color: #888;
+    font-size: 0.70rem;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+}
+
+.copilot-toggle-btn.active {
+    background: rgba(32, 226, 120, 0.22);
+    border: 1px solid #20e278;
+    color: #79ffb2;
+    box-shadow: 0 0 10px rgba(32, 226, 120, 0.4);
+}
+
+.automaton-slider-row {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.slider-label-group {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.70rem;
+    color: var(--text-muted);
+}
+
+.slider-val {
+    color: var(--brass-gold);
+    font-family: monospace;
+    font-weight: 600;
+}
+
+.hud-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    outline: none;
+}
+
+.hud-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 13px;
+    height: 13px;
+    background: var(--brass-gold);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 6px rgba(212, 175, 55, 0.8);
+}
+
+.shield-badge {
+    font-size: 0.68rem;
+    color: #8effbb;
+    background: rgba(20, 80, 45, 0.25);
+    border: 1px solid rgba(32, 226, 120, 0.3);
+    padding: 4px 6px;
+    border-radius: 3px;
+    letter-spacing: 0.3px;
+    text-align: center;
+}
+
+.vault-treasury-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 6px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.treasury-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.treasury-label {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+}
+
+.treasury-val {
+    font-size: 0.74rem;
+    font-family: monospace;
+    font-weight: 700;
+    color: #fff4d0;
+}
+
+.enshrined-tray-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.tray-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.70rem;
+    color: var(--text-muted);
+}
+
+.add-relic-btn {
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid var(--border-brass);
+    color: var(--brass-gold);
+    font-size: 0.66rem;
+    padding: 2px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.add-relic-btn:hover {
+    background: var(--brass-gold);
+    color: #0c0906;
+}
+
+.enshrined-thumbnails {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+}
+
+.enshrined-thumb-item {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border-radius: 4px;
+    border: 1px solid var(--border-brass);
+    background: #141016;
+    overflow: hidden;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.enshrined-thumb-item:hover {
+    transform: scale(1.08);
+    border-color: var(--brass-gold);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+.enshrined-thumb-item img, .enshrined-thumb-item canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .puzzle-hud {
     background: rgba(158, 42, 43, 0.18);
     border: 1px solid rgba(158, 42, 43, 0.45);

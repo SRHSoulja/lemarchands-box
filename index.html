@@ -55,6 +55,65 @@
                 </div>
             </div>
 
+            <!-- ERC-6551 Token Bound Reliquary & Automaton Copilot HUD -->
+            <div class="reliquary-hud" id="reliquaryHud">
+                <div class="reliquary-header-row">
+                    <div class="reliquary-title">⚡ 6551 Reliquary & Automaton</div>
+                    <span class="vault-badge" id="reliquaryBadge">Vault: Active</span>
+                </div>
+
+                <div class="vault-address-row">
+                    <span class="vault-address-label">TBA Vault:</span>
+                    <span class="vault-address-text" id="vaultAddressText">0x6551...0001</span>
+                    <button class="vault-copy-btn" id="btnCopyVaultAddress" title="Copy 6551 Token Bound Account Address">📋 Copy</button>
+                </div>
+
+                <!-- Automaton Copilot Controls -->
+                <div class="automaton-controls">
+                    <div class="automaton-toggle-row">
+                        <span class="automaton-toggle-label">🤖 Auto-Mint Copilot:</span>
+                        <button class="copilot-toggle-btn active" id="btnToggleCopilot">ON</button>
+                    </div>
+                    
+                    <div class="automaton-slider-row">
+                        <div class="slider-label-group">
+                            <span>Max Spend / Mint:</span>
+                            <span class="slider-val" id="maxSpendVal">0.05 ETH</span>
+                        </div>
+                        <input type="range" class="hud-slider" id="maxSpendSlider" min="0.005" max="0.25" step="0.005" value="0.05">
+                    </div>
+
+                    <div class="shield-badge">
+                        🛡️ Pre-Simulation Shield: ACTIVE (99.9% Zero-Gas Failure Protection)
+                    </div>
+                </div>
+
+                <!-- Treasury & Enshrined Relics Tray -->
+                <div class="vault-treasury-row">
+                    <div class="treasury-item">
+                        <span class="treasury-label">Vault ETH:</span>
+                        <span class="treasury-val" id="vaultEthBal">0.10 ETH</span>
+                    </div>
+                    <div class="treasury-item">
+                        <span class="treasury-label">Enshrined:</span>
+                        <span class="treasury-val" id="enshrinedCount">2 NFTs</span>
+                    </div>
+                    <div class="treasury-item">
+                        <span class="treasury-label">Yield Earned:</span>
+                        <span class="treasury-val" id="vaultYieldBal">500 USDC</span>
+                    </div>
+                </div>
+
+                <!-- Enshrined NFT Thumbnails / Interactive Relic Slotting -->
+                <div class="enshrined-tray-section">
+                    <div class="tray-label-row">
+                        <span>Interior Enshrined Relics:</span>
+                        <button class="add-relic-btn" id="btnAddSampleRelic" title="Add / Enshrine a new NFT into this cube">+ Enshrine</button>
+                    </div>
+                    <div class="enshrined-thumbnails" id="enshrinedThumbnails"></div>
+                </div>
+            </div>
+
             <!-- Puzzle Clue / Riddle & Tumbler Safe Tray -->
             <div class="puzzle-hud">
                 <div class="puzzle-header-row">

@@ -1391,6 +1391,247 @@
         };
     }
 
+    // Helper to draw procedural talisman or relic art inside the cameo medallion
+    function drawProceduralRelicArt(ctx, cx, cy, r, relicData) {
+        const theme = (relicData && relicData.theme) || "CUCKS";
+
+        if (theme === "CUCKS") {
+            // Stray Cuck Crowned Orange Tabby Pixel Relic
+            const grad = ctx.createLinearGradient(cx - r, cy - r, cx + r, cy + r);
+            grad.addColorStop(0, "#2c1538");
+            grad.addColorStop(1, "#120817");
+            ctx.fillStyle = grad;
+            ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
+
+            // Radiant occult halo
+            ctx.fillStyle = "rgba(255, 215, 0, 0.25)";
+            ctx.beginPath();
+            ctx.arc(cx, cy, r * 0.75, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Pixel cat face silhouette
+            ctx.fillStyle = "#ff8c2b"; // Orange tabby
+            ctx.beginPath();
+            // Head
+            ctx.arc(cx, cy + 12, 48, 0, Math.PI * 2);
+            ctx.fill();
+            // Ears
+            ctx.beginPath();
+            ctx.moveTo(cx - 38, cy - 10);
+            ctx.lineTo(cx - 52, cy - 65);
+            ctx.lineTo(cx - 12, cy - 30);
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.moveTo(cx + 38, cy - 10);
+            ctx.lineTo(cx + 52, cy - 65);
+            ctx.lineTo(cx + 12, cy - 30);
+            ctx.closePath();
+            ctx.fill();
+
+            // Inner ears
+            ctx.fillStyle = "#ffb085";
+            ctx.beginPath();
+            ctx.moveTo(cx - 34, cy - 12);
+            ctx.lineTo(cx - 44, cy - 50);
+            ctx.lineTo(cx - 18, cy - 25);
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.moveTo(cx + 34, cy - 12);
+            ctx.lineTo(cx + 44, cy - 50);
+            ctx.lineTo(cx + 18, cy - 25);
+            ctx.closePath();
+            ctx.fill();
+
+            // Golden Crown
+            ctx.fillStyle = "#ffd700";
+            ctx.beginPath();
+            ctx.moveTo(cx - 32, cy - 38);
+            ctx.lineTo(cx - 38, cy - 68);
+            ctx.lineTo(cx - 16, cy - 52);
+            ctx.lineTo(cx, cy - 78);
+            ctx.lineTo(cx + 16, cy - 52);
+            ctx.lineTo(cx + 38, cy - 68);
+            ctx.lineTo(cx + 32, cy - 38);
+            ctx.closePath();
+            ctx.fill();
+
+            // Ruby in crown
+            ctx.fillStyle = "#e62233";
+            ctx.beginPath();
+            ctx.arc(cx, cy - 55, 6, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Big expressive eyes
+            ctx.fillStyle = "#20e2d7"; // Cyan glowing eyes
+            ctx.beginPath();
+            ctx.ellipse(cx - 20, cy + 8, 11, 14, 0, 0, Math.PI * 2);
+            ctx.ellipse(cx + 20, cy + 8, 11, 14, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = "#0d1b2a"; // Pupils
+            ctx.beginPath();
+            ctx.ellipse(cx - 20, cy + 8, 5, 12, 0, 0, Math.PI * 2);
+            ctx.ellipse(cx + 20, cy + 8, 5, 12, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Snout & whiskers
+            ctx.fillStyle = "#ffb085";
+            ctx.beginPath();
+            ctx.arc(cx, cy + 26, 6, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Label banner
+            ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
+            ctx.fillRect(cx - 70, cy + 62, 140, 22);
+            ctx.strokeStyle = "#ffd700";
+            ctx.lineWidth = 1.5;
+            ctx.strokeRect(cx - 70, cy + 62, 140, 22);
+
+            ctx.fillStyle = "#fff4d0";
+            ctx.font = "bold 11px monospace";
+            ctx.textAlign = "center";
+            ctx.fillText((relicData && relicData.name) || "STRAY CUCK #527", cx, cy + 77);
+        } else {
+            // Occult Leviathan Talisman Relic
+            const grad = ctx.createRadialGradient(cx, cy, 10, cx, cy, r);
+            grad.addColorStop(0, "#8b1e22");
+            grad.addColorStop(0.6, "#2e0608");
+            grad.addColorStop(1, "#0a0102");
+            ctx.fillStyle = grad;
+            ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
+
+            // Sacred geometry star
+            ctx.strokeStyle = "#ffd700";
+            ctx.lineWidth = 3;
+            for (let i = 0; i < 8; i++) {
+                const a = (i / 8) * Math.PI * 2;
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(cx + Math.cos(a) * (r * 0.7), cy + Math.sin(a) * (r * 0.7));
+                ctx.stroke();
+            }
+
+            // Central glowing eye
+            ctx.fillStyle = "#fff";
+            ctx.beginPath();
+            ctx.arc(cx, cy, 16, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = "#8b1e22";
+            ctx.beginPath();
+            ctx.arc(cx, cy, 8, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    // Generate Ornate Antique Brass Reliquary Cameo Plaque with Enshrined NFT Art
+    function generateReliquaryCameoTexture(relicData) {
+        const size = 512;
+        const diffCanvas = document.createElement('canvas');
+        diffCanvas.width = size;
+        diffCanvas.height = size;
+        const diffCtx = diffCanvas.getContext('2d');
+
+        const bumpCanvas = document.createElement('canvas');
+        bumpCanvas.width = size;
+        bumpCanvas.height = size;
+        const bumpCtx = bumpCanvas.getContext('2d');
+
+        // Background: Deep Royal Obsidian Velvet
+        diffCtx.fillStyle = "#120c10";
+        diffCtx.fillRect(0, 0, size, size);
+        bumpCtx.fillStyle = "#101010";
+        bumpCtx.fillRect(0, 0, size, size);
+
+        const cx = size / 2;
+        const cy = size / 2;
+        const frameR = size * 0.44;
+
+        // Embossed Frame Outer Ring
+        diffCtx.lineWidth = 18;
+        diffCtx.strokeStyle = "#d4af37";
+        diffCtx.beginPath();
+        diffCtx.arc(cx, cy, frameR, 0, Math.PI * 2);
+        diffCtx.stroke();
+
+        bumpCtx.lineWidth = 18;
+        bumpCtx.strokeStyle = "#d0d0d0";
+        bumpCtx.beginPath();
+        bumpCtx.arc(cx, cy, frameR, 0, Math.PI * 2);
+        bumpCtx.stroke();
+
+        // Inner Beaded Filigree Trim
+        diffCtx.lineWidth = 4;
+        diffCtx.strokeStyle = "#fff2a8";
+        diffCtx.beginPath();
+        diffCtx.arc(cx, cy, frameR - 12, 0, Math.PI * 2);
+        diffCtx.stroke();
+
+        bumpCtx.lineWidth = 4;
+        bumpCtx.strokeStyle = "#ffffff";
+        bumpCtx.beginPath();
+        bumpCtx.arc(cx, cy, frameR - 12, 0, Math.PI * 2);
+        bumpCtx.stroke();
+
+        // 16 Filigree Scallops
+        for (let i = 0; i < 16; i++) {
+            const a = (i / 16) * Math.PI * 2;
+            const sx = cx + Math.cos(a) * (frameR + 10);
+            const sy = cy + Math.sin(a) * (frameR + 10);
+
+            diffCtx.fillStyle = "#e6c35c";
+            diffCtx.beginPath();
+            diffCtx.arc(sx, sy, 7, 0, Math.PI * 2);
+            diffCtx.fill();
+
+            bumpCtx.fillStyle = "#f0f0f0";
+            bumpCtx.beginPath();
+            bumpCtx.arc(sx, sy, 7, 0, Math.PI * 2);
+            bumpCtx.fill();
+        }
+
+        // Medallion Center: Draw Enshrined Artwork
+        const medR = frameR - 18;
+        diffCtx.save();
+        diffCtx.beginPath();
+        diffCtx.arc(cx, cy, medR, 0, Math.PI * 2);
+        diffCtx.clip();
+
+        drawProceduralRelicArt(diffCtx, cx, cy, medR, relicData);
+        diffCtx.restore();
+
+        // Inner shadow vignette for medallion depth
+        diffCtx.save();
+        const medVignette = diffCtx.createRadialGradient(cx, cy, medR * 0.65, cx, cy, medR);
+        medVignette.addColorStop(0, "rgba(0,0,0,0)");
+        medVignette.addColorStop(1, "rgba(0,0,0,0.65)");
+        diffCtx.fillStyle = medVignette;
+        diffCtx.beginPath();
+        diffCtx.arc(cx, cy, medR, 0, Math.PI * 2);
+        diffCtx.fill();
+        diffCtx.restore();
+
+        const diffTex = new THREE.CanvasTexture(diffCanvas);
+        diffTex.generateMipmaps = true;
+
+        const bumpTex = new THREE.CanvasTexture(bumpCanvas);
+        bumpTex.generateMipmaps = true;
+
+        return {
+            diffuse: diffTex,
+            bump: bumpTex,
+            canvas: diffCanvas,
+            materialParams: {
+                metalness: 0.88,
+                roughness: 0.25,
+                bumpScale: 0.04
+            }
+        };
+    }
+
     return {
         generateFaceTexture,
         generateNormalMapFromCanvas,
@@ -1399,6 +1640,7 @@
         generateEscapementPlateTexture,
         generateOccultConduitTexture,
         generateTurntableTexture,
+        generateReliquaryCameoTexture,
         FACE_PATTERNS
     };
 }));

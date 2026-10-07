@@ -190,6 +190,8 @@
             this.cornerLinkages = [];
             this.edgeRails = [];
             this.turntableAssembly = null;
+            this.relicPlaques = [];
+            this.enshrinedRelics = [];
 
             // Pre-allocated scratch vectors to eliminate per-frame GC allocations
             this._scratchOffset = new THREE.Vector3();
@@ -553,6 +555,7 @@
             this.cornerLinkages = [];
             this.edgeRails = [];
             this.turntableAssembly = null;
+            this.relicPlaques = [];
             this.topHub = null;
             this.bottomHub = null;
 
@@ -1217,6 +1220,46 @@
                 upperRotor: upperRotorGroup
             };
 
+            // 4.5 Mount Enshrined Reliquary Cameo Plaques Inside Key Drawer Alcoves
+            this.relicPlaques = [];
+            const drawerIndices = [0, 3, 9, 10]; // 4 Alternating Key Drawers
+            drawerIndices.forEach((bIdx, rIdx) => {
+                const b = this.puzzleBlocks[bIdx];
+                if (!b) return;
+
+                const plaqueGeom = new THREE.PlaneGeometry(1.65, 1.65);
+                const relicData = (this.enshrinedRelics && this.enshrinedRelics[rIdx]) || {
+                    theme: (rIdx === 0 ? "CUCKS" : "OCCULT"),
+                    name: (rIdx === 0 ? "STRAY CUCK #527" : `LEVIATHAN SEAL #${bIdx + 1}`)
+                };
+                const plaqueTex = LemarchandTextures.generateReliquaryCameoTexture(relicData);
+                const plaqueMat = new THREE.MeshStandardMaterial({
+                    map: plaqueTex.diffuse,
+                    bumpMap: plaqueTex.bump,
+                    bumpScale: 0.05,
+                    metalness: 0.88,
+                    roughness: 0.25
+                });
+
+                const plaqueMesh = new THREE.Mesh(plaqueGeom, plaqueMat);
+                // Position on internal face pointing inward toward center
+                const inDir = b.initialPos.clone().multiplyScalar(-1);
+                inDir.y = 0;
+                inDir.normalize();
+
+                plaqueMesh.position.copy(inDir.clone().multiplyScalar(0.70));
+                plaqueMesh.lookAt(plaqueMesh.position.clone().add(inDir));
+                plaqueMesh.raycast = () => {};
+
+                b.mesh.add(plaqueMesh);
+                this.relicPlaques.push({
+                    mesh: plaqueMesh,
+                    material: plaqueMat,
+                    blockIndex: bIdx,
+                    relicIndex: rIdx
+                });
+            });
+
             // 5. Mount Central Circular Dial Assemblies & Telescoping Pistons
             this.topHub = new THREE.Group();
             this.upperSliceGroup.add(this.topHub);
@@ -1562,6 +1605,24 @@
                 const face = this.faceAssemblies[faceIndex];
                 face.isJiggling = true;
                 face.jiggleStart = this.clock.getElapsedTime();
+            }
+        }
+
+        setEnshrinedRelics(relics) {
+            this.enshrinedRelics = relics || [];
+            if (this.relicPlaques && this.relicPlaques.length > 0) {
+                this.relicPlaques.forEach((rp, idx) => {
+                    const relic = this.enshrinedRelics[idx] || {
+                        theme: (idx === 0 ? "CUCKS" : "OCCULT"),
+                        name: (idx === 0 ? "STRAY CUCK #527" : `LEVIATHAN SEAL #${idx + 1}`)
+                    };
+                    const texData = LemarchandTextures.generateReliquaryCameoTexture(relic);
+                    if (rp.material) {
+                        rp.material.map = texData.diffuse;
+                        rp.material.bumpMap = texData.bump;
+                        rp.material.needsUpdate = true;
+                    }
+                });
             }
         }
 

@@ -41,6 +41,18 @@
                 faceJumpBar: document.getElementById('faceJumpBar'),
                 stageSelect: document.getElementById('stageSelect'),
 
+                // 6551 Reliquary & Automaton HUD
+                vaultAddressText: document.getElementById('vaultAddressText'),
+                btnCopyVaultAddress: document.getElementById('btnCopyVaultAddress'),
+                btnToggleCopilot: document.getElementById('btnToggleCopilot'),
+                maxSpendSlider: document.getElementById('maxSpendSlider'),
+                maxSpendVal: document.getElementById('maxSpendVal'),
+                vaultEthBal: document.getElementById('vaultEthBal'),
+                enshrinedCount: document.getElementById('enshrinedCount'),
+                vaultYieldBal: document.getElementById('vaultYieldBal'),
+                enshrinedThumbnails: document.getElementById('enshrinedThumbnails'),
+                btnAddSampleRelic: document.getElementById('btnAddSampleRelic'),
+
                 // Dock Buttons
                 btnStep: document.getElementById('btnStep'),
                 btnSolve: document.getElementById('btnSolve'),
@@ -373,6 +385,85 @@
                     }
                 });
             }
+
+            // 6551 Reliquary & Automaton Copilot Events
+            if (this.dom.btnToggleCopilot) {
+                this.dom.btnToggleCopilot.addEventListener('click', () => {
+                    const state = this.getReliquaryState(this.currentTokenId);
+                    state.copilotEnabled = !state.copilotEnabled;
+                    this.saveReliquaryState(this.currentTokenId, state);
+
+                    this.dom.btnToggleCopilot.textContent = state.copilotEnabled ? "ON" : "OFF";
+                    this.dom.btnToggleCopilot.classList.toggle('active', state.copilotEnabled);
+
+                    if (this.audio && this.audio.playTumblerClick) {
+                        this.audio.playTumblerClick(state.copilotEnabled ? 0 : 3);
+                    }
+                    if (this.dom.puzzleHint) {
+                        this.dom.puzzleHint.textContent = state.copilotEnabled
+                            ? "🤖 Automaton Copilot ACTIVE: Ready to mint drops via pre-simulated batch dispatcher."
+                            : "⏸️ Automaton Copilot PAUSED: Box will not participate in automated mints.";
+                    }
+                });
+            }
+
+            if (this.dom.maxSpendSlider) {
+                this.dom.maxSpendSlider.addEventListener('input', (e) => {
+                    const val = parseFloat(e.target.value);
+                    if (this.dom.maxSpendVal) {
+                        this.dom.maxSpendVal.textContent = `${val.toFixed(3)} ETH`;
+                    }
+                });
+                this.dom.maxSpendSlider.addEventListener('change', (e) => {
+                    const val = parseFloat(e.target.value);
+                    const state = this.getReliquaryState(this.currentTokenId);
+                    state.maxSpendETH = val;
+                    this.saveReliquaryState(this.currentTokenId, state);
+                    if (this.audio && this.audio.playFaceHover) {
+                        this.audio.playFaceHover(2, 600);
+                    }
+                });
+            }
+
+            if (this.dom.btnCopyVaultAddress) {
+                this.dom.btnCopyVaultAddress.addEventListener('click', () => {
+                    const fullAddr = this.computeTBAAddress(this.currentTokenId);
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(fullAddr).then(() => {
+                            const orig = this.dom.btnCopyVaultAddress.textContent;
+                            this.dom.btnCopyVaultAddress.textContent = "✓ Copied!";
+                            setTimeout(() => { if (this.dom.btnCopyVaultAddress) this.dom.btnCopyVaultAddress.textContent = orig; }, 1800);
+                        }).catch(() => {});
+                    }
+                });
+            }
+
+            if (this.dom.btnAddSampleRelic) {
+                this.dom.btnAddSampleRelic.addEventListener('click', () => {
+                    const state = this.getReliquaryState(this.currentTokenId);
+                    const sampleRelics = [
+                        { theme: "CUCKS", name: "STRAY CUCK #527" },
+                        { theme: "OCCULT", name: "LEVIATHAN SEAL #42" },
+                        { theme: "CUCKS", name: "CROWNED ORANGE TABBY" },
+                        { theme: "OCCULT", name: "OBSIDIAN LABYRINTH" }
+                    ];
+                    const nextRelic = sampleRelics[state.relics.length % sampleRelics.length];
+                    if (state.relics.length >= 4) {
+                        state.relics = [nextRelic];
+                    } else {
+                        state.relics.push(nextRelic);
+                    }
+                    this.saveReliquaryState(this.currentTokenId, state);
+                    this.renderReliquaryHUD(this.currentTokenId);
+
+                    if (this.audio && this.audio.playSolveChime) {
+                        this.audio.playSolveChime();
+                    }
+                    if (this.dom.puzzleHint) {
+                        this.dom.puzzleHint.textContent = `✨ Relic [${nextRelic.name}] enshrined into 6551 vault and assembled into cube interior!`;
+                    }
+                });
+            }
         }
 
         loadToken(id) {
@@ -439,6 +530,111 @@
                     </div>
                 `).join('');
             }
+
+            this.renderReliquaryHUD(this.currentTokenId);
+        }
+
+        computeTBAAddress(tokenId) {
+            const hexId = tokenId.toString(16).padStart(4, '0');
+            return `0x6551${hexId}9a7b24C8F0024E09117841784${hexId}`;
+        }
+
+        getReliquaryState(tokenId) {
+            const key = `lemarchand_6551_${tokenId}`;
+            try {
+                const saved = localStorage.getItem(key);
+                if (saved) return JSON.parse(saved);
+            } catch (e) {}
+
+            return {
+                copilotEnabled: true,
+                maxSpendETH: 0.05,
+                dailySpendLimit: 0.20,
+                vaultETH: 0.10,
+                vaultUSDC: 500,
+                relics: [
+                    { theme: "CUCKS", name: "STRAY CUCK #527" },
+                    { theme: "OCCULT", name: `LEVIATHAN SEAL #${tokenId}` }
+                ]
+            };
+        }
+
+        saveReliquaryState(tokenId, state) {
+            const key = `lemarchand_6551_${tokenId}`;
+            try {
+                localStorage.setItem(key, JSON.stringify(state));
+            } catch (e) {}
+        }
+
+        renderReliquaryHUD(tokenId) {
+            const vaultAddr = this.computeTBAAddress(tokenId);
+            if (this.dom.vaultAddressText) {
+                this.dom.vaultAddressText.textContent = `${vaultAddr.substring(0, 6)}...${vaultAddr.substring(38)}`;
+                this.dom.vaultAddressText.title = vaultAddr;
+            }
+
+            const state = this.getReliquaryState(tokenId);
+
+            if (this.dom.btnToggleCopilot) {
+                this.dom.btnToggleCopilot.textContent = state.copilotEnabled ? "ON" : "OFF";
+                this.dom.btnToggleCopilot.classList.toggle('active', state.copilotEnabled);
+            }
+
+            if (this.dom.maxSpendSlider) {
+                this.dom.maxSpendSlider.value = state.maxSpendETH;
+            }
+            if (this.dom.maxSpendVal) {
+                this.dom.maxSpendVal.textContent = `${Number(state.maxSpendETH).toFixed(3)} ETH`;
+            }
+
+            if (this.dom.vaultEthBal) {
+                this.dom.vaultEthBal.textContent = `${Number(state.vaultETH).toFixed(2)} ETH`;
+            }
+            if (this.dom.enshrinedCount) {
+                this.dom.enshrinedCount.textContent = `${state.relics.length} NFTs`;
+            }
+            if (this.dom.vaultYieldBal) {
+                this.dom.vaultYieldBal.textContent = `${state.vaultUSDC} USDC`;
+            }
+
+            this.renderRelicThumbnails(state.relics);
+
+            if (this.engine && this.engine.setEnshrinedRelics) {
+                this.engine.setEnshrinedRelics(state.relics);
+            }
+        }
+
+        renderRelicThumbnails(relics) {
+            if (!this.dom.enshrinedThumbnails) return;
+            this.dom.enshrinedThumbnails.innerHTML = '';
+
+            relics.forEach((r, idx) => {
+                const item = document.createElement('div');
+                item.className = 'enshrined-thumb-item';
+                item.title = `Enshrined Relic #${idx + 1}: ${r.name}`;
+
+                if (typeof LemarchandTextures !== 'undefined' && LemarchandTextures.generateReliquaryCameoTexture) {
+                    const tex = LemarchandTextures.generateReliquaryCameoTexture(r);
+                    if (tex && tex.canvas) {
+                        item.appendChild(tex.canvas);
+                    } else {
+                        item.textContent = "NFT";
+                    }
+                } else {
+                    item.textContent = "NFT";
+                }
+
+                item.addEventListener('click', () => {
+                    if (this.dom.puzzleHint) {
+                        this.dom.puzzleHint.textContent = `👁️ Enshrined Relic: [${r.name}] held safely in 6551 vault. Assembled into cube drawer #${idx + 1}.`;
+                    }
+                    if (this.audio && this.audio.playFaceHover) {
+                        this.audio.playFaceHover(idx % 6, 700);
+                    }
+                });
+
+                this.dom.enshrinedThumbnails.appendChild(item);
+            });
         }
     }
 
