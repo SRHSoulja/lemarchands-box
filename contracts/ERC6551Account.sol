@@ -22,6 +22,18 @@ interface IERC1155Receiver {
     function onERC1155BatchReceived(address operator, address from, uint256[] calldata ids, uint256[] calldata values, bytes calldata data) external returns (bytes4);
 }
 
+interface IERC20 {
+    function name() external view returns (string memory);
+    function symbol() external view returns (string memory);
+    function decimals() external view returns (uint8);
+    function totalSupply() external view returns (uint256);
+    function balanceOf(address account) external view returns (uint256);
+    function transfer(address recipient, uint256 amount) external returns (bool);
+    function allowance(address owner, address spender) external view returns (uint256);
+    function approve(address spender, uint256 amount) external returns (bool);
+    function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
+}
+
 /**
  * @title Lemarchand6551Account
  * @notice Token Bound Account implementation with built-in Automaton Operator controls (Spend caps & Kill switch)
@@ -42,6 +54,8 @@ contract Lemarchand6551Account is IERC6551Account, IERC6551Executable, IERC721Re
 
     event AutomatonConfigUpdated(address indexed operator, bool enabled, uint256 maxSpendPerTx, uint256 dailySpendLimit);
     event Executed(address indexed target, uint256 value, bytes data);
+    event ERC20Withdrawn(address indexed token, address indexed to, uint256 amount);
+    event ETHWithdrawn(address indexed to, uint256 amount);
 
     error NotAuthorized();
     error ExceedsSpendLimit();
@@ -128,6 +142,18 @@ contract Lemarchand6551Account is IERC6551Account, IERC6551Executable, IERC721Re
 
             if (value > cfg.maxSpendPerTx) revert ExceedsSpendLimit();
 
+            // Safety guard: Operator cannot transfer or approve existing ERC-20 / ERC-721 tokens out
+            if (data.length >= 4) {
+                bytes4 selector = bytes4(data[:4]);
+                // 0xa9059cbb = transfer(address,uint256)
+                // 0x095ea7b3 = approve(address,uint256)
+                // 0x23b87266 = transferFrom(address,address,uint256)
+                // 0x42842e0e = safeTransferFrom(address,address,uint256)
+                if (selector == 0xa9059cbb || selector == 0x095ea7b3 || selector == 0x23b87266 || selector == 0x42842e0e) {
+                    revert NotAuthorized();
+                }
+            }
+
             uint256 currentDay = block.timestamp / 1 days;
             if (cfg.lastResetDay != currentDay) {
                 cfg.dailySpent = 0;
@@ -149,6 +175,50 @@ contract Lemarchand6551Account is IERC6551Account, IERC6551Executable, IERC721Re
 
         emit Executed(to, value, data);
         return result;
+    }
+
+    /**
+     * @notice Withdraw / Transfer ERC-20 tokens out of the 6551 vault
+     * @dev Only the Box owner can call this
+     */
+    function transferERC20(address tokenContract, address to, uint256 amount) external onlyOwner returns (bool) {
+        if (to == address(0)) revert NotAuthorized();
+        _state++;
+        (bool success, bytes memory data) = tokenContract.call(
+            abi.encodeWithSelector(IERC20.transfer.selector, to, amount)
+        );
+        require(success && (data.length == 0 || abi.decode(data, (bool))), "ERC20 transfer failed");
+        emit ERC20Withdrawn(tokenContract, to, amount);
+        return true;
+    }
+
+    /**
+     * @notice Withdraw ETH out of the 6551 vault
+     * @dev Only the Box owner can call this
+     */
+    function transferETH(address payable to, uint256 amount) external onlyOwner {
+        if (to == address(0)) revert NotAuthorized();
+        require(address(this).balance >= amount, "Insufficient ETH balance");
+        _state++;
+        (bool sent, ) = to.call{value: amount}("");
+        require(sent, "ETH transfer failed");
+        emit ETHWithdrawn(to, amount);
+    }
+
+    /**
+     * @notice Read ERC-20 token info and balance for this 6551 vault in a single view call
+     */
+    function getERC20Balance(address tokenContract) external view returns (
+        string memory tokenName,
+        string memory tokenSymbol,
+        uint8 tokenDecimals,
+        uint256 balance
+    ) {
+        if (tokenContract.code.length == 0) return ("", "", 0, 0);
+        try IERC20(tokenContract).name() returns (string memory n) { tokenName = n; } catch {}
+        try IERC20(tokenContract).symbol() returns (string memory s) { tokenSymbol = s; } catch {}
+        try IERC20(tokenContract).decimals() returns (uint8 d) { tokenDecimals = d; } catch {}
+        try IERC20(tokenContract).balanceOf(address(this)) returns (uint256 b) { balance = b; } catch {}
     }
 
     // --- NFT Receivers ---

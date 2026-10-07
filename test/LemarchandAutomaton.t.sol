@@ -7,6 +7,7 @@ import "../contracts/ERC6551Registry.sol";
 import "../contracts/ERC6551Account.sol";
 import "../contracts/LemarchandDispatcher.sol";
 import "../contracts/MockNFTDrop.sol";
+import "../contracts/MockERC20.sol";
 
 contract LemarchandAutomatonTest is Test {
     LemarchandsBox public boxCollection;
@@ -207,5 +208,85 @@ contract LemarchandAutomatonTest is Test {
             assertFalse(results[i], "All boxes should fail simulation");
         }
         // Result: Bot cancels broadcast, saving 100% of user gas!
+    }
+
+    function test_ERC20ReceiptAndReading() public {
+        MockERC20 usdc = new MockERC20("USD Coin", "USDC", 6);
+        uint256 payoutAmount = 500 * 10**6; // 500 USDC
+
+        // Partner project pays yield directly to Box 1's 6551 address
+        usdc.mint(boxAccounts[0], payoutAmount);
+        assertEq(usdc.balanceOf(boxAccounts[0]), payoutAmount);
+
+        // Read token metadata and balance in 1 single view call
+        (
+            string memory tokenName,
+            string memory tokenSymbol,
+            uint8 tokenDecimals,
+            uint256 balance
+        ) = Lemarchand6551Account(payable(boxAccounts[0])).getERC20Balance(address(usdc));
+
+        assertEq(tokenName, "USD Coin");
+        assertEq(tokenSymbol, "USDC");
+        assertEq(tokenDecimals, 6);
+        assertEq(balance, payoutAmount);
+    }
+
+    function test_ERC20WithdrawalByOwner() public {
+        MockERC20 usdc = new MockERC20("USD Coin", "USDC", 6);
+        uint256 payoutAmount = 500 * 10**6;
+        usdc.mint(boxAccounts[0], payoutAmount);
+
+        // Alice (Box 1 owner) withdraws 200 USDC to her personal wallet
+        vm.prank(alice);
+        bool ok = Lemarchand6551Account(payable(boxAccounts[0])).transferERC20(
+            address(usdc),
+            alice,
+            200 * 10**6
+        );
+
+        assertTrue(ok, "Withdrawal should succeed");
+        assertEq(usdc.balanceOf(boxAccounts[0]), 300 * 10**6, "Vault balance should decrease");
+        assertEq(usdc.balanceOf(alice), 200 * 10**6, "Alice should receive withdrawn tokens");
+    }
+
+    function test_ERC20TheftPreventionFromOperator() public {
+        MockERC20 usdc = new MockERC20("USD Coin", "USDC", 6);
+        uint256 payoutAmount = 500 * 10**6;
+        usdc.mint(boxAccounts[0], payoutAmount);
+
+        // Bot operator attempts to call transfer(botOperator, ...) through execute()
+        bytes memory stealCalldata = abi.encodeWithSelector(
+            IERC20.transfer.selector,
+            botOperator,
+            payoutAmount
+        );
+
+        vm.prank(botOperator);
+        vm.expectRevert(Lemarchand6551Account.NotAuthorized.selector);
+        Lemarchand6551Account(payable(boxAccounts[0])).execute(
+            address(usdc),
+            0,
+            stealCalldata,
+            0
+        );
+
+        // Tokens remain completely safe in the box
+        assertEq(usdc.balanceOf(boxAccounts[0]), payoutAmount);
+        assertEq(usdc.balanceOf(botOperator), 0);
+    }
+
+    function test_ETHWithdrawalByOwner() public {
+        uint256 initialAliceBalance = alice.balance;
+
+        // Alice withdraws 0.04 ETH from Box 1 vault
+        vm.prank(alice);
+        Lemarchand6551Account(payable(boxAccounts[0])).transferETH(
+            payable(alice),
+            0.04 ether
+        );
+
+        assertEq(boxAccounts[0].balance, 0.06 ether, "Vault ETH balance should reduce");
+        assertEq(alice.balance, initialAliceBalance + 0.04 ether, "Alice ETH should increase");
     }
 }
