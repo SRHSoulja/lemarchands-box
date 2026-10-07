@@ -370,9 +370,10 @@
                 }
             });
 
-            // Click outside or on 3D canvas to dismiss floating showcase card
-            if (this.canvas) {
-                this.canvas.addEventListener('pointerdown', () => {
+            // Click outside on 3D canvas to dismiss floating showcase card
+            const canvasElem = document.getElementById('webglCanvas');
+            if (canvasElem) {
+                canvasElem.addEventListener('pointerdown', () => {
                     if (this.dom.relicShowcaseCard && this.dom.relicShowcaseCard.style.display !== 'none') {
                         this.dom.relicShowcaseCard.style.display = 'none';
                     }
@@ -550,8 +551,17 @@
                 });
             }
 
+            if (this.dom.relicShowcaseCard) {
+                const stopEvent = (e) => e.stopPropagation();
+                this.dom.relicShowcaseCard.addEventListener('pointerdown', stopEvent);
+                this.dom.relicShowcaseCard.addEventListener('mousedown', stopEvent);
+                this.dom.relicShowcaseCard.addEventListener('touchstart', stopEvent);
+            }
+
             if (this.dom.btnShowcaseClose) {
-                this.dom.btnShowcaseClose.addEventListener('click', () => {
+                this.dom.btnShowcaseClose.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
                     if (this.dom.relicShowcaseCard) {
                         this.dom.relicShowcaseCard.style.display = 'none';
                     }

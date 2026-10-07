@@ -877,6 +877,8 @@ body, html {
     box-shadow: 0 10px 35px rgba(0, 0, 0, 0.85), 0 0 20px rgba(212, 175, 55, 0.15);
     backdrop-filter: blur(12px);
     z-index: 100;
+    pointer-events: auto;
+    cursor: default;
     animation: relicShowcaseSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -908,20 +910,24 @@ body, html {
 }
 
 .showcase-close-btn {
-    background: transparent;
-    border: none;
-    color: var(--text-muted);
-    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    color: #e0d0b0;
+    font-size: 1.1rem;
+    font-weight: 700;
     cursor: pointer;
     line-height: 1;
-    padding: 2px 6px;
-    border-radius: 3px;
-    transition: color 0.15s ease, background 0.15s ease;
+    padding: 4px 10px;
+    border-radius: 4px;
+    pointer-events: auto;
+    transition: all 0.15s ease;
 }
 
 .showcase-close-btn:hover {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.1);
+    color: #ffd700;
+    border-color: #ffd700;
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.08);
 }
 
 .showcase-body {
@@ -1023,6 +1029,7 @@ body, html {
     padding: 6px 10px;
     border-radius: 3px;
     cursor: pointer;
+    pointer-events: auto;
     transition: all 0.15s ease;
     text-align: center;
 }
@@ -1357,6 +1364,7 @@ body, html {
         width: auto;
         max-width: none;
         z-index: 200;
+        pointer-events: auto;
     }
 
     .trait-sidebar {

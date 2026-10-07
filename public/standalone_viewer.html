@@ -884,6 +884,8 @@ body, html {
     box-shadow: 0 10px 35px rgba(0, 0, 0, 0.85), 0 0 20px rgba(212, 175, 55, 0.15);
     backdrop-filter: blur(12px);
     z-index: 100;
+    pointer-events: auto;
+    cursor: default;
     animation: relicShowcaseSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -915,20 +917,24 @@ body, html {
 }
 
 .showcase-close-btn {
-    background: transparent;
-    border: none;
-    color: var(--text-muted);
-    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    color: #e0d0b0;
+    font-size: 1.1rem;
+    font-weight: 700;
     cursor: pointer;
     line-height: 1;
-    padding: 2px 6px;
-    border-radius: 3px;
-    transition: color 0.15s ease, background 0.15s ease;
+    padding: 4px 10px;
+    border-radius: 4px;
+    pointer-events: auto;
+    transition: all 0.15s ease;
 }
 
 .showcase-close-btn:hover {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.1);
+    color: #ffd700;
+    border-color: #ffd700;
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.08);
 }
 
 .showcase-body {
@@ -1030,6 +1036,7 @@ body, html {
     padding: 6px 10px;
     border-radius: 3px;
     cursor: pointer;
+    pointer-events: auto;
     transition: all 0.15s ease;
     text-align: center;
 }
@@ -1364,6 +1371,7 @@ body, html {
         width: auto;
         max-width: none;
         z-index: 200;
+        pointer-events: auto;
     }
 
     .trait-sidebar {
@@ -1428,7 +1436,7 @@ body, html {
         </div>
 
         <!-- Reliquary Cameo Inspection Showcase Modal / Floating Card -->
-        <div class="relic-showcase-panel" id="relicShowcaseCard" style="display: none;">
+        <div class="relic-showcase-panel interactive-panel" id="relicShowcaseCard" style="display: none;">
             <div class="showcase-header">
                 <span class="showcase-header-title">✨ Reliquary Cameo Inspection</span>
                 <button class="showcase-close-btn" id="btnShowcaseClose" title="Close Inspection Card">✕</button>
@@ -8460,9 +8468,10 @@ body, html {
                 }
             });
 
-            // Click outside or on 3D canvas to dismiss floating showcase card
-            if (this.canvas) {
-                this.canvas.addEventListener('pointerdown', () => {
+            // Click outside on 3D canvas to dismiss floating showcase card
+            const canvasElem = document.getElementById('webglCanvas');
+            if (canvasElem) {
+                canvasElem.addEventListener('pointerdown', () => {
                     if (this.dom.relicShowcaseCard && this.dom.relicShowcaseCard.style.display !== 'none') {
                         this.dom.relicShowcaseCard.style.display = 'none';
                     }
@@ -8640,8 +8649,17 @@ body, html {
                 });
             }
 
+            if (this.dom.relicShowcaseCard) {
+                const stopEvent = (e) => e.stopPropagation();
+                this.dom.relicShowcaseCard.addEventListener('pointerdown', stopEvent);
+                this.dom.relicShowcaseCard.addEventListener('mousedown', stopEvent);
+                this.dom.relicShowcaseCard.addEventListener('touchstart', stopEvent);
+            }
+
             if (this.dom.btnShowcaseClose) {
-                this.dom.btnShowcaseClose.addEventListener('click', () => {
+                this.dom.btnShowcaseClose.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
                     if (this.dom.relicShowcaseCard) {
                         this.dom.relicShowcaseCard.style.display = 'none';
                     }
