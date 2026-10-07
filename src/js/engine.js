@@ -237,6 +237,8 @@
             this.previousMousePosition = { x: 0, y: 0 };
             this.targetRotation = { x: 0.45, y: -0.68 };
             this.currentRotation = { x: 0.45, y: -0.68 };
+            this.targetLookAt = new THREE.Vector3(0, 0, 0);
+            this.currentLookAt = new THREE.Vector3(0, 0, 0);
             this.angularVelocity = { x: 0, y: 0 };
             this.autoRotate = true;
             this.autoRotateSpeed = 0.002;
@@ -1724,6 +1726,7 @@
             this.angularVelocity.y = 0;
             this.userZoomOffset = 0.0;
             this.targetCameraDistance = this.baseDistance;
+            if (this.targetLookAt) this.targetLookAt.set(0, 0, 0);
             this.idleTimer = 18.0;
             this.autoRotateBlend = 0.0;
         }
@@ -1733,6 +1736,7 @@
             this.autoRotateBlend = 0.0;
             this.angularVelocity.x = 0;
             this.angularVelocity.y = 0;
+            if (this.targetLookAt) this.targetLookAt.set(0, 0, 0);
 
             let targetX = 0.08;
             let targetY = this.targetRotation.y;
@@ -1771,7 +1775,7 @@
         }
 
         focusRelic(relicIndex) {
-            this.idleTimer = 35.0; // Ample time to inspect relic without auto-rotate interruption
+            this.idleTimer = 40.0; // Ample time to inspect relic without auto-rotate interruption
             this.autoRotateBlend = 0.0;
             this.angularVelocity.x = 0;
             this.angularVelocity.y = 0;
@@ -1785,11 +1789,12 @@
             // Angle around Y axis pointing directly at this drawer:
             // bIdx 0 (+X, +Z): angle around Y is PI/4 (45 deg)
             // bIdx 3 (-X, -Z): angle around Y is -3*PI/4 (-135 deg)
-            // bIdx 9 (-X, +Z): angle around Y is 3*PI/4 (135 deg)
-            // bIdx 10 (+X, -Z): angle around Y is -PI/4 (-45 deg)
+            // bIdx 9 (-X, +Z): angle around Y is -PI/4 (-45 deg)
+            // bIdx 10 (+X, -Z): angle around Y is 3*PI/4 (135 deg)
             const angleY = Math.atan2(b.initialPos.x, b.initialPos.z);
-            const targetY = -angleY;
-            const targetX = (b.tier === 'UPPER') ? 0.36 : -0.22;
+            const targetY = angleY; // Directly aligns camera facing the drawer alcove!
+            const isUpper = (b.tier === 'UPPER');
+            const targetX = isUpper ? 0.28 : -0.22;
 
             const twoPi = Math.PI * 2;
             const currentY = this.targetRotation.y;
@@ -1798,8 +1803,15 @@
             this.targetRotation.x = targetX;
 
             // Close-up framing so the enshrined artwork fills the screen
-            this.userZoomOffset = -4.8;
-            this.targetCameraDistance = 9.2;
+            this.userZoomOffset = -11.5;
+            this.targetCameraDistance = 9.0;
+
+            // Smoothly center the camera look-at on the deployed drawer shelf
+            if (this.targetLookAt) {
+                const targetPos = b.initialPos.clone().addScaledVector(b.moveDir, 1.4);
+                targetPos.y += isUpper ? 1.4 : -1.4;
+                this.targetLookAt.copy(targetPos);
+            }
         }
 
         // 10-Stage Mechanical & Supernatural Kinematic Engine (Stages 0 to 9)
@@ -2245,6 +2257,7 @@
                 this.angularVelocity.y = 0;
                 this.idleTimer = 22.0;
                 this.autoRotateBlend = 0.0;
+                if (this.targetLookAt) this.targetLookAt.set(0, 0, 0);
                 if (window.LemarchandAudio) LemarchandAudio.ensureContext();
             };
 
@@ -2340,7 +2353,7 @@
                     const dy = e.touches[0].clientY - e.touches[1].clientY;
                     const newDist = Math.hypot(dx, dy);
                     const pinchDelta = (this.touchPinchDist - newDist) * 0.035;
-                    this.userZoomOffset = Math.max(-6.0, Math.min(15.0, this.userZoomOffset + pinchDelta));
+                    this.userZoomOffset = Math.max(-13.0, Math.min(15.0, this.userZoomOffset + pinchDelta));
                     this.targetCameraDistance = this.baseDistance + this.userZoomOffset;
                     this.touchPinchDist = newDist;
                 }
@@ -2357,7 +2370,7 @@
                 this.idleTimer = 22.0;
                 this.autoRotateBlend = 0.0;
                 this.userZoomOffset += e.deltaY * 0.015;
-                this.userZoomOffset = Math.max(-6.0, Math.min(15.0, this.userZoomOffset));
+                this.userZoomOffset = Math.max(-13.0, Math.min(15.0, this.userZoomOffset));
                 this.targetCameraDistance = this.baseDistance + this.userZoomOffset;
             }, { passive: false });
 
@@ -2442,10 +2455,18 @@
             const phi = Math.PI / 2 - this.currentRotation.x;
             const theta = this.currentRotation.y;
 
-            this.camera.position.x = this.cameraDistance * Math.sin(phi) * Math.sin(theta);
-            this.camera.position.y = this.cameraDistance * Math.cos(phi);
-            this.camera.position.z = this.cameraDistance * Math.sin(phi) * Math.cos(theta);
-            this.camera.lookAt(0, 0, 0);
+            if (this.currentLookAt && this.targetLookAt) {
+                this.currentLookAt.lerp(this.targetLookAt, 0.08);
+                this.camera.position.x = this.currentLookAt.x + this.cameraDistance * Math.sin(phi) * Math.sin(theta);
+                this.camera.position.y = this.currentLookAt.y + this.cameraDistance * Math.cos(phi);
+                this.camera.position.z = this.currentLookAt.z + this.cameraDistance * Math.sin(phi) * Math.cos(theta);
+                this.camera.lookAt(this.currentLookAt);
+            } else {
+                this.camera.position.x = this.cameraDistance * Math.sin(phi) * Math.sin(theta);
+                this.camera.position.y = this.cameraDistance * Math.cos(phi);
+                this.camera.position.z = this.cameraDistance * Math.sin(phi) * Math.cos(theta);
+                this.camera.lookAt(0, 0, 0);
+            }
 
             // Majestic, cinematic dimensional levitation without high-frequency shaking
             const summonProg = THREE.MathUtils.clamp(this.lifecycleProgress - 8.0, 0.0, 1.0);

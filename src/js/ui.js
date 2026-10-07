@@ -68,6 +68,8 @@
                 showcaseContract: document.getElementById('showcaseContract'),
                 showcaseTraitsTray: document.getElementById('showcaseTraitsTray'),
                 btnShowcaseFocus3D: document.getElementById('btnShowcaseFocus3D'),
+                btnShowcaseDismiss: document.getElementById('btnShowcaseDismiss'),
+                btnOpenDrawers3D: document.getElementById('btnOpenDrawers3D'),
                 strayLivePreview: document.getElementById('strayLivePreview'),
                 strayPreviewImg: document.getElementById('strayPreviewImg'),
                 strayPreviewName: document.getElementById('strayPreviewName'),
@@ -338,7 +340,13 @@
                 if (e.target && e.target.tagName === 'INPUT') return;
 
                 const key = e.key;
-                if (e.shiftKey && key >= '0' && key <= '9') {
+                if (key === 'Escape') {
+                    if (this.dom.relicShowcaseCard && this.dom.relicShowcaseCard.style.display !== 'none') {
+                        this.dom.relicShowcaseCard.style.display = 'none';
+                    } else if (this.engine && this.engine.resetCamera) {
+                        this.engine.resetCamera();
+                    }
+                } else if (e.shiftKey && key >= '0' && key <= '9') {
                     // Shift + 0-9: Jump directly to Configuration 0 to 9!
                     this.puzzle.setStage(parseInt(key));
                 } else if (key >= '1' && key <= '6') {
@@ -361,6 +369,15 @@
                     if (this.dom.btnRotate) this.dom.btnRotate.click();
                 }
             });
+
+            // Click outside or on 3D canvas to dismiss floating showcase card
+            if (this.canvas) {
+                this.canvas.addEventListener('pointerdown', () => {
+                    if (this.dom.relicShowcaseCard && this.dom.relicShowcaseCard.style.display !== 'none') {
+                        this.dom.relicShowcaseCard.style.display = 'none';
+                    }
+                });
+            }
 
             // Camera Orbit
             if (this.dom.btnRotate) {
@@ -546,8 +563,36 @@
                     if (this.puzzle.currentStage < 5) {
                         this.puzzle.setStage(5);
                     }
+                    // Dismiss the 2D showcase card so user has an unobstructed view of the 3D drawer and shelf
+                    if (this.dom.relicShowcaseCard) {
+                        this.dom.relicShowcaseCard.style.display = 'none';
+                    }
+                    const relicIdx = this.currentInspectedRelicIndex || 0;
                     if (this.engine && this.engine.focusRelic) {
-                        this.engine.focusRelic(this.currentInspectedRelicIndex || 0);
+                        this.engine.focusRelic(relicIdx);
+                    }
+                    if (this.dom.puzzleHint) {
+                        this.dom.puzzleHint.textContent = `🔍 Viewing 3D Drawer Alcove #${relicIdx + 1} with enshrined reliquary plaque! Press Esc to center view.`;
+                    }
+                });
+            }
+
+            if (this.dom.btnShowcaseDismiss) {
+                this.dom.btnShowcaseDismiss.addEventListener('click', () => {
+                    if (this.dom.relicShowcaseCard) {
+                        this.dom.relicShowcaseCard.style.display = 'none';
+                    }
+                });
+            }
+
+            if (this.dom.btnOpenDrawers3D) {
+                this.dom.btnOpenDrawers3D.addEventListener('click', () => {
+                    this.puzzle.setStage(5);
+                    if (this.engine && this.engine.focusRelic) {
+                        this.engine.focusRelic(0);
+                    }
+                    if (this.dom.puzzleHint) {
+                        this.dom.puzzleHint.textContent = "📦 Stage 5 (Key Drawers): Secret alcoves deployed with enshrined reliquary plaques!";
                     }
                 });
             }

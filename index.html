@@ -65,7 +65,8 @@
                     <div class="showcase-contract-badge" id="showcaseContract">0xc6132bd1...5307 (Robinhood Chain)</div>
                     <div class="showcase-traits-tray" id="showcaseTraitsTray"></div>
                     <div class="showcase-actions">
-                        <button class="showcase-action-btn primary" id="btnShowcaseFocus3D">🔍 Zoom Drawer in 3D</button>
+                        <button class="showcase-action-btn primary" id="btnShowcaseFocus3D" title="Zoom camera directly onto the 3D drawer in the box">🔍 Zoom Drawer in 3D</button>
+                        <button class="showcase-action-btn secondary" id="btnShowcaseDismiss" title="Close this inspection card">✕ Close Card</button>
                     </div>
                 </div>
             </div>
@@ -189,7 +190,10 @@
                 <div class="enshrined-tray-section">
                     <div class="tray-label-row">
                         <span>Interior Enshrined Relics:</span>
-                        <button class="add-relic-btn" id="btnClearRelics" title="Withdraw / Clear all relics">Withdraw All</button>
+                        <div style="display: flex; gap: 4px;">
+                            <button class="add-relic-btn" id="btnOpenDrawers3D" title="Open 3D Secret Drawers (Stage 5)">📦 Open Drawers</button>
+                            <button class="add-relic-btn" id="btnClearRelics" title="Withdraw / Clear all relics">Withdraw All</button>
+                        </div>
                     </div>
                     <div class="enshrined-thumbnails" id="enshrinedThumbnails"></div>
                 </div>
