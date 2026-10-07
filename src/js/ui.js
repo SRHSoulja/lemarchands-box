@@ -56,6 +56,8 @@
                 strayTokenInput: document.getElementById('strayTokenInput'),
                 btnClearRelics: document.getElementById('btnClearRelics'),
                 straysContractCode: document.getElementById('straysContractCode'),
+                customMediaInput: document.getElementById('customMediaInput'),
+                btnEnshrineCustom: document.getElementById('btnEnshrineCustom'),
 
                 // Dock Buttons
                 btnStep: document.getElementById('btnStep'),
@@ -534,6 +536,75 @@
                     handleEnshrineStray(527);
                 });
             }
+
+            // Universal NFT Media Enshrinement Handler
+            const handleEnshrineCustom = (inputVal, customName) => {
+                const uri = (inputVal || (this.dom.customMediaInput ? this.dom.customMediaInput.value : '')).trim();
+                if (!uri) return;
+
+                let name = customName || "CUSTOM RELIC";
+                let type = "custom";
+                if (typeof RelicMediaResolver !== 'undefined') {
+                    type = RelicMediaResolver.detectType(uri);
+                    if (!customName) {
+                        if (type.includes('svg')) name = "ON-CHAIN SVG";
+                        else if (type.includes('ipfs')) name = "IPFS RELIC";
+                        else if (type.includes('arweave')) name = "ARWEAVE RELIC";
+                        else name = "DECENTRALIZED RELIC";
+                    }
+                }
+
+                const relicObj = {
+                    name: name,
+                    imageUrl: uri,
+                    theme: "OCCULT",
+                    sourceType: type
+                };
+
+                const state = this.getReliquaryState(this.currentTokenId);
+                if (state.relics.length >= 4) {
+                    state.relics.shift();
+                }
+                state.relics.push(relicObj);
+                this.saveReliquaryState(this.currentTokenId, state);
+                this.renderReliquaryHUD(this.currentTokenId);
+
+                if (this.audio && this.audio.playSolveChime) {
+                    this.audio.playSolveChime();
+                }
+                if (this.dom.puzzleHint) {
+                    this.dom.puzzleHint.textContent = `✨ [${name}] (${type.toUpperCase()}) enshrined into 6551 vault and mounted in 3D drawer!`;
+                }
+
+                if (this.puzzle.currentStage < 5) {
+                    this.puzzle.setStage(5);
+                }
+            };
+
+            if (this.dom.btnEnshrineCustom) {
+                this.dom.btnEnshrineCustom.addEventListener('click', () => {
+                    handleEnshrineCustom();
+                });
+            }
+
+            document.querySelectorAll('.custom-preset-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const presetType = btn.getAttribute('data-type');
+                    if (presetType === 'onchain-svg') {
+                        const svgData = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect width="400" height="400" fill="#150a1b"/><circle cx="200" cy="200" r="140" fill="none" stroke="#d4af37" stroke-width="8"/><polygon points="200,80 310,270 90,270" fill="none" stroke="#ff4466" stroke-width="6"/><polygon points="200,320 310,130 90,130" fill="none" stroke="#20e2d7" stroke-width="6"/><circle cx="200" cy="200" r="30" fill="#ffd700"/></svg>';
+                        if (this.dom.customMediaInput) this.dom.customMediaInput.value = 'data:image/svg+xml;utf8,...';
+                        handleEnshrineCustom(svgData, "ON-CHAIN MANDORLA");
+                    } else if (presetType === 'ipfs') {
+                        const ipfsUri = 'ipfs://QmZtmD2qtNmRsnjbeDHdHxm6fe2gUdBpEy25282WGLTLmr/42.png';
+                        if (this.dom.customMediaInput) this.dom.customMediaInput.value = ipfsUri;
+                        handleEnshrineCustom(ipfsUri, "IPFS TALISMAN #42");
+                    } else if (presetType === 'arweave') {
+                        const arUri = 'ar://b6Z0m_JpMfZ7_8h_5A6L_9q2X8y';
+                        if (this.dom.customMediaInput) this.dom.customMediaInput.value = arUri;
+                        handleEnshrineCustom(arUri, "ARWEAVE CODEX");
+                    }
+                });
+            });
         }
 
         loadToken(id) {

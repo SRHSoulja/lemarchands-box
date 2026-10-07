@@ -133,6 +133,24 @@
                     </div>
                 </div>
 
+                <!-- Universal NFT Media Enshrinement (IPFS, Arweave, On-Chain SVG/Base64, HTTPS) -->
+                <div class="custom-enshrine-panel">
+                    <div class="strays-badge-header">
+                        <span class="strays-badge-title">🌐 Universal NFT Media</span>
+                        <span class="strays-chain-pill">IPFS • ARWEAVE • ON-CHAIN</span>
+                    </div>
+                    <div class="strays-action-row">
+                        <input type="text" id="customMediaInput" class="custom-media-input" placeholder="ipfs://, ar://, data:, https://" />
+                        <button class="add-relic-btn primary-enshrine" id="btnEnshrineCustom" title="Enshrine any IPFS, Arweave, On-Chain SVG or Web2 NFT">+ Enshrine</button>
+                    </div>
+                    <div class="strays-preset-pills">
+                        <span class="preset-label">Presets:</span>
+                        <button class="custom-preset-btn" data-type="onchain-svg" title="Fully On-Chain SVG Mandorla">On-Chain SVG ⚡</button>
+                        <button class="custom-preset-btn" data-type="ipfs" title="IPFS Decentralized Storage">IPFS 📦</button>
+                        <button class="custom-preset-btn" data-type="arweave" title="Arweave Permanent Permaweb Storage">Arweave ♾️</button>
+                    </div>
+                </div>
+
                 <!-- Enshrined NFT Thumbnails / Interactive Relic Slotting -->
                 <div class="enshrined-tray-section">
                     <div class="tray-label-row">
@@ -238,6 +256,7 @@
     <script src="src/js/lib/three.min.js"></script>
     <script src="src/js/traits.js"></script>
     <script src="src/js/audio.js"></script>
+    <script src="src/js/media_resolver.js"></script>
     <script src="src/js/strays.js"></script>
     <script src="src/js/textures.js"></script>
     <script src="src/js/engine.js"></script>

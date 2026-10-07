@@ -1396,9 +1396,18 @@
     function drawProceduralRelicArt(ctx, cx, cy, r, relicData, onUpdate) {
         const theme = (relicData && relicData.theme) || "CUCKS";
 
-        // Check if there is an image element or URL available via StrayCucks or relicData
+        // Check if there is an image element or URL available via RelicMediaResolver, StrayCucks, or relicData
         let imgElem = relicData && relicData.imageElement;
-        if (!imgElem && typeof StrayCucks !== 'undefined' && relicData && (relicData.id || relicData.dataUrl || relicData.image)) {
+        const rawSrc = relicData && (relicData.imageUrl || relicData.image || relicData.dataUrl || (relicData.id ? `https://straycucks.com/gif/${relicData.id}.gif` : null));
+
+        if (!imgElem && typeof RelicMediaResolver !== 'undefined' && rawSrc) {
+            const loaded = RelicMediaResolver.loadNFTImage(rawSrc, (loadedImg) => {
+                if (loadedImg && onUpdate) onUpdate();
+            });
+            if (loaded && loaded.complete && loaded.naturalWidth > 0) {
+                imgElem = loaded;
+            }
+        } else if (!imgElem && typeof StrayCucks !== 'undefined' && relicData && (relicData.id || relicData.dataUrl || relicData.image)) {
             const cached = StrayCucks.preloadStrayImage(relicData, (loaded) => {
                 if (loaded && onUpdate) onUpdate();
             });
@@ -1426,7 +1435,7 @@
             ctx.fillStyle = "#fff4d0";
             ctx.font = "bold 11px monospace";
             ctx.textAlign = "center";
-            ctx.fillText((relicData && relicData.name) || "STRAY CUCK", cx, cy + r - 18);
+            ctx.fillText((relicData && relicData.name) || "ENSHRINED RELIC", cx, cy + r - 18);
             return;
         }
 

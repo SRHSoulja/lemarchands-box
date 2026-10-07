@@ -681,6 +681,48 @@ body, html {
     border-color: var(--brass-gold);
 }
 
+.custom-enshrine-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: rgba(14, 16, 22, 0.75);
+    border: 1px solid rgba(138, 98, 52, 0.45);
+    padding: 8px 10px;
+    border-radius: 4px;
+    margin-top: 2px;
+}
+
+.custom-media-input {
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: #ffd880;
+    font-family: monospace;
+    font-size: 0.68rem;
+    padding: 3px 6px;
+    border-radius: 3px;
+    width: 100%;
+    outline: none;
+    letter-spacing: 0.2px;
+}
+
+.custom-preset-btn {
+    background: rgba(212, 175, 55, 0.10);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    color: #e6c35c;
+    font-size: 0.60rem;
+    padding: 1px 6px;
+    border-radius: 3px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+}
+
+.custom-preset-btn:hover {
+    background: var(--brass-gold);
+    color: #0c0906;
+    border-color: var(--brass-gold);
+}
+
 .enshrined-tray-section {
     display: flex;
     flex-direction: column;
