@@ -66,6 +66,7 @@
                     <div class="showcase-traits-tray" id="showcaseTraitsTray"></div>
                     <div class="showcase-actions">
                         <button class="showcase-action-btn primary" id="btnShowcaseFocus3D" title="Zoom camera directly onto the 3D drawer in the box">🔍 Zoom Drawer in 3D</button>
+                        <button class="showcase-action-btn secondary" id="btnShowcaseToggleDrawer" title="Retract or open the 3D secret drawers">📦 Close Drawers</button>
                         <button class="showcase-action-btn secondary" id="btnShowcaseDismiss" title="Close this inspection card">✕ Close Card</button>
                     </div>
                 </div>
@@ -191,9 +192,17 @@
                     <div class="tray-label-row">
                         <span>Interior Enshrined Relics:</span>
                         <div style="display: flex; gap: 4px;">
-                            <button class="add-relic-btn" id="btnOpenDrawers3D" title="Open 3D Secret Drawers (Stage 5)">📦 Open Drawers</button>
+                            <button class="add-relic-btn" id="btnOpenDrawers3D" title="Toggle 3D Secret Drawers Open/Closed (Stage 5)">📦 Open Drawers</button>
                             <button class="add-relic-btn" id="btnClearRelics" title="Withdraw / Clear all relics">Withdraw All</button>
                         </div>
+                    </div>
+                    <!-- Quick Drawer Alcove Selector Strip -->
+                    <div class="drawer-selector-strip" id="drawerSelectorStrip">
+                        <span class="drawer-strip-label">Alcoves:</span>
+                        <button class="drawer-pill-btn" data-drawer="0" title="Drawer Alcove #1 (Upper Front-Right): Stray Cuck #527">#1 👑 Top-R</button>
+                        <button class="drawer-pill-btn" data-drawer="1" title="Drawer Alcove #2 (Upper Back-Left): Stray Cuck #414">#2 🚽 Top-L</button>
+                        <button class="drawer-pill-btn" data-drawer="2" title="Drawer Alcove #3 (Lower Back-Right): Stray Cuck #1284">#3 🪑 Btm-R</button>
+                        <button class="drawer-pill-btn" data-drawer="3" title="Drawer Alcove #4 (Lower Front-Left): Stray Cuck #82">#4 🎮 Btm-L</button>
                     </div>
                     <div class="enshrined-thumbnails" id="enshrinedThumbnails"></div>
                 </div>

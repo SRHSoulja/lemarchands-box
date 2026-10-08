@@ -753,6 +753,56 @@ body, html {
     color: #0c0906;
 }
 
+.add-relic-btn.drawer-btn-open {
+    background: rgba(212, 175, 55, 0.35);
+    border-color: #ffd700;
+    color: #fff4d0;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.45);
+    font-weight: bold;
+}
+
+.drawer-selector-strip {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 2px 0;
+    flex-wrap: wrap;
+}
+
+.drawer-strip-label {
+    font-size: 0.64rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.drawer-pill-btn {
+    background: rgba(20, 15, 12, 0.85);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: var(--brass-gold);
+    font-size: 0.63rem;
+    font-family: var(--font-mono);
+    padding: 2px 6px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.drawer-pill-btn:hover {
+    background: rgba(212, 175, 55, 0.25);
+    border-color: var(--brass-gold);
+    transform: translateY(-1px);
+}
+
+.drawer-pill-btn.active {
+    background: var(--brass-gold);
+    color: #0c0906;
+    border-color: #ffd700;
+    font-weight: bold;
+    box-shadow: 0 0 6px rgba(212, 175, 55, 0.5);
+}
+
 .enshrined-thumbnails {
     display: flex;
     gap: 6px;

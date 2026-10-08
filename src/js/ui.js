@@ -68,8 +68,10 @@
                 showcaseContract: document.getElementById('showcaseContract'),
                 showcaseTraitsTray: document.getElementById('showcaseTraitsTray'),
                 btnShowcaseFocus3D: document.getElementById('btnShowcaseFocus3D'),
+                btnShowcaseToggleDrawer: document.getElementById('btnShowcaseToggleDrawer'),
                 btnShowcaseDismiss: document.getElementById('btnShowcaseDismiss'),
                 btnOpenDrawers3D: document.getElementById('btnOpenDrawers3D'),
+                drawerSelectorStrip: document.getElementById('drawerSelectorStrip'),
                 strayLivePreview: document.getElementById('strayLivePreview'),
                 strayPreviewImg: document.getElementById('strayPreviewImg'),
                 strayPreviewName: document.getElementById('strayPreviewName'),
@@ -140,6 +142,8 @@
                     const st = parseInt(btn.getAttribute('data-stage'));
                     btn.classList.toggle('active', st === Math.round(stateInfo.stage));
                 });
+
+                this.updateDrawerButtonState();
 
                 // Render Mechanical Tumbler Tray
                 if (this.dom.tumblerTray && stateInfo.tumblerStates) {
@@ -298,7 +302,24 @@
             document.querySelectorAll('.pattern-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const st = parseInt(btn.getAttribute('data-stage'));
-                    if (!isNaN(st)) this.puzzle.setStage(st);
+                    if (!isNaN(st)) {
+                        if (st === 5 && this.puzzle.currentStage === 5) {
+                            // If already on Drawers stage, clicking it again toggles back to Cube (Stage 0)!
+                            this.puzzle.setStage(0);
+                            if (this.engine && this.engine.resetCamera) {
+                                this.engine.resetCamera();
+                            }
+                            if (this.dom.relicShowcaseCard) {
+                                this.dom.relicShowcaseCard.style.display = 'none';
+                            }
+                        } else {
+                            this.puzzle.setStage(st);
+                            if (st === 5 && this.engine && this.engine.focusRelic) {
+                                this.engine.focusRelic(this.currentInspectedRelicIndex || 0);
+                            }
+                        }
+                        this.updateDrawerButtonState();
+                    }
                 });
             });
 
@@ -306,7 +327,7 @@
             if (this.dom.btnKeyHelp) {
                 this.dom.btnKeyHelp.addEventListener('click', () => {
                     if (this.dom.puzzleHint) {
-                        this.dom.puzzleHint.textContent = "⌨️ [1-6] Inspect Faces • [Shift+0-9] Jump Config • [ [ / ] ] Prev/Next • [S] Step • [B] Banish • [W] Whisper • [R] Center • [Space] Orbit";
+                        this.dom.puzzleHint.textContent = "⌨️ [1-6] Inspect Faces • [D] Toggle Drawers • [Shift+0-9] Jump Config • [ [ / ] ] Prev/Next • [S] Step • [B] Banish • [W] Whisper • [R] Center • [Space] Orbit";
                     }
                 });
             }
@@ -352,6 +373,10 @@
                 } else if (key >= '1' && key <= '6') {
                     const faceIdx = parseInt(key) - 1;
                     this.engine.focusFace(faceIdx);
+                } else if (key === 'd' || key === 'D') {
+                    if (this.dom.btnOpenDrawers3D) {
+                        this.dom.btnOpenDrawers3D.click();
+                    }
                 } else if (key === 's' || key === 'S') {
                     if (this.dom.btnStep) this.dom.btnStep.click();
                 } else if (key === 'b' || key === 'B') {
@@ -595,16 +620,105 @@
                 });
             }
 
+            if (this.dom.btnShowcaseToggleDrawer) {
+                this.dom.btnShowcaseToggleDrawer.addEventListener('click', () => {
+                    const isOpen = (this.puzzle.currentStage === 5);
+                    if (isOpen) {
+                        this.puzzle.setStage(0);
+                        if (this.engine && this.engine.resetCamera) {
+                            this.engine.resetCamera();
+                        }
+                        if (this.dom.relicShowcaseCard) {
+                            this.dom.relicShowcaseCard.style.display = 'none';
+                        }
+                        if (this.dom.puzzleHint) {
+                            this.dom.puzzleHint.textContent = "📦 Secret drawers retracted and locked into cube chassis.";
+                        }
+                    } else {
+                        this.puzzle.setStage(5);
+                        const relicIdx = this.currentInspectedRelicIndex || 0;
+                        if (this.engine && this.engine.focusRelic) {
+                            this.engine.focusRelic(relicIdx);
+                        }
+                        if (this.dom.puzzleHint) {
+                            this.dom.puzzleHint.textContent = `📦 Stage 5: Drawer Alcove #${relicIdx + 1} opened!`;
+                        }
+                    }
+                    this.updateDrawerButtonState();
+                });
+            }
+
             if (this.dom.btnOpenDrawers3D) {
                 this.dom.btnOpenDrawers3D.addEventListener('click', () => {
-                    this.puzzle.setStage(5);
-                    if (this.engine && this.engine.focusRelic) {
-                        this.engine.focusRelic(0);
+                    const isOpen = (this.puzzle.currentStage === 5);
+                    if (isOpen) {
+                        this.puzzle.setStage(0);
+                        if (this.engine && this.engine.resetCamera) {
+                            this.engine.resetCamera();
+                        }
+                        if (this.dom.relicShowcaseCard) {
+                            this.dom.relicShowcaseCard.style.display = 'none';
+                        }
+                        if (this.dom.puzzleHint) {
+                            this.dom.puzzleHint.textContent = "📦 Secret drawers retracted and locked into cube chassis.";
+                        }
+                    } else {
+                        this.puzzle.setStage(5);
+                        const rIdx = this.currentInspectedRelicIndex || 0;
+                        if (this.engine && this.engine.focusRelic) {
+                            this.engine.focusRelic(rIdx);
+                        }
+                        if (this.dom.puzzleHint) {
+                            this.dom.puzzleHint.textContent = "📦 Stage 5 (Key Drawers): Secret alcoves deployed with enshrined reliquary plaques!";
+                        }
+                    }
+                    this.updateDrawerButtonState();
+                });
+            }
+
+            // Quick Drawer Alcove Selector Pills (#1 to #4)
+            if (this.dom.drawerSelectorStrip) {
+                this.dom.drawerSelectorStrip.querySelectorAll('.drawer-pill-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const drawerIdx = parseInt(btn.getAttribute('data-drawer')) || 0;
+                        if (this.puzzle.currentStage < 5) {
+                            this.puzzle.setStage(5);
+                        }
+                        const relics = (this.engine && this.engine.enshrinedRelics) || [];
+                        const relic = relics[drawerIdx] || (typeof StrayCucks !== 'undefined' ? StrayCucks.getSample([527, 414, 1284, 82][drawerIdx]) : null);
+                        if (this.engine && this.engine.focusRelic) {
+                            this.engine.focusRelic(drawerIdx);
+                        }
+                        this.showRelicShowcase(relic, drawerIdx);
+                        if (this.audio && this.audio.playFaceHover) {
+                            this.audio.playFaceHover(drawerIdx % 6, 700);
+                        }
+                        if (this.dom.puzzleHint) {
+                            this.dom.puzzleHint.textContent = `📦 Inspected Drawer Alcove #${drawerIdx + 1}: [${(relic && relic.name) || 'Relic'}]`;
+                        }
+                        this.updateDrawerButtonState();
+                    });
+                });
+            }
+
+            // Direct 3D Click handler for reliquary stands
+            if (this.engine) {
+                this.engine.onRelicClick = (relicIdx) => {
+                    const rIdx = Math.max(0, parseInt(relicIdx) || 0);
+                    const relics = (this.engine && this.engine.enshrinedRelics) || [];
+                    const relic = relics[rIdx] || (typeof StrayCucks !== 'undefined' ? StrayCucks.getSample([527, 414, 1284, 82][rIdx]) : null);
+                    if (this.engine.focusRelic) {
+                        this.engine.focusRelic(rIdx);
+                    }
+                    this.showRelicShowcase(relic, rIdx);
+                    if (this.audio && this.audio.playFaceHover) {
+                        this.audio.playFaceHover(rIdx % 6, 700);
                     }
                     if (this.dom.puzzleHint) {
-                        this.dom.puzzleHint.textContent = "📦 Stage 5 (Key Drawers): Secret alcoves deployed with enshrined reliquary plaques!";
+                        this.dom.puzzleHint.textContent = `✨ Inspected 3D Reliquary Drawer #${rIdx + 1}: [${(relic && relic.name) || 'Relic'}]`;
                     }
-                });
+                    this.updateDrawerButtonState();
+                };
             }
 
             if (this.dom.btnEnshrineStray) {
@@ -949,6 +1063,32 @@
                 const items = this.dom.enshrinedThumbnails.querySelectorAll('.enshrined-thumb-item');
                 items.forEach((it, i) => {
                     it.classList.toggle('active', i === rIdx);
+                });
+            }
+
+            this.updateDrawerButtonState();
+        }
+
+        updateDrawerButtonState() {
+            const isOpen = (this.puzzle && this.puzzle.currentStage === 5);
+            if (this.dom.btnOpenDrawers3D) {
+                if (isOpen) {
+                    this.dom.btnOpenDrawers3D.textContent = "📦 Close Drawers";
+                    this.dom.btnOpenDrawers3D.classList.add('drawer-btn-open');
+                    this.dom.btnOpenDrawers3D.title = "Close / Retract 3D secret drawers into cube chassis";
+                } else {
+                    this.dom.btnOpenDrawers3D.textContent = "📦 Open Drawers";
+                    this.dom.btnOpenDrawers3D.classList.remove('drawer-btn-open');
+                    this.dom.btnOpenDrawers3D.title = "Open 3D Secret Drawers (Stage 5 Dovetail Chambers)";
+                }
+            }
+            if (this.dom.btnShowcaseToggleDrawer) {
+                this.dom.btnShowcaseToggleDrawer.textContent = isOpen ? "📦 Close Drawers" : "📦 Open Drawers";
+            }
+            if (this.dom.drawerSelectorStrip) {
+                const pills = this.dom.drawerSelectorStrip.querySelectorAll('.drawer-pill-btn');
+                pills.forEach((p, idx) => {
+                    p.classList.toggle('active', isOpen && (this.currentInspectedRelicIndex === idx));
                 });
             }
         }

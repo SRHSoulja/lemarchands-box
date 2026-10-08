@@ -1322,10 +1322,12 @@
                 reliquaryGroup.scale.set(0.001, 0.001, 0.001);
                 reliquaryGroup.visible = false;
 
-                // Disable direct raycasting to preserve interactiveTargets = 22
-                frameMesh.raycast = () => {};
-                plaqueMesh.raycast = () => {};
-                armMesh.raycast = () => {};
+                // Tag reliquary meshes for direct 3D raycast inspection
+                frameMesh.userData = { isReliquary: true, relicIndex: rIdx, blockIndex: bIdx };
+                plaqueMesh.userData = { isReliquary: true, relicIndex: rIdx, blockIndex: bIdx };
+                b.mesh.userData.isKeyDrawer = true;
+                b.mesh.userData.relicIndex = rIdx;
+                b.mesh.userData.blockIndex = bIdx;
 
                 b.mesh.add(reliquaryGroup);
                 this.relicPlaques.push({
@@ -2394,6 +2396,33 @@
                 this.mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
 
                 this.raycaster.setFromCamera(this.mouse, this.camera);
+
+                // 1. Direct click on deployed reliquary stands in 3D
+                if (this.relicPlaques && this.relicPlaques.length > 0) {
+                    const activePlaques = this.relicPlaques.filter(rp => rp.group && rp.group.visible).map(rp => rp.group);
+                    if (activePlaques.length > 0) {
+                        const relicHits = this.raycaster.intersectObjects(activePlaques, true);
+                        if (relicHits.length > 0) {
+                            let hitObj = relicHits[0].object;
+                            let rIdx = (hitObj.userData && hitObj.userData.relicIndex !== undefined) ? hitObj.userData.relicIndex : -1;
+                            while (rIdx === -1 && hitObj.parent) {
+                                hitObj = hitObj.parent;
+                                if (hitObj.userData && hitObj.userData.relicIndex !== undefined) {
+                                    rIdx = hitObj.userData.relicIndex;
+                                }
+                            }
+                            if (rIdx !== -1) {
+                                this.idleTimer = 35.0;
+                                this.autoRotateBlend = 0.0;
+                                if (typeof this.onRelicClick === 'function') {
+                                    this.onRelicClick(rIdx);
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
+
                 const targets = (this.interactiveTargets && this.interactiveTargets.length > 0)
                     ? this.interactiveTargets
                     : this.boxGroup.children;
