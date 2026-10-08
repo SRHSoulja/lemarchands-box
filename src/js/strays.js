@@ -421,6 +421,30 @@
 
     const imageCache = {};
 
+    // Eagerly pre-instantiate all offline embedded sample images in browser environment
+    if (typeof Image !== 'undefined') {
+        try {
+            Object.keys(SAMPLES).forEach(id => {
+                const s = SAMPLES[id];
+                if (s && s.dataUrl) {
+                    const img = new Image();
+                    // Data URIs must NEVER have crossOrigin set (violates CORS policy in Chromium/WebKit)
+                    img.onload = () => {
+                        imageCache[String(id)] = img;
+                        imageCache[s.name] = img;
+                        s.imageElement = img;
+                    };
+                    img.src = s.dataUrl;
+                    if (img.complete && img.naturalWidth > 0) {
+                        imageCache[String(id)] = img;
+                        imageCache[s.name] = img;
+                        s.imageElement = img;
+                    }
+                }
+            });
+        } catch (e) {}
+    }
+
     function getSample(tokenId) {
         return SAMPLES[String(tokenId)] || null;
     }
@@ -463,24 +487,68 @@
     }
 
     function preloadStrayImage(relic, callback) {
-        const key = relic.id || relic.name;
-        if (imageCache[key] && imageCache[key].complete) {
+        if (!relic) {
+            if (callback) callback(null);
+            return null;
+        }
+
+        const key = String(relic.id || relic.name);
+        if (imageCache[key] && imageCache[key].complete && imageCache[key].naturalWidth > 0) {
             if (callback) callback(imageCache[key]);
             return imageCache[key];
         }
 
-        const src = relic.dataUrl || relic.image || ('https://straycucks.com/gif/' + relic.id + '.gif');
+        // If sample exists in SAMPLES with imageElement ready, use it immediately
+        if (relic.id && SAMPLES[String(relic.id)]) {
+            const s = SAMPLES[String(relic.id)];
+            if (s.imageElement && s.imageElement.complete && s.imageElement.naturalWidth > 0) {
+                imageCache[key] = s.imageElement;
+                if (callback) callback(s.imageElement);
+                return s.imageElement;
+            }
+            if (!relic.dataUrl && s.dataUrl) {
+                relic.dataUrl = s.dataUrl;
+            }
+        }
+
+        const src = relic.dataUrl || relic.image || (relic.id ? ('https://straycucks.com/gif/' + relic.id + '.gif') : null);
+        if (!src) {
+            if (callback) callback(null);
+            return null;
+        }
+
         const img = new Image();
-        img.crossOrigin = 'anonymous';
+        // NEVER set crossOrigin on data: URIs (CORS is HTTP/HTTPS only)
+        if (!src.startsWith('data:')) {
+            img.crossOrigin = 'anonymous';
+        }
+
         img.onload = () => {
             imageCache[key] = img;
             if (callback) callback(img);
         };
         img.onerror = () => {
-            // fallback
+            // If crossOrigin failed on remote HTTP, retry without crossOrigin
+            if (!src.startsWith('data:') && img.crossOrigin) {
+                const fallbackImg = new Image();
+                fallbackImg.onload = () => {
+                    imageCache[key] = fallbackImg;
+                    if (callback) callback(fallbackImg);
+                };
+                fallbackImg.onerror = () => {
+                    if (callback) callback(null);
+                };
+                fallbackImg.src = src;
+                return;
+            }
             if (callback) callback(null);
         };
         img.src = src;
+
+        if (img.complete && img.naturalWidth > 0) {
+            imageCache[key] = img;
+            if (callback) callback(img);
+        }
         return img;
     }
 

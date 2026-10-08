@@ -819,6 +819,11 @@
                             }
                             return r;
                         });
+                        const defaults = [527, 414, 1284, 82];
+                        while (parsed.relics.length < 4) {
+                            const tid = defaults[parsed.relics.length];
+                            parsed.relics.push(StrayCucks.getSample(tid) || { id: tid, theme: "CUCKS", name: `STRAY CUCK #${tid}` });
+                        }
                     }
                     return parsed;
                 }
@@ -826,6 +831,8 @@
 
             const s527 = (typeof StrayCucks !== 'undefined' && StrayCucks.getSample) ? StrayCucks.getSample(527) : null;
             const s414 = (typeof StrayCucks !== 'undefined' && StrayCucks.getSample) ? StrayCucks.getSample(414) : null;
+            const s1284 = (typeof StrayCucks !== 'undefined' && StrayCucks.getSample) ? StrayCucks.getSample(1284) : null;
+            const s82 = (typeof StrayCucks !== 'undefined' && StrayCucks.getSample) ? StrayCucks.getSample(82) : null;
 
             return {
                 copilotEnabled: true,
@@ -835,7 +842,9 @@
                 vaultUSDC: 500,
                 relics: [
                     s527 || { id: 527, theme: "CUCKS", name: "STRAY CUCK #527" },
-                    s414 || { id: 414, theme: "CUCKS", name: "STRAY CUCK #414" }
+                    s414 || { id: 414, theme: "CUCKS", name: "STRAY CUCK #414" },
+                    s1284 || { id: 1284, theme: "CUCKS", name: "STRAY CUCK #1284" },
+                    s82 || { id: 82, theme: "CUCKS", name: "STRAY CUCK #82" }
                 ]
             };
         }
@@ -877,6 +886,11 @@
             if (!this.dom.relicShowcaseCard) return;
             const rIdx = index || 0;
             this.currentInspectedRelicIndex = rIdx;
+
+            if (relic && !relic.dataUrl && relic.id && typeof StrayCucks !== 'undefined' && StrayCucks.getSample) {
+                const sample = StrayCucks.getSample(relic.id);
+                if (sample && sample.dataUrl) relic.dataUrl = sample.dataUrl;
+            }
 
             const name = (relic && relic.name) || `Enshrined Relic #${rIdx + 1}`;
             const src = relic && (relic.dataUrl || relic.image || relic.imageUrl || (relic.id ? `https://straycucks.com/gif/${relic.id}.gif` : null));
@@ -989,6 +1003,11 @@
                     item.classList.add('active');
                 }
                 item.title = `Enshrined Relic #${idx + 1}: ${r.name} (Click to inspect in 3D)`;
+
+                if (!r.dataUrl && r.id && typeof StrayCucks !== 'undefined' && StrayCucks.getSample) {
+                    const sample = StrayCucks.getSample(r.id);
+                    if (sample && sample.dataUrl) r.dataUrl = sample.dataUrl;
+                }
 
                 // Direct image thumbnail if available (pixel-crisp rendering)
                 const imgSrc = r.dataUrl || r.image || r.imageUrl || (r.id ? `https://straycucks.com/gif/${r.id}.gif` : null);

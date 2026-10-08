@@ -1260,24 +1260,24 @@
                 // B. Cameo NFT Artwork Disc / Plaque
                 const plaqueGeom = new THREE.PlaneGeometry(1.52, 1.52);
                 let relicData = (this.enshrinedRelics && this.enshrinedRelics[rIdx]);
-                if (!relicData) {
-                    if (typeof StrayCucks !== 'undefined' && rIdx === 0) {
-                        relicData = StrayCucks.getSample(527);
-                    } else if (typeof StrayCucks !== 'undefined' && rIdx === 1) {
-                        relicData = StrayCucks.getSample(414);
-                    }
+                if (!relicData && typeof StrayCucks !== 'undefined' && StrayCucks.getSample) {
+                    const sampleIds = [527, 414, 1284, 82];
+                    relicData = StrayCucks.getSample(sampleIds[rIdx % sampleIds.length]);
                 }
                 if (!relicData) {
+                    const fallbackIds = [527, 414, 1284, 82];
+                    const tid = fallbackIds[rIdx % fallbackIds.length];
                     relicData = {
-                        theme: (rIdx === 0 ? "CUCKS" : "OCCULT"),
-                        name: (rIdx === 0 ? "STRAY CUCK #527" : `LEVIATHAN SEAL #${bIdx + 1}`),
-                        id: (rIdx === 0 ? 527 : 414)
+                        theme: "CUCKS",
+                        name: `STRAY CUCK #${tid}`,
+                        id: tid
                     };
                 }
 
                 const onUpdate = () => {
                     if (plaqueMat) {
                         if (plaqueMat.map) plaqueMat.map.needsUpdate = true;
+                        if (plaqueMat.emissiveMap) plaqueMat.emissiveMap.needsUpdate = true;
                         if (plaqueMat.bumpMap) plaqueMat.bumpMap.needsUpdate = true;
                         plaqueMat.needsUpdate = true;
                     }
@@ -1286,10 +1286,13 @@
                 const plaqueTex = LemarchandTextures.generateReliquaryCameoTexture(relicData, onUpdate);
                 const plaqueMat = new THREE.MeshStandardMaterial({
                     map: plaqueTex.diffuse,
+                    emissiveMap: plaqueTex.diffuse,
+                    emissive: 0xffffff,
+                    emissiveIntensity: 0.28,
                     bumpMap: plaqueTex.bump,
-                    bumpScale: 0.05,
-                    metalness: 0.88,
-                    roughness: 0.22,
+                    bumpScale: 0.02,
+                    metalness: 0.04,
+                    roughness: 0.38,
                     side: THREE.DoubleSide
                 });
 
@@ -1691,20 +1694,23 @@
             if (this.relicPlaques && this.relicPlaques.length > 0) {
                 this.relicPlaques.forEach((rp, idx) => {
                     let relic = this.enshrinedRelics[idx];
-                    if (!relic && typeof StrayCucks !== 'undefined') {
-                        if (idx === 0) relic = StrayCucks.getSample(527);
-                        else if (idx === 1) relic = StrayCucks.getSample(414);
+                    if (!relic && typeof StrayCucks !== 'undefined' && StrayCucks.getSample) {
+                        const sampleIds = [527, 414, 1284, 82];
+                        relic = StrayCucks.getSample(sampleIds[idx % sampleIds.length]);
                     }
                     if (!relic) {
+                        const fallbackIds = [527, 414, 1284, 82];
+                        const tid = fallbackIds[idx % fallbackIds.length];
                         relic = {
-                            theme: (idx === 0 ? "CUCKS" : "OCCULT"),
-                            name: (idx === 0 ? "STRAY CUCK #527" : `LEVIATHAN SEAL #${idx + 1}`),
-                            id: (idx === 0 ? 527 : 414)
+                            theme: "CUCKS",
+                            name: `STRAY CUCK #${tid}`,
+                            id: tid
                         };
                     }
                     const onUpdate = () => {
                         if (rp.material) {
                             if (rp.material.map) rp.material.map.needsUpdate = true;
+                            if (rp.material.emissiveMap) rp.material.emissiveMap.needsUpdate = true;
                             if (rp.material.bumpMap) rp.material.bumpMap.needsUpdate = true;
                             rp.material.needsUpdate = true;
                         }
@@ -1712,7 +1718,12 @@
                     const texData = LemarchandTextures.generateReliquaryCameoTexture(relic, onUpdate);
                     if (rp.material) {
                         rp.material.map = texData.diffuse;
+                        rp.material.emissiveMap = texData.diffuse;
                         rp.material.bumpMap = texData.bump;
+                        rp.material.metalness = 0.04;
+                        rp.material.roughness = 0.38;
+                        rp.material.emissive = new THREE.Color(0xffffff);
+                        rp.material.emissiveIntensity = 0.28;
                         rp.material.needsUpdate = true;
                     }
                 });

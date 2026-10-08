@@ -1399,8 +1399,9 @@
         // Prioritize instant offline embedded base64 if available in StrayCucks samples
         if (typeof StrayCucks !== 'undefined' && relicData && relicData.id) {
             const sample = StrayCucks.getSample(relicData.id);
-            if (sample && sample.dataUrl) {
-                relicData.dataUrl = sample.dataUrl;
+            if (sample) {
+                if (sample.dataUrl && !relicData.dataUrl) relicData.dataUrl = sample.dataUrl;
+                if (sample.imageElement && !relicData.imageElement) relicData.imageElement = sample.imageElement;
                 if (!relicData.name) relicData.name = sample.name;
                 if (!relicData.attributes && sample.attributes) relicData.attributes = sample.attributes;
             }
@@ -1426,7 +1427,7 @@
         }
 
         if (imgElem && imgElem.complete && imgElem.naturalWidth > 0) {
-            ctx.fillStyle = "#161114";
+            ctx.fillStyle = "#1b121e";
             ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
             ctx.save();
             ctx.imageSmoothingEnabled = false;
@@ -1435,35 +1436,36 @@
             ctx.restore();
 
             // Label banner
-            ctx.fillStyle = "rgba(0, 0, 0, 0.82)";
-            ctx.fillRect(cx - 90, cy + r - 32, 180, 24);
+            ctx.fillStyle = "rgba(0, 0, 0, 0.85)";
+            ctx.fillRect(cx - 95, cy + r - 34, 190, 26);
             ctx.strokeStyle = "#ffd700";
-            ctx.lineWidth = 1.5;
-            ctx.strokeRect(cx - 90, cy + r - 32, 180, 24);
+            ctx.lineWidth = 1.8;
+            ctx.strokeRect(cx - 95, cy + r - 34, 190, 26);
 
-            ctx.fillStyle = "#fff4d0";
-            ctx.font = "bold 11px monospace";
+            ctx.fillStyle = "#fff5db";
+            ctx.font = "bold 12px monospace";
             ctx.textAlign = "center";
-            ctx.fillText((relicData && relicData.name) || "ENSHRINED RELIC", cx, cy + r - 16);
+            ctx.fillText((relicData && relicData.name) || "ENSHRINED RELIC", cx, cy + r - 17);
             return;
         }
 
         if (theme === "CUCKS") {
             // Stray Cuck Crowned Orange Tabby Pixel Relic
-            const grad = ctx.createLinearGradient(cx - r, cy - r, cx + r, cy + r);
-            grad.addColorStop(0, "#2c1538");
-            grad.addColorStop(1, "#120817");
+            const grad = ctx.createRadialGradient(cx, cy, 20, cx, cy, r);
+            grad.addColorStop(0, "#4a1e38");
+            grad.addColorStop(0.7, "#250f1d");
+            grad.addColorStop(1, "#120810");
             ctx.fillStyle = grad;
             ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
 
             // Radiant occult halo
-            ctx.fillStyle = "rgba(255, 215, 0, 0.25)";
+            ctx.fillStyle = "rgba(255, 215, 0, 0.35)";
             ctx.beginPath();
-            ctx.arc(cx, cy, r * 0.75, 0, Math.PI * 2);
+            ctx.arc(cx, cy, r * 0.72, 0, Math.PI * 2);
             ctx.fill();
 
             // Pixel cat face silhouette
-            ctx.fillStyle = "#ff8c2b"; // Orange tabby
+            ctx.fillStyle = "#ff8c2b"; // Vibrant Orange tabby
             ctx.beginPath();
             // Head
             ctx.arc(cx, cy + 12, 48, 0, Math.PI * 2);
@@ -1513,47 +1515,54 @@
             ctx.fill();
 
             // Ruby in crown
-            ctx.fillStyle = "#e62233";
+            ctx.fillStyle = "#ff1744";
             ctx.beginPath();
             ctx.arc(cx, cy - 55, 6, 0, Math.PI * 2);
             ctx.fill();
 
             // Big expressive eyes
-            ctx.fillStyle = "#20e2d7"; // Cyan glowing eyes
+            ctx.fillStyle = "#00e5ff"; // Vibrant Glowing Cyan eyes
             ctx.beginPath();
             ctx.ellipse(cx - 20, cy + 8, 11, 14, 0, 0, Math.PI * 2);
             ctx.ellipse(cx + 20, cy + 8, 11, 14, 0, 0, Math.PI * 2);
             ctx.fill();
 
-            ctx.fillStyle = "#0d1b2a"; // Pupils
+            ctx.fillStyle = "#071018"; // Pupils
             ctx.beginPath();
             ctx.ellipse(cx - 20, cy + 8, 5, 12, 0, 0, Math.PI * 2);
             ctx.ellipse(cx + 20, cy + 8, 5, 12, 0, 0, Math.PI * 2);
             ctx.fill();
 
-            // Snout & whiskers
+            // Eye gleam highlights
+            ctx.fillStyle = "#ffffff";
+            ctx.beginPath();
+            ctx.arc(cx - 22, cy + 4, 3, 0, Math.PI * 2);
+            ctx.arc(cx + 18, cy + 4, 3, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Snout & nose
             ctx.fillStyle = "#ffb085";
             ctx.beginPath();
             ctx.arc(cx, cy + 26, 6, 0, Math.PI * 2);
             ctx.fill();
 
             // Label banner
-            ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
-            ctx.fillRect(cx - 70, cy + 62, 140, 22);
+            ctx.fillStyle = "rgba(0, 0, 0, 0.85)";
+            ctx.fillRect(cx - 75, cy + 62, 150, 24);
             ctx.strokeStyle = "#ffd700";
-            ctx.lineWidth = 1.5;
-            ctx.strokeRect(cx - 70, cy + 62, 140, 22);
+            ctx.lineWidth = 1.8;
+            ctx.strokeRect(cx - 75, cy + 62, 150, 24);
 
-            ctx.fillStyle = "#fff4d0";
-            ctx.font = "bold 11px monospace";
+            ctx.fillStyle = "#fff5db";
+            ctx.font = "bold 12px monospace";
             ctx.textAlign = "center";
-            ctx.fillText((relicData && relicData.name) || "STRAY CUCK #527", cx, cy + 77);
+            ctx.fillText((relicData && relicData.name) || "STRAY CUCK #527", cx, cy + 78);
         } else {
             // Occult Leviathan Talisman Relic
             const grad = ctx.createRadialGradient(cx, cy, 10, cx, cy, r);
-            grad.addColorStop(0, "#8b1e22");
-            grad.addColorStop(0.6, "#2e0608");
-            grad.addColorStop(1, "#0a0102");
+            grad.addColorStop(0, "#c62828");
+            grad.addColorStop(0.6, "#5c0e12");
+            grad.addColorStop(1, "#180305");
             ctx.fillStyle = grad;
             ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
 
@@ -1573,10 +1582,22 @@
             ctx.beginPath();
             ctx.arc(cx, cy, 16, 0, Math.PI * 2);
             ctx.fill();
-            ctx.fillStyle = "#8b1e22";
+            ctx.fillStyle = "#d32f2f";
             ctx.beginPath();
             ctx.arc(cx, cy, 8, 0, Math.PI * 2);
             ctx.fill();
+
+            // Label banner
+            ctx.fillStyle = "rgba(0, 0, 0, 0.85)";
+            ctx.fillRect(cx - 80, cy + 62, 160, 24);
+            ctx.strokeStyle = "#ffd700";
+            ctx.lineWidth = 1.8;
+            ctx.strokeRect(cx - 80, cy + 62, 160, 24);
+
+            ctx.fillStyle = "#fff5db";
+            ctx.font = "bold 12px monospace";
+            ctx.textAlign = "center";
+            ctx.fillText((relicData && relicData.name) || "LEVIATHAN SEAL", cx, cy + 78);
         }
     }
 
@@ -1666,11 +1687,11 @@
             });
             diffCtx.restore();
 
-            // Inner shadow vignette for medallion depth
+            // Subtle depth gradient around outer edge of medallion disc (non-darkening)
             diffCtx.save();
-            const medVignette = diffCtx.createRadialGradient(cx, cy, medR * 0.65, cx, cy, medR);
+            const medVignette = diffCtx.createRadialGradient(cx, cy, medR * 0.75, cx, cy, medR);
             medVignette.addColorStop(0, "rgba(0,0,0,0)");
-            medVignette.addColorStop(1, "rgba(0,0,0,0.65)");
+            medVignette.addColorStop(1, "rgba(0,0,0,0.20)");
             diffCtx.fillStyle = medVignette;
             diffCtx.beginPath();
             diffCtx.arc(cx, cy, medR, 0, Math.PI * 2);
@@ -1688,9 +1709,10 @@
             bump: bumpTex,
             canvas: diffCanvas,
             materialParams: {
-                metalness: 0.88,
-                roughness: 0.25,
-                bumpScale: 0.04
+                metalness: 0.04,
+                roughness: 0.38,
+                bumpScale: 0.02,
+                emissiveIntensity: 0.28
             }
         };
     }
