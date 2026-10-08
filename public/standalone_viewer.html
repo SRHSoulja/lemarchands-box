@@ -9493,14 +9493,27 @@ body, html {
 
     <!-- App Bootstrapper -->
     <script>
-        window.addEventListener('DOMContentLoaded', () => {
+        function bootLemarchandApp() {
+            if (window.__LemarchandApp) return;
             const canvas = document.getElementById('webglCanvas');
-            const engine = new LemarchandEngine(canvas);
-            const puzzle = new LemarchandPuzzle(engine, LemarchandAudio);
-            const ui = new LemarchandUI(engine, puzzle, LemarchandAudio, LemarchandTraits);
+            if (!canvas) return;
+            try {
+                const engine = new LemarchandEngine(canvas);
+                const puzzle = new LemarchandPuzzle(engine, LemarchandAudio);
+                const ui = new LemarchandUI(engine, puzzle, LemarchandAudio, LemarchandTraits);
+                window.__LemarchandApp = { engine, puzzle, ui, audio: LemarchandAudio, traits: LemarchandTraits };
+            } catch (err) {
+                console.error("Lemarchand App Initialization Error:", err);
+                const hint = document.getElementById('puzzleHint');
+                if (hint) hint.textContent = "Initialization Notice: " + (err.message || err);
+            }
+        }
 
-            window.__LemarchandApp = { engine, puzzle, ui, audio: LemarchandAudio, traits: LemarchandTraits };
-        });
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', bootLemarchandApp);
+        } else {
+            bootLemarchandApp();
+        }
     </script>
 </body>
 </html>
