@@ -1827,6 +1827,56 @@
             }
         }
 
+        setBlueprintMode(enabled) {
+            this.blueprintMode = !!enabled;
+            if (!this._blueprintWireMat) {
+                this._blueprintWireMat = new THREE.MeshBasicMaterial({
+                    color: 0x00e5ff,
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.72
+                });
+            }
+
+            this.puzzleBlocks.forEach(b => {
+                if (!b.mesh) return;
+                if (!b.mesh.userData.originalMaterials) {
+                    b.mesh.userData.originalMaterials = Array.isArray(b.mesh.material) ? [...b.mesh.material] : b.mesh.material;
+                }
+                if (this.blueprintMode) {
+                    if (Array.isArray(b.mesh.material)) {
+                        b.mesh.material = b.mesh.material.map(() => this._blueprintWireMat);
+                    } else {
+                        b.mesh.material = this._blueprintWireMat;
+                    }
+                } else {
+                    b.mesh.material = b.mesh.userData.originalMaterials;
+                }
+            });
+
+            // Highlight internal clockwork gears & resonance bell
+            if (this.clockworkHub) {
+                this.clockworkHub.traverse(obj => {
+                    if (obj.isMesh && obj.material) {
+                        if (!obj.userData.origEmissive) {
+                            obj.userData.origEmissive = obj.material.emissive ? obj.material.emissive.clone() : new THREE.Color(0,0,0);
+                        }
+                        if (this.blueprintMode) {
+                            if (obj.material.emissive) obj.material.emissive.setHex(0xffaa00);
+                        } else {
+                            if (obj.material.emissive) obj.material.emissive.copy(obj.userData.origEmissive);
+                        }
+                    }
+                });
+            }
+
+            return this.blueprintMode;
+        }
+
+        toggleBlueprintMode() {
+            return this.setBlueprintMode(!this.blueprintMode);
+        }
+
         // 10-Stage Mechanical & Supernatural Kinematic Engine (Stages 0 to 9)
         updateKinematics(prog) {
             // 1. DYNAMIC CAMERA AUTO-DOLLY CALCULATION

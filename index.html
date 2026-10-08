@@ -215,6 +215,7 @@
                     <div style="display: flex; gap: 6px;">
                         <button class="whisper-btn" id="btnKeyHelp" title="Keys: 1-6 Faces, W Whisper, R Center, Space Orbit">⌨️ Keys</button>
                         <button class="whisper-btn" id="btnWhisper" title="Listen to the harmonic frequency clue">🎵 Whisper</button>
+                        <button class="whisper-btn" id="btnHeaderSchematics" title="Open Philip LeMarchand (1784) & Simon Sayce (1987) Technical Blueprints">📐 Blueprints</button>
                     </div>
                 </div>
                 <div class="puzzle-hint" id="puzzleHint">Loading sequence...</div>
@@ -226,12 +227,12 @@
             <!-- Quick Face Jump Bar for Effortless Inspection -->
             <div class="face-jump-bar" id="faceJumpBar">
                 <span class="jump-label">Inspect:</span>
-                <button class="face-jump-btn" data-face="0" title="Inspect Top Face (Zenith Rosette)">TOP</button>
-                <button class="face-jump-btn" data-face="1" title="Inspect Bottom Face (Nadir Astrolabe)">BTM</button>
-                <button class="face-jump-btn" data-face="2" title="Inspect Front Face (Labyrinth)">FRT</button>
-                <button class="face-jump-btn" data-face="3" title="Inspect Back Face (Escapement)">BCK</button>
-                <button class="face-jump-btn" data-face="4" title="Inspect Right Face (Cross)">RGT</button>
-                <button class="face-jump-btn" data-face="5" title="Inspect Left Face (Chevrons)">LFT</button>
+                <button class="face-jump-btn" data-face="0" title="Inspect Face 0: Priapus (Zenith Rosette)">👑 PRIAPUS</button>
+                <button class="face-jump-btn" data-face="1" title="Inspect Face 1: Amaimon (Nadir Astrolabe)">🧭 AMAIMON</button>
+                <button class="face-jump-btn" data-face="2" title="Inspect Face 2: Serat (Front Labyrinth)">🌀 SERAT</button>
+                <button class="face-jump-btn" data-face="3" title="Inspect Face 3: Escapement (Back Clockwork)">⚙️ ESCAPE</button>
+                <button class="face-jump-btn" data-face="4" title="Inspect Face 4: Quadrant Cross (Right)">✝️ QUAD</button>
+                <button class="face-jump-btn" data-face="5" title="Inspect Face 5: Chevron Prisms (Left)">📐 CHEVRON</button>
             </div>
 
             <!-- Iconic Movie Configurations -->
@@ -282,9 +283,11 @@
                 <button class="action-btn" id="btnBanish">⚔️ Banish / Re-Lock</button>
             </div>
 
-            <!-- Camera Controls & Center Relic -->
+            <!-- Camera & Technical Blueprint Controls -->
             <div class="action-group">
                 <button class="action-btn" id="btnResetCam" title="Reset Camera to Hero Angle">🎯 Center View</button>
+                <button class="action-btn" id="btnSchematics" title="Open Philip LeMarchand (1784) & Simon Sayce (1987) Technical Schematics & Blueprints (Hotkey: B)">📐 Schematics</button>
+                <button class="action-btn" id="btnBlueprintXray" title="Toggle 3D Mechanical Blueprint X-Ray (Cyan Wireframe & Exposed Internal Clockwork)">👁️ Blueprint 3D: OFF</button>
                 <button class="action-btn active" id="btnRotate">🔁 Auto-Orbit: ON</button>
                 <button class="action-btn active" id="btnMagic">✨ Magic FX: ON</button>
                 <button class="action-btn" id="btnCapture">📷 Capture HD</button>
@@ -296,6 +299,259 @@
                 <button class="action-btn" id="btnDrone" title="Hell Drone: Toggle Leviathan's Labyrinth ambient sub-harmonic pulse (55Hz/110Hz Cenobite realm drone)">🌀 Hell Drone: OFF</button>
             </div>
         </footer>
+
+        <!-- Philip LeMarchand (1784) & Simon Sayce (1987) Technical Schematics Modal -->
+        <div class="schematics-modal-overlay" id="schematicsModal" style="display: none;">
+            <div class="schematics-modal-card">
+                <div class="schematics-header">
+                    <div class="schematics-title-group">
+                        <div class="schematics-eyebrow">PHILIP LEMARCHAND (PARIS, 1784) • SIMON SAYCE (LONDON, 1987)</div>
+                        <h2 class="schematics-title">📐 Lemarchand’s Box: Architectural & Mechanical Schematics</h2>
+                        <div class="schematics-sub">3.00″ × 3.00″ × 3.00″ (76.2 mm) Metric Tolerances • 6 Intaglio Plates • 10-Stage Kinematic Lifecycle</div>
+                    </div>
+                    <button class="schematics-close-btn" id="btnCloseSchematics" title="Close Schematics (Esc)">&times;</button>
+                </div>
+
+                <!-- Navigation Tabs -->
+                <div class="schematics-tabs">
+                    <button class="schematics-tab-btn active" data-tab="specs">📐 Technical Tolerances</button>
+                    <button class="schematics-tab-btn" data-tab="plates">📜 6 Intaglio Plates</button>
+                    <button class="schematics-tab-btn" data-tab="kinematics">🔄 10 Configurations</button>
+                    <button class="schematics-tab-btn" data-tab="chassis">⚙️ Internal Clockwork</button>
+                </div>
+
+                <div class="schematics-content-scroll">
+                    <!-- Tab 1: Technical Tolerances -->
+                    <div class="schematics-tab-pane active" id="paneSpecs">
+                        <div class="blueprint-summary-banner">
+                            <span class="blueprint-tag">ARCHIVAL DRAFTING STANDARDS</span>
+                            <p>Hand-crafted by French clockmaker Philip LeMarchand in 1784 under commission for the Duc de L’Isle. Adapted for the 1987 cinematic manifestation by special effects artisan Simon Sayce using surgical instrument engravings researched at Oxford’s Pitt Rivers Museum.</p>
+                        </div>
+                        <div class="specs-grid">
+                            <div class="spec-card">
+                                <div class="spec-label">DIMENSIONAL VOLUME</div>
+                                <div class="spec-val">3.00″ × 3.00″ × 3.00″ (76.2 mm Cube)</div>
+                                <div class="spec-desc">Based on the mystical triadic magic constant: 3×3=9 realms. Fits snugly in two human hands.</div>
+                            </div>
+                            <div class="spec-card">
+                                <div class="spec-label">CORE SUBSTRATE</div>
+                                <div class="spec-val">Dual Ebony & Peruvian Mahogany</div>
+                                <div class="spec-desc">Face 0 (Priapus) is finished in deep obsidian black lacquer; Faces 1–5 are milled from dark reddish mahogany.</div>
+                            </div>
+                            <div class="spec-card">
+                                <div class="spec-label">ETCHED PLATES</div>
+                                <div class="spec-val">0.012″ (0.30 mm) Photo-Etched Brass</div>
+                                <div class="spec-desc">Acid-etched intaglio brass foil sheets recessed 0.048″ flush with the timber perimeter frame.</div>
+                            </div>
+                            <div class="spec-card">
+                                <div class="spec-label">EQUATORIAL CLEAVAGE</div>
+                                <div class="spec-val">Y = 0.00 mm Interface Seam</div>
+                                <div class="spec-desc">Divides the box into Upper Tier (Blocks 0–7) and Lower Tier (Blocks 8–15) with an integrated turntable bearing race.</div>
+                            </div>
+                            <div class="spec-card">
+                                <div class="spec-label">SECRET ALCOVES</div>
+                                <div class="spec-val">4 Telescoping Dovetail Drawers</div>
+                                <div class="spec-desc">4 corner key drawers (Top-R, Top-L, Btm-R, Btm-L) slide out on corner dovetails to reveal the Hollow Heart.</div>
+                            </div>
+                            <div class="spec-card">
+                                <div class="spec-label">DEFENSE CATCH</div>
+                                <div class="spec-val">4 Centrifugal Razor Blades</div>
+                                <div class="spec-desc">Concealed spring-loaded surgical pins triggered when cipher tumblers fail or when transition into Liminal demands blood.</div>
+                            </div>
+                        </div>
+
+                        <div class="blueprint-action-bar">
+                            <button class="blueprint-cta-btn" id="btnModalToggleXray">👁️ Toggle 3D Blueprint X-Ray (Wireframe View)</button>
+                            <button class="blueprint-cta-btn" id="btnModalOpenDrawers">📦 Open Secret Key Drawers (Stage 5)</button>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: The 6 Intaglio Plates -->
+                    <div class="schematics-tab-pane" id="panePlates">
+                        <div class="plates-grid">
+                            <!-- Plate 0 -->
+                            <div class="plate-card">
+                                <div class="plate-header">
+                                    <span class="plate-id">PLATE I • ZENITH</span>
+                                    <span class="plate-name">PRIAPUS ROSETTE</span>
+                                </div>
+                                <div class="plate-lore">
+                                    <strong>Finish:</strong> Deep Black Ebony Lacquer • <strong>Motif:</strong> 8-Pointed Star Rosette & Arabesque Flourishes. Canonical first depression dial that initiates the mechanical incision.
+                                </div>
+                                <button class="plate-focus-btn" data-face="0">Inspect Face in 3D ➔</button>
+                            </div>
+                            <!-- Plate 1 -->
+                            <div class="plate-card">
+                                <div class="plate-header">
+                                    <span class="plate-id">PLATE II • NADIR</span>
+                                    <span class="plate-name">AMAIMON ASTROLABE</span>
+                                </div>
+                                <div class="plate-lore">
+                                    <strong>Finish:</strong> Warm Mahogany • <strong>Motif:</strong> Concentric Astrolabe Dials & 360° Celestial Compass Rings. Navigational dial charting subterranean coordinates.
+                                </div>
+                                <button class="plate-focus-btn" data-face="1">Inspect Face in 3D ➔</button>
+                            </div>
+                            <!-- Plate 2 -->
+                            <div class="plate-card">
+                                <div class="plate-header">
+                                    <span class="plate-id">PLATE III • FRONT (+Z)</span>
+                                    <span class="plate-name">SERAT LABYRINTH</span>
+                                </div>
+                                <div class="plate-lore">
+                                    <strong>Finish:</strong> Warm Mahogany • <strong>Motif:</strong> Concentric Orthogonal Maze & Central Core. Guiding thumb tracks leading the solver into the Cenobite corridors.
+                                </div>
+                                <button class="plate-focus-btn" data-face="2">Inspect Face in 3D ➔</button>
+                            </div>
+                            <!-- Plate 3 -->
+                            <div class="plate-card">
+                                <div class="plate-header">
+                                    <span class="plate-id">PLATE IV • BACK (-Z)</span>
+                                    <span class="plate-name">ESCAPEMENT GEARS</span>
+                                </div>
+                                <div class="plate-lore">
+                                    <strong>Finish:</strong> Warm Mahogany • <strong>Motif:</strong> Interlocking Gear Teeth, Balance Wheel & Diamond Rhombus. Represents temporal clockwork counting mortal moments.
+                                </div>
+                                <button class="plate-focus-btn" data-face="3">Inspect Face in 3D ➔</button>
+                            </div>
+                            <!-- Plate 4 -->
+                            <div class="plate-card">
+                                <div class="plate-header">
+                                    <span class="plate-id">PLATE V • RIGHT (+X)</span>
+                                    <span class="plate-name">QUADRANT CROSS</span>
+                                </div>
+                                <div class="plate-lore">
+                                    <strong>Finish:</strong> Warm Mahogany • <strong>Motif:</strong> Cruciform Division of the Four Elements with radial quadrant graduations.
+                                </div>
+                                <button class="plate-focus-btn" data-face="4">Inspect Face in 3D ➔</button>
+                            </div>
+                            <!-- Plate 5 -->
+                            <div class="plate-card">
+                                <div class="plate-header">
+                                    <span class="plate-id">PLATE VI • LEFT (-X)</span>
+                                    <span class="plate-name">CHEVRON PRISMS</span>
+                                </div>
+                                <div class="plate-lore">
+                                    <strong>Finish:</strong> Warm Mahogany • <strong>Motif:</strong> Triple Stepped Chevron Angles channeling dimensional refraction along the equatorial seam.
+                                </div>
+                                <button class="plate-focus-btn" data-face="5">Inspect Face in 3D ➔</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: 10 Transformations -->
+                    <div class="schematics-tab-pane" id="paneKinematics">
+                        <div class="kinematic-flow-list">
+                            <div class="flow-item" data-stage="0">
+                                <div class="flow-badge">STAGE 0</div>
+                                <div class="flow-info">
+                                    <div class="flow-title">Lament Configuration (Dormant Cube)</div>
+                                    <div class="flow-desc">3.0″ square cube with concealed equatorial seam and retracted key drawers.</div>
+                                </div>
+                                <button class="flow-jump-btn" data-stage="0">Engage ➔</button>
+                            </div>
+                            <div class="flow-item" data-stage="1">
+                                <div class="flow-badge">STAGE 1</div>
+                                <div class="flow-info">
+                                    <div class="flow-title">Flanged Shift (Simon Sayce 1987)</div>
+                                    <div class="flow-desc">Upper hemisphere shifts 1.5″ along dovetail rails, exposing internal clockwork hub.</div>
+                                </div>
+                                <button class="flow-jump-btn" data-stage="1">Engage ➔</button>
+                            </div>
+                            <div class="flow-item" data-stage="2">
+                                <div class="flow-badge">STAGE 2</div>
+                                <div class="flow-info">
+                                    <div class="flow-title">Stepped Ziggurat (Frank Cotton Attic)</div>
+                                    <div class="flow-desc">Diagonal blocks step into a terraced 3D staircase with dry interlocking clicks.</div>
+                                </div>
+                                <button class="flow-jump-btn" data-stage="2">Engage ➔</button>
+                            </div>
+                            <div class="flow-item" data-stage="3">
+                                <div class="flow-badge">STAGE 3</div>
+                                <div class="flow-info">
+                                    <div class="flow-title">Pinwheel Swirl (Hellbound Windmill)</div>
+                                    <div class="flow-desc">Lateral edge blocks revolve tangentially around the core in a counter-rotational pinwheel.</div>
+                                </div>
+                                <button class="flow-jump-btn" data-stage="3">Engage ➔</button>
+                            </div>
+                            <div class="flow-item" data-stage="4">
+                                <div class="flow-badge">STAGE 4</div>
+                                <div class="flow-info">
+                                    <div class="flow-title">Octagram Star Prism (45° Axial Twist)</div>
+                                    <div class="flow-desc">Upper tier rotates exactly 45° across equatorial turntable bearing into an 8-pointed star.</div>
+                                </div>
+                                <button class="flow-jump-btn" data-stage="4">Engage ➔</button>
+                            </div>
+                            <div class="flow-item" data-stage="5">
+                                <div class="flow-badge">STAGE 5</div>
+                                <div class="flow-info">
+                                    <div class="flow-title">Dovetail Drawers (4 Secret Alcoves)</div>
+                                    <div class="flow-desc">4 corner key drawers glide open along corner dovetails, exposing interior reliquary chambers.</div>
+                                </div>
+                                <button class="flow-jump-btn" data-stage="5">Engage ➔</button>
+                            </div>
+                            <div class="flow-item" data-stage="6">
+                                <div class="flow-badge">STAGE 6</div>
+                                <div class="flow-info">
+                                    <div class="flow-title">Laudarant / Lauder (Radial Star Bloom)</div>
+                                    <div class="flow-desc">16 blocks bloom outward on 8 articulated scissor linkages into 8 fluted golden chasms.</div>
+                                </div>
+                                <button class="flow-jump-btn" data-stage="6">Engage ➔</button>
+                            </div>
+                            <div class="flow-item" data-stage="7">
+                                <div class="flow-badge">STAGE 7</div>
+                                <div class="flow-info">
+                                    <div class="flow-title">Liminal Monolith (Sacrificial Blades)</div>
+                                    <div class="flow-desc">Box elongates into vertical tesseract pillar as 4 spring razor blades shoot from the incision.</div>
+                                </div>
+                                <button class="flow-jump-btn" data-stage="7">Engage ➔</button>
+                            </div>
+                            <div class="flow-item" data-stage="8">
+                                <div class="flow-badge">STAGE 8</div>
+                                <div class="flow-info">
+                                    <div class="flow-title">Lazarus Rhombus (Leviathan Diamond)</div>
+                                    <div class="flow-desc">Faceted matrix folds into the elongated occult diamond of Leviathan’s hellish geometry.</div>
+                                </div>
+                                <button class="flow-jump-btn" data-stage="8">Engage ➔</button>
+                            </div>
+                            <div class="flow-item" data-stage="9">
+                                <div class="flow-badge">STAGE 9</div>
+                                <div class="flow-info">
+                                    <div class="flow-title">Gateway Climax (Living Chains & Portal)</div>
+                                    <div class="flow-desc">Singularity core detonates with godrays and living pendulum barbed chains. The Schism is unsealed.</div>
+                                </div>
+                                <button class="flow-jump-btn" data-stage="9">Engage ➔</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 4: Internal Clockwork -->
+                    <div class="schematics-tab-pane" id="paneChassis">
+                        <div class="specs-grid">
+                            <div class="spec-card">
+                                <div class="spec-label">RESONANCE BELL</div>
+                                <div class="spec-val">Central Brass Cylinder with Clapper</div>
+                                <div class="spec-desc">Emits the subterranean harmonic hum and chime upon stage alignment (440Hz / 55Hz sub-bass).</div>
+                            </div>
+                            <div class="spec-card">
+                                <div class="spec-label">GEAR ARRAY</div>
+                                <div class="spec-val">8 Multi-Axis Antique Gears</div>
+                                <div class="spec-desc">Includes Sun Wheel, Crown Gear, Escapement Wheel, Geneva Mechanism, Astrolabe Ring, and Satellite Pinions.</div>
+                            </div>
+                            <div class="spec-card">
+                                <div class="spec-label">GUIDE SYSTEM</div>
+                                <div class="spec-val">8 Edge Dovetail Rails + 8 Corner Linkages</div>
+                                <div class="spec-desc">High-precision brass guide rails ensuring zero mechanical binding across all 180 continuous kinematic steps.</div>
+                            </div>
+                            <div class="spec-card">
+                                <div class="spec-label">CORE SINGULARITY</div>
+                                <div class="spec-val">Nested Enochian Rune Rings</div>
+                                <div class="spec-desc">Concentric counter-rotating arcane rings enclosing the gravitational singularity crystal.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 

@@ -552,6 +552,8 @@ body, html {
     font-size: 0.74rem;
     font-family: monospace;
     font-weight: 700;
+}
+
 .strays-enshrine-panel {
     display: flex;
     flex-direction: column;
@@ -1435,4 +1437,331 @@ body, html {
         flex-wrap: wrap;
         justify-content: center;
     }
+}
+
+/* Schematics & Technical Blueprints Modal */
+.schematics-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(4, 7, 12, 0.88);
+    backdrop-filter: blur(10px);
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.schematics-modal-card {
+    background: #090e17;
+    border: 1px solid rgba(0, 229, 255, 0.4);
+    box-shadow: 0 0 35px rgba(0, 229, 255, 0.25), inset 0 0 20px rgba(0, 140, 255, 0.08);
+    border-radius: 6px;
+    width: 900px;
+    max-width: 96vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    color: #e6f3ff;
+}
+
+.schematics-header {
+    padding: 16px 22px;
+    background: linear-gradient(180deg, rgba(0, 229, 255, 0.12), rgba(0, 0, 0, 0.4));
+    border-bottom: 1px solid rgba(0, 229, 255, 0.25);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.schematics-eyebrow {
+    font-size: 0.65rem;
+    font-family: monospace;
+    font-weight: 700;
+    color: #00e5ff;
+    letter-spacing: 1.5px;
+}
+
+.schematics-title {
+    font-size: 1.25rem;
+    font-family: serif;
+    color: #fff4d0;
+    margin: 4px 0 2px 0;
+    letter-spacing: 0.4px;
+}
+
+.schematics-sub {
+    font-size: 0.72rem;
+    font-family: monospace;
+    color: #88a8bd;
+}
+
+.schematics-close-btn {
+    background: transparent;
+    border: none;
+    color: #00e5ff;
+    font-size: 1.8rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 6px;
+    transition: all 0.15s ease;
+}
+
+.schematics-close-btn:hover {
+    color: #ffffff;
+    transform: scale(1.15);
+}
+
+.schematics-tabs {
+    display: flex;
+    gap: 6px;
+    padding: 8px 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    overflow-x: auto;
+}
+
+.schematics-tab-btn {
+    background: rgba(0, 229, 255, 0.06);
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    color: #9cdbf0;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    cursor: pointer;
+    font-family: monospace;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+
+.schematics-tab-btn:hover {
+    background: rgba(0, 229, 255, 0.15);
+    color: #ffffff;
+}
+
+.schematics-tab-btn.active {
+    background: rgba(0, 229, 255, 0.25);
+    border-color: #00e5ff;
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+}
+
+.schematics-content-scroll {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.schematics-tab-pane {
+    display: none;
+}
+
+.schematics-tab-pane.active {
+    display: block;
+}
+
+.blueprint-summary-banner {
+    background: rgba(0, 229, 255, 0.06);
+    border-left: 4px solid #00e5ff;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    border-radius: 0 4px 4px 0;
+}
+
+.blueprint-summary-banner p {
+    font-size: 0.78rem;
+    color: #d8e8f2;
+    line-height: 1.45;
+    margin: 4px 0 0 0;
+}
+
+.blueprint-tag {
+    font-size: 0.64rem;
+    font-family: monospace;
+    font-weight: 700;
+    color: #00e5ff;
+    letter-spacing: 0.8px;
+}
+
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+}
+
+.spec-card {
+    background: rgba(14, 20, 30, 0.8);
+    border: 1px solid rgba(0, 229, 255, 0.18);
+    border-radius: 4px;
+    padding: 12px;
+}
+
+.spec-label {
+    font-size: 0.65rem;
+    font-family: monospace;
+    color: #00e5ff;
+    letter-spacing: 0.5px;
+}
+
+.spec-val {
+    font-size: 0.95rem;
+    color: #ffd700;
+    font-weight: 700;
+    margin: 4px 0 6px 0;
+}
+
+.spec-desc {
+    font-size: 0.74rem;
+    color: #a4b8c6;
+    line-height: 1.4;
+}
+
+.blueprint-action-bar {
+    margin-top: 18px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.blueprint-cta-btn {
+    background: rgba(0, 229, 255, 0.15);
+    border: 1px solid #00e5ff;
+    color: #00e5ff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-family: monospace;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.blueprint-cta-btn:hover {
+    background: #00e5ff;
+    color: #060910;
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+}
+
+.plates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+}
+
+.plate-card {
+    background: rgba(14, 20, 30, 0.85);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: 4px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.plate-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.plate-id {
+    font-size: 0.62rem;
+    font-family: monospace;
+    color: #00e5ff;
+}
+
+.plate-name {
+    font-size: 0.82rem;
+    color: #ffd700;
+    font-weight: 700;
+}
+
+.plate-lore {
+    font-size: 0.73rem;
+    color: #d0c8b8;
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+.plate-focus-btn {
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid #d4af37;
+    color: #ffd700;
+    padding: 6px 10px;
+    border-radius: 3px;
+    font-size: 0.70rem;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s ease;
+    font-family: monospace;
+}
+
+.plate-focus-btn:hover {
+    background: #d4af37;
+    color: #090707;
+}
+
+.kinematic-flow-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.flow-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: rgba(14, 20, 30, 0.75);
+    border: 1px solid rgba(0, 229, 255, 0.15);
+    border-radius: 4px;
+    padding: 10px 14px;
+}
+
+.flow-badge {
+    font-family: monospace;
+    font-size: 0.70rem;
+    color: #00e5ff;
+    background: rgba(0, 229, 255, 0.12);
+    padding: 3px 8px;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    flex-shrink: 0;
+}
+
+.flow-info {
+    flex: 1;
+}
+
+.flow-title {
+    font-size: 0.85rem;
+    color: #ffd700;
+    font-weight: 700;
+}
+
+.flow-desc {
+    font-size: 0.72rem;
+    color: #a4b8c6;
+}
+
+.flow-jump-btn {
+    background: rgba(0, 229, 255, 0.12);
+    border: 1px solid #00e5ff;
+    color: #00e5ff;
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-size: 0.70rem;
+    cursor: pointer;
+    font-family: monospace;
+    transition: all 0.15s ease;
+}
+
+.flow-jump-btn:hover {
+    background: #00e5ff;
+    color: #060910;
 }

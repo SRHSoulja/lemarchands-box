@@ -27,12 +27,12 @@
     ];
 
     const FACE_POETIC_CLUES = [
-        "Seek the Zenith Rosette watching the northern stars",
-        "Turn the Nadir Astrolabe charting the abyss beneath",
-        "Untangle the Concentric Labyrinth where the minotaur dreams",
+        "Seek Priapus' Zenith Rosette watching the northern stars",
+        "Turn Amaimon's Nadir Astrolabe charting the abyss beneath",
+        "Untangle Serat's Labyrinth where the Cenobite architects dream",
         "Disengage the Clockwork Escapement counting mortal seconds",
         "Align the Golden Quadrant Cross of the Four Elements",
-        "Follow the Radiating Chevrons into the prism void"
+        "Follow the Radiating Chevron Prisms into the void"
     ];
 
     const CENOBITE_PROCLAMATIONS = [
@@ -45,12 +45,12 @@
     ];
 
     const FACE_NAMES = [
-        "Top Rosette (Zenith)",
-        "Bottom Astrolabe (Nadir)",
-        "Front Labyrinth (Chamber)",
-        "Back Escapement (Clockwork)",
-        "Right Cross (Quadrant)",
-        "Left Chevrons (Prism)"
+        "Priapus Rosette (Zenith)",
+        "Amaimon Astrolabe (Nadir)",
+        "Serat Labyrinth (Chamber)",
+        "Escapement Gears (Clockwork)",
+        "Quadrant Cross (Right)",
+        "Chevron Prisms (Left)"
     ];
 
     const STAGE_LORE = [

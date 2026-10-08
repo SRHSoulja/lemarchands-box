@@ -582,11 +582,12 @@
 
     // Build PBR Textures
     function generateFaceTexture(faceIndex, options = {}) {
+        const isPriapus = (faceIndex === 0);
         const {
-            woodColor = "#120c09",
+            woodColor = isPriapus ? "#070607" : "#190e09", // Priapus (Face 0): authentic ebony black lacquer; others: rich dark Peruvian mahogany
             metalColor = "#d4af37",
             metalness = 0.94,
-            roughness = 0.35
+            roughness = isPriapus ? 0.28 : 0.35 // High-gloss lacquer finish on Priapus star face
         } = options;
 
         const diffCanvas = document.createElement('canvas');

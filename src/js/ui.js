@@ -77,7 +77,7 @@
                 strayPreviewName: document.getElementById('strayPreviewName'),
                 strayPreviewSub: document.getElementById('strayPreviewSub'),
 
-                // Dock Buttons
+                // Dock & Schematics Buttons
                 btnStep: document.getElementById('btnStep'),
                 btnSolve: document.getElementById('btnSolve'),
                 btnBanish: document.getElementById('btnBanish') || document.getElementById('btnReset'),
@@ -86,7 +86,14 @@
                 btnCapture: document.getElementById('btnCapture'),
                 btnRotate: document.getElementById('btnRotate'),
                 btnAudio: document.getElementById('btnAudio'),
-                btnDrone: document.getElementById('btnDrone')
+                btnDrone: document.getElementById('btnDrone'),
+                btnSchematics: document.getElementById('btnSchematics'),
+                btnBlueprintXray: document.getElementById('btnBlueprintXray'),
+                btnHeaderSchematics: document.getElementById('btnHeaderSchematics'),
+                schematicsModal: document.getElementById('schematicsModal'),
+                btnCloseSchematics: document.getElementById('btnCloseSchematics'),
+                btnModalToggleXray: document.getElementById('btnModalToggleXray'),
+                btnModalOpenDrawers: document.getElementById('btnModalOpenDrawers')
             };
 
             this.init();
@@ -105,7 +112,14 @@
             // Hook 3D face hover feedback
             this.engine.onFaceHover = (faceIndex) => {
                 if (this.dom.faceHoverPill) {
-                    const faceNames = ["Top Rosette (Zenith)", "Bottom Astrolabe (Nadir)", "Front Labyrinth (Chamber)", "Back Escapement (Clockwork)", "Right Cross (Quadrant)", "Left Chevrons (Prism)"];
+                    const faceNames = [
+                        "Priapus Rosette (Zenith)",
+                        "Amaimon Astrolabe (Nadir)",
+                        "Serat Labyrinth (Chamber)",
+                        "Escapement Gears (Clockwork)",
+                        "Quadrant Cross (Right)",
+                        "Chevron Prisms (Left)"
+                    ];
                     const name = faceNames[faceIndex] || `Face ${faceIndex}`;
                     const expectedFace = (this.puzzle && this.puzzle.sequence) ? this.puzzle.sequence[this.puzzle.solvedSteps] : -1;
                     let prefix = "✨";
@@ -362,7 +376,9 @@
 
                 const key = e.key;
                 if (key === 'Escape') {
-                    if (this.dom.relicShowcaseCard && this.dom.relicShowcaseCard.style.display !== 'none') {
+                    if (this.dom.schematicsModal && this.dom.schematicsModal.style.display !== 'none') {
+                        this.dom.schematicsModal.style.display = 'none';
+                    } else if (this.dom.relicShowcaseCard && this.dom.relicShowcaseCard.style.display !== 'none') {
                         this.dom.relicShowcaseCard.style.display = 'none';
                     } else if (this.engine && this.engine.resetCamera) {
                         this.engine.resetCamera();
@@ -377,6 +393,10 @@
                     if (this.dom.btnOpenDrawers3D) {
                         this.dom.btnOpenDrawers3D.click();
                     }
+                } else if (key === 'p' || key === 'P') {
+                    if (this.dom.btnSchematics) this.dom.btnSchematics.click();
+                } else if (key === 'x' || key === 'X') {
+                    if (this.dom.btnBlueprintXray) this.dom.btnBlueprintXray.click();
                 } else if (key === 's' || key === 'S') {
                     if (this.dom.btnStep) this.dom.btnStep.click();
                 } else if (key === 'b' || key === 'B') {
@@ -446,6 +466,84 @@
                             this.dom.puzzleHint.textContent = "🌀 Hell Drone silenced.";
                         }
                     }
+                });
+            }
+
+            // Schematics & Blueprints HUD
+            const openSchematicsModal = () => {
+                if (this.dom.schematicsModal) {
+                    this.dom.schematicsModal.style.display = 'flex';
+                    if (this.audio && this.audio.playTumblerClick) this.audio.playTumblerClick(1);
+                }
+            };
+
+            const closeSchematicsModal = () => {
+                if (this.dom.schematicsModal) {
+                    this.dom.schematicsModal.style.display = 'none';
+                }
+            };
+
+            if (this.dom.btnSchematics) this.dom.btnSchematics.addEventListener('click', openSchematicsModal);
+            if (this.dom.btnHeaderSchematics) this.dom.btnHeaderSchematics.addEventListener('click', openSchematicsModal);
+            if (this.dom.btnCloseSchematics) this.dom.btnCloseSchematics.addEventListener('click', closeSchematicsModal);
+
+            if (this.dom.schematicsModal) {
+                this.dom.schematicsModal.addEventListener('click', (e) => {
+                    if (e.target === this.dom.schematicsModal) closeSchematicsModal();
+                });
+
+                // Tabs
+                this.dom.schematicsModal.querySelectorAll('.schematics-tab-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const tabKey = btn.getAttribute('data-tab');
+                        this.dom.schematicsModal.querySelectorAll('.schematics-tab-btn').forEach(b => b.classList.remove('active'));
+                        this.dom.schematicsModal.querySelectorAll('.schematics-tab-pane').forEach(p => p.classList.remove('active'));
+                        btn.classList.add('active');
+                        const targetPane = document.getElementById(`pane${tabKey.charAt(0).toUpperCase() + tabKey.slice(1)}`);
+                        if (targetPane) targetPane.classList.add('active');
+                    });
+                });
+
+                // Plate Focus Buttons
+                this.dom.schematicsModal.querySelectorAll('.plate-focus-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const faceIdx = parseInt(btn.getAttribute('data-face'));
+                        closeSchematicsModal();
+                        if (!isNaN(faceIdx)) this.engine.focusFace(faceIdx);
+                    });
+                });
+
+                // Flow Jump Buttons
+                this.dom.schematicsModal.querySelectorAll('.flow-jump-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const stage = parseInt(btn.getAttribute('data-stage'));
+                        closeSchematicsModal();
+                        if (!isNaN(stage)) this.puzzle.setStage(stage);
+                    });
+                });
+            }
+
+            // Blueprint 3D X-Ray Toggle
+            const toggleBlueprintXray = () => {
+                if (this.engine && this.engine.toggleBlueprintMode) {
+                    const active = this.engine.toggleBlueprintMode();
+                    if (this.dom.btnBlueprintXray) {
+                        this.dom.btnBlueprintXray.textContent = active ? "👁️ Blueprint 3D: ON" : "👁️ Blueprint 3D: OFF";
+                        this.dom.btnBlueprintXray.classList.toggle('active', active);
+                    }
+                    if (this.dom.btnModalToggleXray) {
+                        this.dom.btnModalToggleXray.textContent = active ? "👁️ Blueprint X-Ray: ON (Click to Disable)" : "👁️ Toggle 3D Blueprint X-Ray (Wireframe View)";
+                    }
+                    if (this.audio && this.audio.playTumblerClick) this.audio.playTumblerClick(2);
+                }
+            };
+
+            if (this.dom.btnBlueprintXray) this.dom.btnBlueprintXray.addEventListener('click', toggleBlueprintXray);
+            if (this.dom.btnModalToggleXray) this.dom.btnModalToggleXray.addEventListener('click', toggleBlueprintXray);
+            if (this.dom.btnModalOpenDrawers) {
+                this.dom.btnModalOpenDrawers.addEventListener('click', () => {
+                    closeSchematicsModal();
+                    if (this.dom.btnOpenDrawers3D) this.dom.btnOpenDrawers3D.click();
                 });
             }
 
